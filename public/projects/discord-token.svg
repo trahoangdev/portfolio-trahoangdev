@@ -1,0 +1,12 @@
+<svg width="640" height="400" viewBox="0 0 640 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="400" rx="32" fill="#1F2937" />
+  <rect x="60" y="60" width="520" height="280" rx="24" fill="#111827" />
+  <rect x="96" y="112" width="448" height="56" rx="12" fill="#2563EB" opacity="0.5" />
+  <rect x="96" y="192" width="448" height="32" rx="8" fill="#22D3EE" opacity="0.45" />
+  <rect x="96" y="248" width="260" height="32" rx="8" fill="#6B7280" opacity="0.45" />
+  <circle cx="148" cy="140" r="16" fill="#F8FAFC" />
+  <path d="M148 132L152 140L148 148L144 140L148 132Z" fill="#2563EB" />
+  <text x="100" y="340" fill="#CBD5F5" font-family="'Fira Code', monospace" font-size="22" font-weight="600" letter-spacing="5">
+    TOKEN AUDIT DASHBOARD
+  </text>
+</svg>
