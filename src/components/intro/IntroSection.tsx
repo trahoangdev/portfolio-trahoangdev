@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { SocialLinks } from '@/components/intro/SocialLinks';
-import { CommunityInfo } from '@/components/intro/ComunityInfo';
+import { CommunityInfo } from '@/components/intro/CommunityInfo';
 import { WebsiteInfoCard } from '@/components/intro/WebsiteInfoCard';
 
 import Link from 'next/link';
@@ -129,7 +129,7 @@ export function IntroSection({
     before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-[2px] before:bg-yellow-400
     before:transition-all before:duration-500 group-hover:before:w-full`}
                 >
-                  Trà
+                  Tra Hoang Trong
                 </span>
                 . It is such an honour to have you here. Connect with me and
                 let&apos;s have a deep conversation, or explore creative ideas
