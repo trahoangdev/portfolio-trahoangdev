@@ -1,8 +1,16 @@
 import { Tag } from './Tag';
 
+/**
+ * Represents a collection of unique tags
+ * Automatically deduplicates tags based on their slugs
+ */
 export class TagSet {
   private readonly tags: Tag[];
 
+  /**
+   * Creates a new TagSet from an iterable of tags or strings
+   * @param tags - Iterable of Tag instances or string labels
+   */
   constructor(tags: Iterable<Tag | string>) {
     const uniqueMap = new Map<string, Tag>();
 

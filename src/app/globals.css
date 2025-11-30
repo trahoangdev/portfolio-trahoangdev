@@ -119,6 +119,24 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Screen reader only - hide visually but keep for screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Skip link - visible on focus */
+  .skip-link {
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 @layer utilities {
@@ -150,7 +168,9 @@
 
   /* Smooth hover effects */
   .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   .hover-lift:hover {
@@ -160,8 +180,10 @@
   /* Added cursor magnet effect for cards */
   .magnet-card {
     position: relative;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     cursor: pointer;
+    will-change: transform;
   }
 
   .magnet-card:hover {

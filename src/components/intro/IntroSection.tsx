@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { SocialLinks } from '@/components/intro/SocialLinks';
-import { CommunityInfo } from '@/components/intro/ComunityInfo';
-import { WebsiteInfoCard } from '@/components/intro/WebsiteInfoCard';
-
+import Image from 'next/image';
 import Link from 'next/link';
+import { SocialLinks } from '@/components/intro/SocialLinks';
+import { CommunityInfo } from '@/components/intro/CommunityInfo';
+import { WebsiteInfoCard } from '@/components/intro/WebsiteInfoCard';
 
 export function IntroSection({
   sectionRef,
@@ -29,8 +29,21 @@ export function IntroSection({
     };
 
     updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
+    // Update every second using requestAnimationFrame for better performance
+    let animationFrameId: number;
+    let lastUpdate = Date.now();
+    
+    const animate = () => {
+      const now = Date.now();
+      if (now - lastUpdate >= 1000) {
+        updateClock();
+        lastUpdate = now;
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
   return (
@@ -75,11 +88,15 @@ export function IntroSection({
           <div className="group magnet-card border-dashed-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
             <div className="group hover-lift hover:scale-125 out aspect-square bg-muted rounded-lg overflow-hidden relative">
               {!imageError ? (
-                <img
+                <Image
                   src="/portrait.jpg"
-                  alt="Portrait"
+                  alt="Portrait of Tra Hoang Dev"
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                   onError={() => setImageError(true)}
+                  priority
+                  quality={90}
                 />
               ) : (
                 <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
@@ -129,7 +146,7 @@ export function IntroSection({
     before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-[2px] before:bg-yellow-400
     before:transition-all before:duration-500 group-hover:before:w-full`}
                 >
-                  Trà
+                  Tra Hoang Trong
                 </span>
                 . It is such an honour to have you here. Connect with me and
                 let&apos;s have a deep conversation, or explore creative ideas

@@ -15,6 +15,7 @@ export function WorkSection({ activeSection, sectionRef }: WorkSectionProps) {
     <section
       id="work"
       ref={sectionRef}
+      aria-labelledby="work-heading"
       className="min-h-screen py-20 sm:py-32 opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0"
     >
       <div className="space-y-12 sm:space-y-16">
@@ -25,7 +26,7 @@ export function WorkSection({ activeSection, sectionRef }: WorkSectionProps) {
             transitionDelay: activeSection === 'work' ? '80ms' : '0ms',
           }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold uppercase">
+          <h2 id="work-heading" className="text-3xl sm:text-4xl font-bold uppercase">
             Roadmap
           </h2>
           <div className="text-sm text-muted-foreground font-mono mt-2">

@@ -6,6 +6,8 @@ import './globals.css';
 import { HeaderNavigation } from '@/components/navigation/HeaderNavigation';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Background } from '@/components/ui/background';
+import { SkipLink } from '@/components/ui/SkipLink';
+import { Analytics } from '@vercel/analytics/react';
 
 export const runtime = 'edge';
 
@@ -39,6 +41,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <SkipLink />
           <Background />
           <HeaderNavigation />
           <Script id="remove-bis-skin" strategy="beforeInteractive">{`(() => {
@@ -81,6 +84,7 @@ export default function RootLayout({
         }
       })();`}</Script>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

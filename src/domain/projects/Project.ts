@@ -32,6 +32,10 @@ export interface ProjectSnapshot {
   demoImages: string[];
 }
 
+/**
+ * Represents a project entity with its metadata and categorization
+ * Ensures data integrity through validation and immutability
+ */
 export class Project {
   private readonly id: string;
   private readonly title: string;
@@ -44,6 +48,11 @@ export class Project {
   private readonly featured: boolean;
   private readonly demoImages: string[];
 
+  /**
+   * Creates a new Project instance
+   * @param props - Project properties including id, title, summary, date, categories, languages, and optional fields
+   * @throws {Error} If required fields are empty or invalid
+   */
   constructor(props: ProjectProps) {
     this.id = props.id.trim();
     this.title = props.title.trim();

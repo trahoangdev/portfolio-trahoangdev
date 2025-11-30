@@ -28,7 +28,7 @@ export function createProjectControllers(): ProjectControllers {
   const httpClient = new FetchHttpClient();
   const sources = [
     new GitHubProjectDataSource(httpClient, {
-      authToken: process.env.NEXT_PUBLIC_PROJECT_GITHUB_TOKEN,
+      authToken: process.env.GITHUB_TOKEN,
     }),
     new HuggingFaceModelDataSource(httpClient),
     new HuggingFaceSpaceDataSource(httpClient),

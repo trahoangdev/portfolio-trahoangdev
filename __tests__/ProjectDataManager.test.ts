@@ -1,5 +1,5 @@
-import { ProjectDataManager } from '@/components/application/projects/ProjectDataManager';
-import type { ProjectDataSource, ExternalProjectRecord } from '@/components/application/projects/ports/ProjectDataSource';
+import { ProjectDataManager } from '@/application/projects/ProjectDataManager';
+import type { ProjectDataSource, ExternalProjectRecord } from '@/application/projects/ports/ProjectDataSource';
 import { ProjectProfile } from '@/domain/projects/ProjectProfile';
 
 describe('ProjectDataManager', () => {

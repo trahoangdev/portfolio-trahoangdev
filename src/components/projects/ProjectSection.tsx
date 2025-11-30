@@ -43,13 +43,22 @@ export function ProjectSection({
   useEffect(() => {
     let isMounted = true;
 
-    void refreshController.initialLoad().then((catalog) => {
-      if (!isMounted) {
-        return;
-      }
-
-      setCatalogProjects(catalog.projects);
-    });
+    void refreshController
+      .initialLoad()
+      .then((catalog) => {
+        if (!isMounted) {
+          return;
+        }
+        setCatalogProjects(catalog.projects);
+      })
+      .catch((error) => {
+        if (!isMounted) {
+          return;
+        }
+        console.error('Failed to load projects:', error);
+        // Set empty array on error to prevent UI breaking
+        setCatalogProjects([]);
+      });
 
     return () => {
       isMounted = false;
@@ -59,12 +68,22 @@ export function ProjectSection({
   useEffect(() => {
     let isMounted = true;
 
-    void preferenceController.listFeatured().then((ids) => {
-      if (!isMounted) {
-        return;
-      }
-      setFeaturedIds(new Set(ids));
-    });
+    void preferenceController
+      .listFeatured()
+      .then((ids) => {
+        if (!isMounted) {
+          return;
+        }
+        setFeaturedIds(new Set(ids));
+      })
+      .catch((error) => {
+        if (!isMounted) {
+          return;
+        }
+        console.error('Failed to load featured projects:', error);
+        // Continue with empty set on error
+        setFeaturedIds(new Set());
+      });
 
     const unsubscribe = preferenceController.subscribe((ids) => {
       if (!isMounted) {
