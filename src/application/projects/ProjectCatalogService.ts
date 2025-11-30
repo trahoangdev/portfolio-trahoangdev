@@ -21,9 +21,18 @@ export interface ProjectCatalogDto {
   };
 }
 
+/**
+ * Manages project catalog with filtering and faceting capabilities
+ * Provides aggregated view of projects with category and language facets
+ */
 export class ProjectCatalogService {
   constructor(private readonly refreshService: ProjectRefreshService) {}
 
+  /**
+   * Loads project catalog with optional filters
+   * @param filterProps - Optional filter properties for categories and languages
+   * @returns Promise resolving to catalog DTO with projects, facets, and active filters
+   */
   async loadCatalog(filterProps: ProjectFilterProps = {}): Promise<ProjectCatalogDto> {
     const collection = await this.refreshService.refresh();
     const filter = new ProjectFilter(filterProps);

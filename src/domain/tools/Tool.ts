@@ -19,6 +19,10 @@ export interface ToolSnapshot {
   description?: string;
 }
 
+/**
+ * Represents a development tool or technology
+ * Categorizes tools and provides metadata for display
+ */
 export class Tool {
   private readonly id: string;
   private readonly name: string;
@@ -26,6 +30,11 @@ export class Tool {
   private readonly category: Tag;
   private readonly description?: string;
 
+  /**
+   * Creates a new Tool instance
+   * @param props - Tool properties including id, name, techId, category, and optional description
+   * @throws {Error} If required fields are empty or invalid
+   */
   constructor(props: ToolProps) {
     this.id = props.id.trim();
     this.name = props.name.trim();

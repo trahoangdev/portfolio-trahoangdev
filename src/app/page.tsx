@@ -69,7 +69,7 @@ export default function Home() {
 
       <SectionNavigation activeSection={activeSection} isVisible={shouldShowNavigation} />
 
-      <main className={`max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 ${mainTopPadding}`}>
+      <main id="main-content" className={`max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 ${mainTopPadding}`}>
         <IntroSection sectionRef={registerSection('intro')} />
 
         <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} />

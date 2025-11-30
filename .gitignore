@@ -1,6 +1,7 @@
 
 # dependencies
 /node_modules
+.npm-cache
 
 # next.js
 /.next/
@@ -36,6 +37,24 @@ next-env.d.ts
 *.log
 /*.lingma/
 
-#markdown
+# Test coverage
+/coverage
+*.lcov
+
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Bundle analyzer
+analyze-*.html
+
+# Markdown (keep important docs)
 *.md 
+!CONTRIBUTING.md
 !README.md
+!docs/**/*.md
+
+# Text files (keep important ones)
+*.txt
+!LICENSE.txt
