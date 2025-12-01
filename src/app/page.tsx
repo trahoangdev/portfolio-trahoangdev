@@ -12,6 +12,7 @@ import { WorkSection } from '@/components/work/WorkSection';
 import { ProjectSection } from '@/components/projects/ProjectSection';
 import { ConnectSection } from '@/components/connect/ConnectSection';
 import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
+import { trackThemeChanged } from '@/lib/analytics';
 
 export default function Home() {
   const { isDark, toggleTheme, mounted } = useTheme();
@@ -90,7 +91,10 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <button
-                onClick={toggleTheme}
+                onClick={() => {
+                  toggleTheme();
+                  trackThemeChanged(isDark ? 'light' : 'dark');
+                }}
                 className="group p-3 border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift"
                 aria-label="Toggle theme"
               >
