@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { trackFilterApplied, trackFilterCleared } from '@/lib/analytics';
 import {
   SiReact,
   SiNextdotjs,
@@ -12,9 +13,8 @@ import {
   SiFastapi,
   SiPostgresql,
   SiJavascript,
-  SiHtml5,
-  SiCss3,
 } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 
 interface ProjectFilterBarProps {
@@ -34,8 +34,8 @@ const ICON_MAP: Record<string, IconType> = {
   FastAPI: SiFastapi,
   PostgreSQL: SiPostgresql,
   JavaScript: SiJavascript,
-  HTML: SiHtml5,
-  CSS: SiCss3,
+  HTML: FaHtml5,
+  CSS: FaCss3Alt,
 };
 
 export function ProjectFilterBar({
@@ -46,7 +46,12 @@ export function ProjectFilterBar({
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 py-8">
       <button
-        onClick={() => onSelectLanguage(null)}
+        onClick={() => {
+          onSelectLanguage(null);
+          if (selectedLanguage !== null) {
+            trackFilterCleared();
+          }
+        }}
         className={cn(
           'px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 border',
           selectedLanguage === null
@@ -64,9 +69,15 @@ export function ProjectFilterBar({
         return (
           <button
             key={lang}
-            onClick={() =>
-              onSelectLanguage(lang === selectedLanguage ? null : lang)
-            }
+            onClick={() => {
+              const newValue = lang === selectedLanguage ? null : lang;
+              onSelectLanguage(newValue);
+              if (newValue) {
+                trackFilterApplied('language', lang);
+              } else {
+                trackFilterCleared();
+              }
+            }}
             className={cn(
               'group relative p-3 rounded-full border transition-all duration-300',
               selectedLanguage === lang

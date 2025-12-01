@@ -75,9 +75,9 @@ test.describe('Theme Toggle', () => {
     }
   });
 
-  test('should respect system theme preference', async ({ page, context }) => {
+  test('should respect system theme preference', async ({ page }) => {
     // Set system to dark mode
-    await context.emulateMedia({ colorScheme: 'dark' });
+    await page.emulateMedia({ colorScheme: 'dark' });
     
     await page.goto('/');
     await page.waitForLoadState('networkidle');
