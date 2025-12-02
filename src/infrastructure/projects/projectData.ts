@@ -21,9 +21,9 @@ export const PROJECT_DATA: ProjectRecord[] = [
     categories: ['Web Development', 'Minimal App'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],
     link: ' ',
-    image: '/projects/',
+    image: '/projects/portfolio-website.svg',
     featured: true,
-    demoImages: ['/projects/'],
+    demoImages: ['/projects/portfolio-website.svg'],
   },
   {
     id: 'trahoangdev-blog',
@@ -34,11 +34,24 @@ export const PROJECT_DATA: ProjectRecord[] = [
     categories: ['Tool Project', 'Minimal App'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],
     link: 'https://trahoangdev.github.io/trahoangdevBlog/',
-    image: '/projects/',
+    image: '/projects/pomodoro-peak.svg',
     featured: true,
-    demoImages: ['/projects/'],
+    demoImages: ['/projects/pomodoro-peak.svg'],
   },
-  /*{
+  {
+    id: 'auto-fill-quizz',
+    title: 'Auto-Fill-Quizz',
+    summary:
+      'No description provided.',
+    date: 'Nov 2025',
+    categories: ['Tool Project', 'Minimal App'],
+    languages: ['JavaScript', 'HTML'],
+    link: 'https://github.com/trahoangdev/auto-fill-quizz',
+    image: '/projects/discord-token.svg',
+    featured: true,
+    demoImages: ['/projects/discord-token.svg'],
+  },
+  {
     id: 'linking-bio-homepage',
     title: 'Linking-Bio Homepage',
     summary:
@@ -115,5 +128,5 @@ export const PROJECT_DATA: ProjectRecord[] = [
     image: '/projects/animated-404.svg',
     featured: false,
     demoImages: [],
-  },*/
+  },
 ];

@@ -10,7 +10,6 @@ import {
 } from '@/modules/projects/ProjectModule';
 import { ProjectShowcase } from './ProjectShowcase';
 import { ProjectFilterBar } from './ProjectFilterBar';
-import { cn } from '@/lib/utils';
 
 interface ProjectSectionProps {
   activeSection: string;

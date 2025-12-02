@@ -5,7 +5,7 @@ import { ProjectSnapshot } from '@/domain/projects/Project';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface ProjectShowcaseProps {
   projects: ProjectSnapshot[];
@@ -13,16 +13,39 @@ interface ProjectShowcaseProps {
 
 export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: 'start',
+    loop: true,
+    align: 'center',
+    dragFree: false,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isAutoplayActive, setIsAutoplayActive] = useState(true);
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) {
+        emblaApi.scrollTo(index);
+        setSelectedIndex(index);
+        setIsAutoplayActive(false);
+        setTimeout(() => setIsAutoplayActive(true), 5000);
+      }
+    },
+    [emblaApi]
+  );
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) {
+      const next = (selectedIndex + 1) % projects.length;
+      emblaApi.scrollTo(next);
+      setSelectedIndex(next);
+    }
+  }, [emblaApi, selectedIndex, projects.length]);
 
   useEffect(() => {
     if (!emblaApi) return;
 
     const onSelect = () => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
+      const index = emblaApi.selectedScrollSnap();
+      setSelectedIndex(index);
     };
 
     emblaApi.on('select', onSelect);
@@ -33,16 +56,35 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
     };
   }, [emblaApi]);
 
+  // Autoplay effect
+  useEffect(() => {
+    if (!emblaApi || !isAutoplayActive) return;
+
+    const autoplayInterval = setInterval(() => {
+      scrollNext();
+    }, 4000);
+
+    return () => clearInterval(autoplayInterval);
+  }, [emblaApi, isAutoplayActive, scrollNext]);
+
+  // Pause on hover
+  const handleMouseEnter = () => setIsAutoplayActive(false);
+  const handleMouseLeave = () => setIsAutoplayActive(true);
+
   if (projects.length === 0) return null;
 
   return (
-    <div className="relative group">
+    <div 
+      className="relative group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 py-4 pl-4">
+        <div className="flex gap-6 py-4">
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="flex-[0_0_85%] min-w-0 sm:flex-[0_0_45%] lg:flex-[0_0_30%]"
+              className="flex-[0_0_100%] min-w-0 px-4"
             >
               <ShowcaseCard
                 project={project}
@@ -53,22 +95,26 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
         </div>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="flex justify-center gap-2 mt-6">
-        {projects.map((_, index) => (
-          <button
-            key={index}
-            className={cn(
-              'h-2 w-2 rounded-full transition-all duration-300',
-              index === selectedIndex
-                ? 'bg-foreground w-6'
-                : 'bg-border hover:bg-muted-foreground'
-            )}
-            onClick={() => emblaApi?.scrollTo(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Navigation Dots - One per project */}
+      {projects.length > 1 && (
+        <div className="flex justify-center gap-2 mt-6">
+          {projects.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={cn(
+                'h-2 rounded-full transition-all duration-300 cursor-pointer',
+                index === selectedIndex
+                  ? 'bg-foreground w-6'
+                  : 'bg-border hover:bg-muted-foreground w-2'
+              )}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to project ${index + 1}`}
+              aria-current={index === selectedIndex}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
