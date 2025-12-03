@@ -78,6 +78,20 @@ export const TOOL_DATA: ToolRecord[] = [
     description: 'Edge-friendly relational engine for prototypes.',
   },
   {
+    id: 'mongodb',
+    name: 'MongoDB',
+    techId: 'mongodb',
+    category: 'NoSQL',
+    description: 'Document-based database for flexible schema and scalability.',
+  },
+  {
+    id: 'redis',
+    name: 'Redis',
+    techId: 'redis',
+    category: 'NoSQL',
+    description: 'In-memory data store for caching, sessions, and real-time analytics.',
+  },
+  {
     id: 'vscode',
     name: 'VS Code',
     techId: 'vscode',
@@ -90,5 +104,12 @@ export const TOOL_DATA: ToolRecord[] = [
     techId: 'github',
     category: 'App',
     description: 'Collaboration, reviews, and open-source presence.',
+  },
+  {
+    id: 'vercel',
+    name: 'Vercel',
+    techId: 'vercel',
+    category: 'Platform',
+    description: 'Edge-first deployment platform with instant previews and analytics.',
   },
 ];
