@@ -30,7 +30,7 @@ export function WorkSection({ activeSection, sectionRef }: WorkSectionProps) {
             Roadmap
           </h2>
           <div className="text-sm text-muted-foreground font-mono mt-2">
-            2024 — 2025
+            2022 — 2025
           </div>
         </div>
 
