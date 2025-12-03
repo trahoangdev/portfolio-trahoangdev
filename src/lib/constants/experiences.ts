@@ -8,31 +8,38 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    year: 'Oct.2025 Present',
-    role: 'Fullstack Developer',
+    year: 'Oct.2025 PRESENT',
+    role: 'FRONTEND DEVLOPER',
     company: 'TAIKHOANXIN',
-    description: '',
-    //description: 'create a few projects and share to the world',
+    description: 'Website providing the best service accounts',
     tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
   },
-  /*{
-    year: 'Sep.2025 Present',
-    role: 'Provincial gifted student competition',
-    company: 'DSA Learning',
-    description:
-      'Preparing to compete in the provincial gifted student contest in Vietnam, which evaluates advanced algorithmic knowledge and problem-solving ability.',
-    tech: ['C++', 'Python'],
-  },*/
   {
-    year: '2024 - 2025',
-    role: 'Basic Web development',
+    year: 'Sep.2025 Dec.2025',
+    role: 'FRONTEND DEVLOPER',
+    company: 'LUXWEAR AI',
+    description:
+      'LUXWEAR - AI AGENT SALES CONSULTANT (PLATFORM)',
+    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+  },
+  {
+    year: 'Nov.2025',
+    role: 'EXTENSION DEVLOPER',
+    company: 'Auto Fill Quiz Extension - AI Powered',
+    description:
+      'Chrome/Edge extension automatically fills quiz answers with AI Gemini - Simple, fast, smart',
+    tech: ['Html', 'Css', 'js'],
+  },
+  {
+    year: '2022 - 2025',
+    role: 'WEB DEVELOPER',
     company: 'Learning',
     //description: 'learning web development and other related stuff',
     description: '',
-    tech: ['Html', 'Css', 'js', 'Node.js'],
+    tech: ['Html', 'Css', 'js'],
   },
   {
-    year: 'Oct.2022 Present',
+    year: 'Oct.2022 PRESENT',
     role: 'STUDENT',
     company: 'HUTECH UNIVERSITY',
     //description: 'I was able to learn some basic programming knowledge and create a game projects',

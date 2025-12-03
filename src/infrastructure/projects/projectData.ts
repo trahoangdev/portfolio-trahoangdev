@@ -21,9 +21,9 @@ export const PROJECT_DATA: ProjectRecord[] = [
     categories: ['Web Development', 'Minimal App'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],
     link: ' ',
-    image: '/projects/portfolio-website.svg',
+    image: '/projects/01.jpg',
     featured: true,
-    demoImages: ['/projects/portfolio-website.svg'],
+    demoImages: ['/projects/01.jpg'],
   },
   {
     id: 'trahoangdev-blog',
@@ -34,9 +34,9 @@ export const PROJECT_DATA: ProjectRecord[] = [
     categories: ['Tool Project', 'Minimal App'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],
     link: 'https://trahoangdev.github.io/trahoangdevBlog/',
-    image: '/projects/pomodoro-peak.svg',
+    image: '/projects/02.jpg',
     featured: true,
-    demoImages: ['/projects/pomodoro-peak.svg'],
+    demoImages: ['/projects/02.jpg'],
   },
   {
     id: 'auto-fill-quizz',
@@ -47,24 +47,24 @@ export const PROJECT_DATA: ProjectRecord[] = [
     categories: ['Tool Project', 'Minimal App'],
     languages: ['JavaScript', 'HTML'],
     link: 'https://github.com/trahoangdev/auto-fill-quizz',
-    image: '/projects/discord-token.svg',
+    image: '/projects/03.jpg',
     featured: true,
-    demoImages: ['/projects/discord-token.svg'],
+    demoImages: ['/projects/03.jpg'],
   },
   {
-    id: 'linking-bio-homepage',
-    title: 'Linking-Bio Homepage',
+    id: 'lux-wear-ai',
+    title: 'LUXWEAR AI',
     summary:
-      'A customizable bio-link platform with modular sections, analytics-ready architecture, and brandable themes.',
+      'LUXWEAR - AI AGENT SALES CONSULTANT (PLATFORM)',
     date: 'Jul 2025',
     categories: ['Web Development', 'Software'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],
-    link: 'https://github.com/trahoangdev/linking-bio-homepage',
-    image: '/projects/linking-bio.svg',
-    featured: false,
-    demoImages: [],
+    link: 'https://github.com/trahoangdev/client-luxe-wear-ai',
+    image: '/projects/04.jpg',
+    featured: true,
+    demoImages: ['/projects/04.jpg'],
   },
-  {
+  /*{
     id: 'token-discord-checker',
     title: 'Token Discord Checker',
     summary:
@@ -128,5 +128,5 @@ export const PROJECT_DATA: ProjectRecord[] = [
     image: '/projects/animated-404.svg',
     featured: false,
     demoImages: [],
-  },
+  },*/
 ];
