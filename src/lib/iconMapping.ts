@@ -21,6 +21,9 @@ import {
   SiFastapi,
   SiPostgresql,
   SiSqlite,
+  SiMongodb,
+  SiRedis,
+  SiVercel,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -56,6 +59,9 @@ export const TECH_ICONS: Record<string, IconComponent> = {
   fastapi: SiFastapi,
   postgresql: SiPostgresql,
   sqlite: SiSqlite,
+  mongodb: SiMongodb,
+  redis: SiRedis,
+  vercel: SiVercel,
   vscode: VscCode,
   'visual studio code': VscCode,
   github: FaGithub,
