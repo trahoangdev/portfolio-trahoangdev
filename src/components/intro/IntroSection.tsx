@@ -156,13 +156,13 @@ export function IntroSection({
 
               <div className="flex gap-2 mt-4">
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  AI Dev
+                  AI Devloper
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Web Dev
+                  Web Devloper
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Fitech/web3
+                  Fullstack Devloper
                 </div>
               </div>
             </div>

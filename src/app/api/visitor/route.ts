@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sanitizeString } from '@/lib/validation';
-
-// Simple in-memory counter (will reset on server restart)
-// In production, you should use a database or Redis
-let visitorCount = 0;
+import { getRedisCache } from '@/infrastructure/cache/RedisCache';
 
 // Rate limiting: Track IPs and their last request time
 const rateLimitMap = new Map<string, number>();
@@ -12,11 +9,26 @@ const MAX_REQUESTS_PER_WINDOW = 10;
 
 export const runtime = 'edge';
 
+const VISITOR_COUNT_KEY = 'visitor:count';
+
 /**
  * GET /api/visitor - Get current visitor count
  */
 export async function GET() {
-  return NextResponse.json({ total: visitorCount });
+  try {
+    const cache = getRedisCache();
+    
+    if (cache.isAvailable()) {
+      const count = await cache.get<number>(VISITOR_COUNT_KEY);
+      return NextResponse.json({ total: count || 0 });
+    }
+    
+    // Fallback if Redis not available
+    return NextResponse.json({ total: 0 });
+  } catch (error) {
+    console.error('Error getting visitor count:', error);
+    return NextResponse.json({ total: 0 });
+  }
 }
 
 /**
@@ -51,10 +63,17 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Increment counter
-    visitorCount++;
+    // Increment counter in Redis
+    const cache = getRedisCache();
+    let newCount = 1;
+    
+    if (cache.isAvailable()) {
+      const currentCount = await cache.get<number>(VISITOR_COUNT_KEY);
+      newCount = (currentCount || 0) + 1;
+      await cache.set(VISITOR_COUNT_KEY, newCount);
+    }
 
-    return NextResponse.json({ total: visitorCount });
+    return NextResponse.json({ total: newCount });
   } catch (error) {
     console.error('Error processing visitor request:', error);
     return NextResponse.json(

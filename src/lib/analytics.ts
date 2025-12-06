@@ -78,3 +78,54 @@ export function trackCarouselInteraction(action: 'next' | 'prev' | 'dot', index:
 export function trackFilterCleared() {
   track('filter_cleared');
 }
+
+/**
+ * Track page scroll depth
+ */
+export function trackScrollDepth(depth: number) {
+  track('page_scroll_depth', {
+    depth: `${depth}%`,
+  });
+}
+
+/**
+ * Track time on page
+ */
+export function trackTimeOnPage(seconds: number) {
+  track('time_on_page', {
+    seconds,
+  });
+}
+
+/**
+ * Track error occurred
+ */
+export function trackError(error: string | Error, context?: string | Record<string, any>) {
+  const errorMessage = typeof error === 'string' ? error : error.message;
+  const errorStack = typeof error === 'object' && error.stack ? error.stack.substring(0, 500) : undefined;
+  
+  track('error_occurred', {
+    error: errorMessage,
+    ...(errorStack && { stack: errorStack }),
+    ...(context && (typeof context === 'string' ? { context } : context)),
+  });
+
+  // Also send to Sentry if available
+  if (typeof window !== 'undefined' && (window as any).Sentry) {
+    const sentryContext = typeof context === 'string' ? { context } : context;
+    (window as any).Sentry.captureException(
+      typeof error === 'string' ? new Error(error) : error,
+      { extra: sentryContext }
+    );
+  }
+}
+
+/**
+ * Track page view with custom data
+ */
+export function trackPageView(page: string, data?: Record<string, string>) {
+  track('page_view', {
+    page,
+    ...data,
+  });
+}
