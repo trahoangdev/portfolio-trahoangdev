@@ -17,12 +17,17 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: 'Project',
     href: '/project',
-    isActive: (pathname) => pathname.startsWith('/project'),
+    isActive: (pathname) => pathname === '/project',
+  },
+  {
+    label: 'Certificate',
+    href: '/certificates',
+    isActive: (pathname) => pathname.startsWith('/certificates'),
   },
   {
     label: 'Tool',
     href: '/project#tool-stack',
-    isActive: (pathname) => pathname.startsWith('/project'),
+    isActive: () => false, // Hash link shouldn't be active based on pathname
   },
   {
     label: 'Service',

@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 import type { ProjectSnapshot } from '@/domain/projects/Project';
 import {
-  createProjectControllers,
   createProjectPreferenceController,
 } from '@/modules/projects/ProjectModule';
+import { getProjectCatalog } from '@/app/actions/project';
 import { ProjectShowcase } from './ProjectShowcase';
 import { ProjectFilterBar } from './ProjectFilterBar';
 
@@ -30,10 +30,7 @@ export function ProjectSection({
   );
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
-  const { refresh: refreshController } = useMemo(
-    () => createProjectControllers(),
-    []
-  );
+  // refreshController removed in favor of Server Action
   const preferenceController = useMemo(
     () => createProjectPreferenceController(),
     []
@@ -42,8 +39,7 @@ export function ProjectSection({
   useEffect(() => {
     let isMounted = true;
 
-    void refreshController
-      .initialLoad()
+    void getProjectCatalog()
       .then((catalog) => {
         if (!isMounted) {
           return;
@@ -62,7 +58,7 @@ export function ProjectSection({
     return () => {
       isMounted = false;
     };
-  }, [refreshController]);
+  }, []);
 
   useEffect(() => {
     let isMounted = true;

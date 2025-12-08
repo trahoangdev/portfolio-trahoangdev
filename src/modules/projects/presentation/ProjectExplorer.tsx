@@ -14,15 +14,12 @@ import { StaticToolRepository } from '@/infrastructure/tools/StaticToolRepositor
 import { ToolPaletteController } from '@/modules/tools/controllers/ToolPaletteController';
 import { ToolStackShowcase } from '@/components/tools/ToolStackShowcase';
 import {
-  createProjectControllers,
   createProjectPreferenceController,
 } from '@/modules/projects/ProjectModule';
+import { getProjectCatalog } from '@/app/actions/project';
 
 export function ProjectExplorer() {
-  const { catalog: projectController, refresh: refreshController } = useMemo(
-    () => createProjectControllers(),
-    []
-  );
+  // projectController and refreshController removed in favor of Server Action
   const preferenceController = useMemo(
     () => createProjectPreferenceController(),
     []
@@ -58,8 +55,7 @@ export function ProjectExplorer() {
     setIsReady(false);
     setError(null);
 
-    void refreshController
-      .initialLoad()
+    void getProjectCatalog()
       .then((data) => {
         if (isMounted) {
           setCatalog(data);
@@ -79,7 +75,7 @@ export function ProjectExplorer() {
     return () => {
       isMounted = false;
     };
-  }, [refreshController, toolController]);
+  }, [toolController]);
 
   useEffect(() => {
     let isMounted = true;
@@ -91,7 +87,7 @@ export function ProjectExplorer() {
           setFeaturedIds(new Set(ids));
         }
       })
-      .catch(() => {});
+      .catch(() => { });
 
     const unsubscribe = preferenceController.subscribe((ids) => {
       if (isMounted) {
@@ -109,8 +105,7 @@ export function ProjectExplorer() {
     (state: ProjectFilterState) => {
       const requestId = ++requestIdRef.current;
 
-      void projectController
-        .applyFilter(state)
+      void getProjectCatalog(state.getCategorySlugs(), state.getLanguageSlugs())
         .then((data) => {
           if (requestId === requestIdRef.current) {
             setCatalog(data);
@@ -125,7 +120,7 @@ export function ProjectExplorer() {
           }
         });
     },
-    [projectController]
+    []
   );
 
   const handleCategoryToggle = useCallback(
@@ -161,8 +156,7 @@ export function ProjectExplorer() {
     setIsRefreshing(true);
     setError(null);
 
-    void refreshController
-      .refresh(filterState)
+    void getProjectCatalog(filterState.getCategorySlugs(), filterState.getLanguageSlugs())
       .then((data) => {
         if (requestId === requestIdRef.current) {
           setCatalog(data);
@@ -180,7 +174,7 @@ export function ProjectExplorer() {
           setIsRefreshing(false);
         }
       });
-  }, [filterState, refreshController]);
+  }, [filterState]);
 
   const handleToggleFeatured = useCallback(
     (projectId: string) => {
@@ -254,7 +248,7 @@ export function ProjectExplorer() {
           >
             <span>{isRefreshing ? 'Refreshing' : 'Reload'}</span>
             <svg
-              className="h-4 w-4"
+              className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -263,7 +257,7 @@ export function ProjectExplorer() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M4 4v5h.582m15.356 2A9 9 0 116.582 9"
+                d="M4 4v5h5M4 9a9 9 0 0116.58-1M20 20v-5h-5M20 15a9 9 0 01-16.58 1"
               />
             </svg>
           </button>
