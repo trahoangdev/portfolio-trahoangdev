@@ -18,7 +18,7 @@ export function IntroSection({
 
   useEffect(() => {
     setMounted(true);
-    
+
     const updateClock = () => {
       const now = new Date();
       const utc7Time = new Date(now.getTime() + 7 * 60 * 60 * 1000);
@@ -32,7 +32,7 @@ export function IntroSection({
     // Update every second using requestAnimationFrame for better performance
     let animationFrameId: number;
     let lastUpdate = Date.now();
-    
+
     const animate = () => {
       const now = Date.now();
       if (now - lastUpdate >= 1000) {
@@ -41,7 +41,7 @@ export function IntroSection({
       }
       animationFrameId = requestAnimationFrame(animate);
     };
-    
+
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
@@ -156,21 +156,21 @@ export function IntroSection({
 
               <div className="flex gap-2 mt-4">
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  AI Devloper
+                  AI Developer
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Web Devloper
+                  Web Developer
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Fullstack Devloper
+                  Fullstack Developer
                 </div>
               </div>
             </div>
           </div>
 
           {/* Payment info */}
-          <Link 
-          href="/suport">
+          <Link
+            href="/suport">
             <div className="mb-8 magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
               <div className="space-y-4">
                 <h3 className="font-bold text-lg">Support me ☕💖</h3>
@@ -259,7 +259,7 @@ export function IntroSection({
               </p>
             </div>
           </div>
-          
+
           {/* Website Info Card */}
           <WebsiteInfoCard />
         </div>
