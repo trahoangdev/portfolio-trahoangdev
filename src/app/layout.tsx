@@ -9,7 +9,7 @@ import { Background } from '@/components/ui/background';
 import { SkipLink } from '@/components/ui/SkipLink';
 import { Analytics } from '@vercel/analytics/react';
 
-export const runtime = 'edge';
+
 
 const geist = Geist({
   subsets: ['latin'],
