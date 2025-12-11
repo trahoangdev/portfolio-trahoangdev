@@ -15,7 +15,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Project',
+    label: 'Tools & Projects',
     href: '/project',
     isActive: (pathname) => pathname === '/project',
   },
@@ -25,15 +25,15 @@ const NAV_ITEMS: NavItem[] = [
     isActive: (pathname) => pathname.startsWith('/certificates'),
   },
   {
-    label: 'Tool',
-    href: '/project#tool-stack',
-    isActive: () => false, // Hash link shouldn't be active based on pathname
+    label: 'Blog',
+    href: 'https://devorbitblog.vercel.app/',
+    isActive: () => false,
   },
-  {
+  /*{
     label: 'Service',
     href: '/#service',
     isActive: (pathname) => pathname === '/' || pathname.startsWith('/service'),
-  },
+  },*/
 ];
 
 export function HeaderNavigation() {
@@ -95,12 +95,15 @@ export function HeaderNavigation() {
         <nav aria-label="Main navigation" className="flex items-center gap-4 sm:gap-6">
           {NAV_ITEMS.map((item) => {
             const active = item.isActive(pathname);
+            const isExternal = item.href.startsWith('http');
             return (
               <Link
                 key={item.label}
                 href={item.href}
                 aria-label={`Navigate to ${item.label}`}
                 aria-current={active ? 'page' : undefined}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
                 className={cn(
                   'text-xs font-semibold uppercase tracking-[0.4em] transition-all duration-300',
                   'hover:text-foreground hover:-translate-y-0.5',

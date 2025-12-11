@@ -8,47 +8,41 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
+    year: 'Dec.2025 PRESENT',
+    role: 'WEB DEVELOPER',
+    company: 'Founder at DevOrbit',
+    description: 'Develop a personal blog to share in - depth knowledge about Backend and System Design. Focus on content quality and reader experience.',
+    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Markdown'],
+  },
+  {
     year: 'Oct.2025 PRESENT',
     role: 'FRONTEND DEVELOPER',
-    company: 'TAIKHOANXIN',
-    description: 'Website providing the best service accounts.',
+    company: 'Co-Founder at TAIKHOANXIN',
+    description: 'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
     tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
   },
   {
-    year: 'Sep.2025 Dec.2025',
+    year: 'Oct.2025 Dec.2025',
     role: 'FRONTEND DEVELOPER',
-    company: 'LUXWEAR AI',
+    company: 'Co-Founder at LUXWEAR AI',
     description:
-      'LUXWEAR - AI AGENT SALES CONSULTANT (PLATFORM).',
+      'SaaS platforms enable businesses to build, deploy, and manage AI agents. The system supports real-time data integration, performs actions across third-party systems, and provides detailed analytical reporting.',
     tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
   },
-  {
-    year: 'Nov.2025 Dec.2025',
-    role: 'TOOL MAKER',
-    company: 'PROMPT NEXUS - AI-Powered Prompt Optimization',
-    description:
-      'Transform simple ideas into structured, production-grade prompts using advanced AI frameworks.',
-    tech: ['React', 'TypeScript', 'TailwindCSS', 'html', 'css', 'js'],
-  },
-  {
-    year: '2023 - 2025',
-    role: 'AI ENGINEER',
-    company: 'LEARNING AI',
-    description: 'ChatGPT, Gemini, Claude,... models',
-    tech: ['Python', 'VectorDB', 'Pincode', 'RAG'],
-  },
+
   {
     year: '2022 - 2025',
     role: 'WEB DEVELOPER',
     company: 'LEARNING WEB DEVELOPMENT',
-    description: 'learning web development and other related stuff',
-    tech: ['Html', 'Css', 'js', 'TailwindCSS', 'Next.js', 'Node.js', 'React', 'TypeScript', 'Vite', 'Git', 'GitHub', 'Figma'],
+    description: 'The self-taught grind. Deep diving into the web ecosystem, exploring modern frameworks, and turning curiosity into capability. Building, breaking, and refactoring—the endless cycle of growth.',
+    //tech: ['Html', 'Css', 'js', 'TailwindCSS', 'Next.js', 'Node.js', 'React', 'TypeScript', 'Vite', 'Git', 'GitHub', 'Figma'],
+    tech: [],
   },
   {
-    year: 'Oct.2022 PRESENT',
-    role: 'STUDENT',
+    year: '2022 - 2026',
+    role: 'SENIOR STUDENT',
     company: 'HUTECH UNIVERSITY',
-    description: 'I was able to learn some basic programming knowledge and created some projects',
+    description: 'Majoring in Software Engineering. Consuming knowledge, compiling experience, and shipping code. Bridging the gap between theory and reality, one commit at a time.',
     tech: [],
   },
 ];

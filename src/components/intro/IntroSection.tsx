@@ -76,10 +76,10 @@ export function IntroSection({
                 TRA HOANG DEV
               </h1>
               <div className="text-lg font-medium">
-                Developer | Student | Content Creator
+                Fullstack Dev | AI Engineer | Senior Student
               </div>
               <div className="text-sm text-muted-foreground">
-                Code with passion, design with purpose, chill with style
+                Writing code that thinks, designing interfaces that feel. Let's break the loop.
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ export function IntroSection({
           {/* Personal message */}
           <div className="magnet-card group border-pulse-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
             <div className="space-y-4">
-              <div className="font-medium">Dearest friend,</div>
+              <div className="font-medium">Yo, Fellow Traveler! 🖖</div>
               <p className="text-sm leading-relaxed">
                 Welcome to
                 <span className="relative font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 mx-1">
@@ -148,15 +148,12 @@ export function IntroSection({
                 >
                   Tra Hoang Trong
                 </span>
-                . It is such an honour to have you here. Connect with me and
-                let&apos;s have a deep conversation, or explore creative ideas
-                together. If you vibe with tech, learning, or just fun convos,
-                follow and stay ahead with the truth. Feel at home
+                . You've just warped into my digital headquarters. It's awesome to have you here! Whether you're looking to crack the code on a new project, explore the frontiers of AI, or just hang out and talk tech — you've found your crew. Relax, explore, and let's build the future together. Stay distinctive. Stay true.
               </p>
 
               <div className="flex gap-2 mt-4">
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  AI Developer
+                  AI Engineer
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   Web Developer
@@ -169,6 +166,7 @@ export function IntroSection({
           </div>
 
           {/* Payment info */}
+          {/* Payment info - Temporarily hidden
           <Link
             href="/suport">
             <div className="mb-8 magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
@@ -186,6 +184,7 @@ export function IntroSection({
               </div>
             </div>
           </Link>
+          */}
 
           {/* 🔥 Join our community card*/}
           <div className="mb-8">
@@ -200,7 +199,7 @@ export function IntroSection({
             <div className="absolute inset-0 bg-white transform scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out"></div>
             <div className="space-y-4 relative z-10">
               <div className="bg-foreground text-background p-4 text-center transition-all duration-500 group-hover:bg-white group-hover:text-black">
-                <div className="text-sm font-bold">HARDCORE OF VIBE</div>
+                <div className="text-sm font-bold">ARCHITECT OF FLOW</div>
                 <div className="text-xs">TRAHOANGDEV</div>
               </div>
             </div>
@@ -231,14 +230,11 @@ export function IntroSection({
             <p className="text-xs leading-relaxed">
               <span className="text-foreground font-medium relative inline-block group">
                 <span className="relative z-10 transition-all duration-700 ease-out group-hover:text-purple-400 group-hover:-translate-y-0.5">
-                  Motivation yourself
+                  Daily Fuel
                 </span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-700 ease-out group-hover:w-full"></span>
               </span>{' '}
-              "Every sunrise is a fresh chance to rewrite your story. No matter
-              how small the step, it still moves you closer to the life you
-              dream of. Keep going — your effort today is the seed of tomorrow's
-              victory."
+              "Life is the most complex project you'll ever maintain. No documentation, changing requirements, and plenty of unexpected bugs. But that's where the fun is! Iterate often, embrace the refactors, and don't forget to garbage collect the negativity. Keep your runtime happy."
             </p>
 
             {/* Animated quote text */}
@@ -249,7 +245,7 @@ export function IntroSection({
                 </span>
                 <span className="relative inline-block">
                   <span className="relative z-10 transition-all duration-700 ease-out group-hover:text-foreground">
-                    Dream big, work hard, stay focused
+                    Code with heart. Ship with pride.
                   </span>
                   <span className="absolute bottom-1 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:opacity-70 group-hover:-translate-y-1"></span>
                 </span>

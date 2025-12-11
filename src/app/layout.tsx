@@ -38,8 +38,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <SkipLink />

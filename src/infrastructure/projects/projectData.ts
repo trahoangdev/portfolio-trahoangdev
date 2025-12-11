@@ -55,7 +55,7 @@ export const PROJECT_DATA: ProjectRecord[] = [
     id: 'lux-wear-ai',
     title: 'LUXWEAR AI',
     summary:
-      'LUXWEAR - AI AGENT SALES CONSULTANT (PLATFORM)',
+      'SaaS platforms enable businesses to build, deploy, and manage AI agents. The system supports real-time data integration, performs actions across third-party systems, and provides detailed analytical reporting.',
     date: 'Jul 2025',
     categories: ['Web Development', 'Software'],
     languages: ['React', 'Next.js', 'TailwindCSS', 'TypeScript'],

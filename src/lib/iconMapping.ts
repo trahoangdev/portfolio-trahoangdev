@@ -12,6 +12,7 @@ import {
   FaNode,
   FaPython,
   FaDocker,
+  FaLinkedin,
 } from 'react-icons/fa';
 import {
   SiTypescript,
@@ -36,6 +37,7 @@ export const SOCIAL_ICONS: Record<string, IconComponent> = {
   twitter: FaTwitter,
   discord: FaDiscord,
   github: FaGithub,
+  linkedin: FaLinkedin,
 };
 
 // Technology icon mapping

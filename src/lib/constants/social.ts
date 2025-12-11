@@ -31,7 +31,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
     handleKey: 'all',
     icon: 'instagram',
   },
-  {
+  /*{
     name: 'Twitter',
     urlTemplate: 'https://twitter.com/{handle}',
     handleKey: 'all',
@@ -43,12 +43,18 @@ export const SOCIAL_LINKS: SocialLink[] = [
     urlTemplate: 'https://discord.com',
     handleKey: 'discordId',
     icon: 'discord',
-  },
+  },*/
   {
     name: 'GitHub',
     urlTemplate: 'https://github.com/{handle}',
     handleKey: 'all',
     icon: 'github',
+  },
+  {
+    name: 'LinkedIn',
+    urlTemplate: 'https://www.linkedin.com/in/{handle}',
+    handleKey: 'linkedin',
+    icon: 'linkedin',
   },
 ];
 
@@ -66,12 +72,12 @@ export const CONNECT_LINKS: ConnectLink[] = [
     urlTemplate: 'https://github.com/{handle}',
     handleKey: 'all',
   },
-  {
+  /*{
     name: 'Discord',
     handle: 'trahoangdev',
     urlTemplate: 'https://discord.com/users/{handle}',
     handleKey: 'discordId',
-  },
+  },*/
   {
     name: 'Dev.to',
     handle: 'trahoangdev',
