@@ -12,14 +12,16 @@ export const EXPERIENCES: Experience[] = [
     role: 'WEB DEVELOPER',
     company: 'Founder at DevOrbit',
     description: 'Develop a personal blog to share in - depth knowledge about Backend and System Design. Focus on content quality and reader experience.',
-    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Markdown'],
+    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Markdown'],
+    tech: [],
   },
   {
     year: 'Oct.2025 PRESENT',
     role: 'FRONTEND DEVELOPER',
     company: 'Co-Founder at TAIKHOANXIN',
     description: 'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
-    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    tech: [],
   },
   {
     year: 'Oct.2025 Dec.2025',
@@ -27,7 +29,8 @@ export const EXPERIENCES: Experience[] = [
     company: 'Co-Founder at LUXWEAR AI',
     description:
       'SaaS platforms enable businesses to build, deploy, and manage AI agents. The system supports real-time data integration, performs actions across third-party systems, and provides detailed analytical reporting.',
-    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    tech: [],
   },
 
   {

@@ -1,6 +1,6 @@
 {
-  "name": "trahoangdev Portfolio - fullstack developer",
-  "short_name": "trahoangdev Portfolio",
+  "name": "Hoàng Trọng Trà- Software Engineer",
+  "short_name": "Hoàng Trọng Trà (trahoangdev)",
   "description": "high-performance portfolio website",
   "start_url": "/",
   "display": "standalone",
@@ -9,7 +9,11 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
-  "categories": ["portfolio", "developer", "technology"],
+  "categories": [
+    "portfolio",
+    "developer",
+    "technology"
+  ],
   "icons": [
     {
       "src": "/icon-192.png",

@@ -17,7 +17,7 @@ export default function ProjectError({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28 pb-16">
         <div className="space-y-8">
           <div className="border-dotted-thick border-border p-8 space-y-6">

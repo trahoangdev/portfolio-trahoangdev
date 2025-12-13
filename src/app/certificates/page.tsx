@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CertificatesPage() {
     return (
-        <div className="min-h-screen bg-background text-foreground">
+        <div className="min-h-screen text-foreground">
             <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28 pb-16 sm:pb-20 lg:pb-24 space-y-12">
                 <header className="space-y-6">
                     <div className="flex items-center gap-4">

@@ -76,7 +76,7 @@ export function IntroSection({
                 TRA HOANG DEV
               </h1>
               <div className="text-lg font-medium">
-                Fullstack Dev | AI Engineer | Senior Student
+                Software Engineer | AI Engineer | Senior Student
               </div>
               <div className="text-sm text-muted-foreground">
                 Writing code that thinks, designing interfaces that feel. Let's break the loop.
@@ -159,7 +159,7 @@ export function IntroSection({
                   Web Developer
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Fullstack Developer
+                  Software Developer
                 </div>
               </div>
             </div>
@@ -186,10 +186,14 @@ export function IntroSection({
           </Link>
           */}
 
-          {/* 🔥 Join our community card*/}
+          {/* 🔥 Join our community card - Temporarily hidden
           <div className="mb-8">
             <CommunityInfo />
           </div>
+          */}
+
+          {/* Website Info Card */}
+          <WebsiteInfoCard />
         </div>
 
         {/* Right column - Business cards */}
@@ -255,9 +259,6 @@ export function IntroSection({
               </p>
             </div>
           </div>
-
-          {/* Website Info Card */}
-          <WebsiteInfoCard />
         </div>
       </div>
     </header>

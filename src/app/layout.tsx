@@ -19,7 +19,7 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-trahoangdev.vercel.app'),
-  title: 'trahoangdev - Developer',
+  title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
   description: 'portfolio website',
   generator: 'trahoangdev',
   icons: {

@@ -29,7 +29,7 @@ export const revalidate = 3600;
 
 export default function ProjectPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen text-foreground">
       <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28 pb-16 sm:pb-20 lg:pb-24">
         <ProjectExplorer />
       </main>
