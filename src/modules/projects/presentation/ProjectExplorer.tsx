@@ -13,6 +13,7 @@ import {
 import { StaticToolRepository } from '@/infrastructure/tools/StaticToolRepository';
 import { ToolPaletteController } from '@/modules/tools/controllers/ToolPaletteController';
 import { ToolStackShowcase } from '@/components/tools/ToolStackShowcase';
+import { PersonalProjectsShowcase } from '@/components/projects/PersonalProjectsShowcase';
 import {
   createProjectPreferenceController,
 } from '@/modules/projects/ProjectModule';
@@ -274,6 +275,8 @@ export function ProjectExplorer() {
       </header>
 
       <ToolStackShowcase groups={toolGroups} />
+
+      <PersonalProjectsShowcase />
 
       <div className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
         <ProjectFilterPanel

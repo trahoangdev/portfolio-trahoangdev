@@ -19,7 +19,7 @@ const ProjectExplorer = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: 'Project Hypergrid | trahoangdev',
+  title: 'Project Hypergrid </> trahoangdev',
   description:
     'Dive into the full matrix of trahoangdev projects, filter by stack or mission, and explore the supporting tool arsenal.',
 };

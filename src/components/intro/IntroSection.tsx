@@ -166,25 +166,42 @@ export function IntroSection({
           </div>
 
           {/* Payment info */}
-          {/* Payment info - Temporarily hidden
+          {/* Buy Me a Coffee */}
           <Link
-            href="/suport">
-            <div className="mb-8 magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+            href="https://buymeacoffee.com/trahoangdev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mb-8"
+          >
+            <div className="magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group">
               <div className="space-y-4">
-                <h3 className="font-bold text-lg">Support me ☕💖</h3>
-                <div className="text-sm">Support me with Paypal</div>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-bold text-lg group-hover:text-yellow-500 transition-colors">
+                    Fuel My Code ☕
+                  </h3>
+                  <span className="text-2xl animate-pulse">⚡</span>
+                </div>
+                <div className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                  If you enjoy my work, consider buying me a coffee to keep the
+                  algo running!
+                </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 bg-foreground text-background text-xs">
-                    Support link
+                  <div className="px-3 py-1 bg-yellow-400 text-black font-bold text-xs rounded-sm transition-transform group-hover:scale-105">
+                    Buy me a coffee
                   </div>
-                  <div className="w-8 h-8 border border-border flex items-center justify-center">
-                    <div className="w-4 h-4 bg-foreground"></div>
+                  <div className="w-8 h-8 border border-border flex items-center justify-center bg-background group-hover:bg-yellow-100 transition-colors">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="w-4 h-4 text-yellow-600"
+                    >
+                      <path d="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
+                    </svg>
                   </div>
                 </div>
               </div>
             </div>
           </Link>
-          */}
 
           {/* 🔥 Join our community card - Temporarily hidden
           <div className="mb-8">
@@ -193,7 +210,7 @@ export function IntroSection({
           */}
 
           {/* Website Info Card */}
-          <WebsiteInfoCard />
+          {/* Moved to the right column */}
         </div>
 
         {/* Right column - Business cards */}
@@ -259,6 +276,9 @@ export function IntroSection({
               </p>
             </div>
           </div>
+
+          {/* Website Info Card */}
+          <WebsiteInfoCard />
         </div>
       </div>
     </header>

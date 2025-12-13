@@ -25,6 +25,8 @@ import {
   SiMongodb,
   SiRedis,
   SiVercel,
+  SiNestjs,
+  SiSupabase,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -58,7 +60,9 @@ export const TECH_ICONS: Record<string, IconComponent> = {
   python: FaPython,
   'c++': SiCplusplus,
   cpp: SiCplusplus,
+  nestjs: SiNestjs,
   fastapi: SiFastapi,
+  supabase: SiSupabase,
   postgresql: SiPostgresql,
   sqlite: SiSqlite,
   mongodb: SiMongodb,

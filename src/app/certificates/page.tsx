@@ -3,7 +3,7 @@ import { CERTIFICATES } from '@/infrastructure/certificates/certificateData';
 import { CertificateCard } from '@/components/certificates/CertificateCard';
 
 export const metadata: Metadata = {
-    title: 'Certificates | trahoangdev',
+    title: 'Certificates </> trahoangdev',
     description: 'Professional certifications and achievements.',
 };
 
