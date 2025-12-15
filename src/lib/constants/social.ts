@@ -85,15 +85,21 @@ export const CONNECT_LINKS: ConnectLink[] = [
     handleKey: 'all',
   },
   {
+    name: 'Instagram',
+    handle: 'trahoangdev',
+    urlTemplate: 'https://instagram.com/{handle}',
+    handleKey: 'all',
+  },
+  {
     name: 'HuggingFace',
     handle: 'trahoangdev',
     urlTemplate: 'https://huggingface.co/{handle}',
     handleKey: 'all',
   },
   {
-    name: 'HubSpot Community',
+    name: 'Facebook',
     handle: 'trahoangdev',
-    urlTemplate: '#',
+    urlTemplate: 'https://facebook.com/{handle}',
     handleKey: 'all',
   },
   {

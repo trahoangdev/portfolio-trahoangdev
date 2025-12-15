@@ -8,7 +8,7 @@ interface SectionNavigationProps {
 }
 
 export function SectionNavigation({ activeSection, isVisible = true }: SectionNavigationProps) {
-  const sections = ['intro', 'work', 'project', 'service'];
+  const sections = ['intro', 'featured', 'philosophy', 'service'];
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -27,11 +27,10 @@ export function SectionNavigation({ activeSection, isVisible = true }: SectionNa
           <button
             key={section}
             onClick={() => scrollToSection(section)}
-            className={`w-3 h-8 border-dotted-thin transition-all duration-500 hover-lift ${
-              activeSection === section
-                ? 'bg-foreground border-foreground'
-                : 'bg-transparent border-border hover:bg-muted'
-            }`}
+            className={`w-3 h-8 border-dotted-thin transition-all duration-500 hover-lift ${activeSection === section
+              ? 'bg-foreground border-foreground'
+              : 'bg-transparent border-border hover:bg-muted'
+              }`}
             aria-label={`Navigate to ${section}`}
           />
         ))}

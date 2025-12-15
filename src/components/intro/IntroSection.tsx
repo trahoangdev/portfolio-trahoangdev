@@ -76,7 +76,7 @@ export function IntroSection({
                 TRA HOANG DEV
               </h1>
               <div className="text-lg font-medium">
-                Software Engineer | AI Engineer | Senior Student
+                Software Engineer | Content Creator | Senior Student
               </div>
               <div className="text-sm text-muted-foreground">
                 Writing code that thinks, designing interfaces that feel. Let's break the loop.
@@ -159,7 +159,7 @@ export function IntroSection({
                   Web Developer
                 </div>
                 <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
-                  Software Developer
+                  Software Engineer
                 </div>
               </div>
             </div>

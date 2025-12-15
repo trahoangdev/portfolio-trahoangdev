@@ -15,15 +15,20 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   {
+    label: 'Experience',
+    href: '/experience',
+    isActive: (pathname) => pathname === '/experience',
+  },
+  {
     label: 'Tools & Projects',
     href: '/project',
     isActive: (pathname) => pathname === '/project',
   },
-  {
+  /*{
     label: 'Certificate',
     href: '/certificates',
     isActive: (pathname) => pathname.startsWith('/certificates'),
-  },
+  },*/
   {
     label: 'Blog',
     href: 'https://devorbitblog.vercel.app/',

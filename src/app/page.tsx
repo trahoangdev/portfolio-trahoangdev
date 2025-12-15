@@ -11,6 +11,8 @@ import { IntroSection } from '@/components/intro/IntroSection';
 import { WorkSection } from '@/components/work/WorkSection';
 import { ProjectSection } from '@/components/projects/ProjectSection';
 import { ConnectSection } from '@/components/connect/ConnectSection';
+import { FeaturedWork } from '@/components/home/FeaturedWork';
+import { Philosophy } from '@/components/home/Philosophy';
 import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
 import { trackThemeChanged } from '@/lib/analytics';
 
@@ -73,9 +75,13 @@ export default function Home() {
       <main id="main-content" className={`max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 ${mainTopPadding}`}>
         <IntroSection sectionRef={registerSection('intro')} />
 
-        <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} />
+        <FeaturedWork sectionRef={registerSection('featured')} />
 
-        <ProjectSection activeSection={activeSection} sectionRef={registerSection('project')} />
+        <Philosophy sectionRef={registerSection('philosophy')} />
+
+        {/* <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} /> */}
+
+        {/*<ProjectSection activeSection={activeSection} sectionRef={registerSection('project')} />*/}
 
         <ConnectSection activeSection={activeSection} sectionRef={registerSection('service')} />
 
