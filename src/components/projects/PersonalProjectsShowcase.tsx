@@ -73,6 +73,26 @@ const PERSONAL_PROJECTS = [
         image: '/projects/luxe-wear.png',
         gradient: 'from-orange-500/20 via-pink-500/20 to-rose-500/20',
     },
+    {
+        id: 'taikhoanxin',
+        title: 'Tài Khoản Xịn',
+        description:
+            'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
+        repo: '',
+        demo: 'https://taikhoanxin.com',
+        tags: [
+            'Next.js 14',
+            'TypeScript',
+            'Supabase',
+            'Banking API',
+            'SCSS',
+            'Shadcn UI',
+        ],
+        isMaintenance: false,
+        members: 2,
+        image: '/projects/taikhoanxin.png',
+        gradient: 'from-emerald-500/20 via-teal-500/20 to-green-500/20',
+    },
 ];
 
 export function PersonalProjectsShowcase() {

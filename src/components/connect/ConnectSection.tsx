@@ -66,11 +66,10 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
               <Link
                 key={social.name}
                 href={generateConnectUrl(social.urlTemplate, social.handle)}
-                className={`group magnet-card ${
-                  index % 2 === 0
+                className={`group magnet-card ${index % 2 === 0
                     ? 'border-pulse-animated'
                     : 'border-wave-animated'
-                } border-border p-4 hover-lift hover:bg-muted transition-all duration-300`}
+                  } border-border p-4 hover-lift hover:bg-muted transition-all duration-300`}
               >
                 <div className="space-y-2">
                   <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300 font-bold">

@@ -54,7 +54,3 @@ analyze-*.html
 !CONTRIBUTING.md
 !README.md
 !docs/**/*.md
-
-# Text files (keep important ones)
-*.txt
-!LICENSE.txt
