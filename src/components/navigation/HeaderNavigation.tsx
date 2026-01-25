@@ -32,14 +32,14 @@ const NAV_ITEMS: NavItem[] = [
   },*/
   {
     label: 'Blog',
-    href: 'https://devorbitblog.vercel.app/',
-    isActive: () => false,
+    href: '/blog',
+    isActive: (pathname) => pathname === '/blog' || pathname.startsWith('/blog/'),
   },
-  /*{
-    label: 'Service',
-    href: '/#service',
-    isActive: (pathname) => pathname === '/' || pathname.startsWith('/service'),
-  },*/
+  {
+    label: 'Uses',
+    href: '/uses',
+    isActive: (pathname) => pathname === '/uses',
+  },
 ];
 
 export function HeaderNavigation() {

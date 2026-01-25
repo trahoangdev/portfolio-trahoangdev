@@ -85,6 +85,13 @@ export const TOOL_DATA: ToolRecord[] = [
     description: 'Relational backbone with JSON support and materialized views.',
   },
   {
+    id: 'mysql',
+    name: 'MySQL',
+    techId: 'mysql',
+    category: 'SQL',
+    description: 'The world\'s most popular open-source database.',
+  },
+  {
     id: 'sqlite',
     name: 'SQLite',
     techId: 'sqlite',
@@ -111,6 +118,13 @@ export const TOOL_DATA: ToolRecord[] = [
     techId: 'vscode',
     category: 'App',
     description: 'Daily driver editor tuned for rapid experimentation.',
+  },
+  {
+    id: 'figma',
+    name: 'Figma',
+    techId: 'figma',
+    category: 'App',
+    description: 'The standard for interface design and prototyping.',
   },
   {
     id: 'github-desktop',
