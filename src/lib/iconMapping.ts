@@ -27,6 +27,8 @@ import {
   SiVercel,
   SiNestjs,
   SiSupabase,
+  SiFigma,
+  SiMysql,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -73,4 +75,6 @@ export const TECH_ICONS: Record<string, IconComponent> = {
   github: FaGithub,
   'discord.py': FaDiscord,
   discordpy: FaDiscord,
+  figma: SiFigma,
+  mysql: SiMysql,
 };
