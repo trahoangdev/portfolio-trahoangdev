@@ -1,0 +1,154 @@
+---
+title: 'Building Performant web apps with Next.js 15'
+excerpt: 'Discover strategies to optimize your Next.js applications for maximum speed and Core Web Vitals scores. Learn about Image optimization, Server Components, and advanced caching strategies.'
+date: '2025-03-15'
+author: 'Tra Hoang'
+tags: ['Next.js', 'Performance', 'Web Development']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Performance metrics dashboard'
+---
+
+# Building Performant Web Apps with Next.js 15
+
+In the competitive landscape of modern web development, performance is no longer just a "nice-to-have"—it is a critical requirement. Users expect instantaneous load times, smooth transitions, and responsive interfaces. Search engines like Google prioritize fast-loading sites in their rankings through Core Web Vitals.
+
+Next.js 15 has emerged as a powerhouse framework for building high-performance React applications. It provides a suite of built-in optimizations that, when used correctly, can significantly enhance the user experience. In this comprehensive guide, we will explore advanced strategies to squeeze every ounce of performance out of your Next.js applications.
+
+## 1. Mastering the Next.js Image Component
+
+Images often account for the largest portion of a web page's transferable bytes. Unoptimized images can kill your Largest Contentful Paint (LCP) score. The `next/image` component is your first line of defense.
+
+### Automatic Optimization
+
+The `<Image />` component extends the standard HTML `<img>` element with automatic optimization features:
+
+-   **Size Optimization:** Automatically serves correctly sized images for each device, using modern image formats like AVIF and WebP.
+-   **Visual Stability:** Prevents Cumulative Layout Shift (CLS) automatically/
+-   **Lazy Loading:** Images are only loaded when they enter the viewport.
+
+### Implementation Example
+
+```tsx
+import Image from 'next/image';
+import heroImage from '../public/hero.jpg';
+
+export default function Hero() {
+  return (
+    <div className="relative h-[500px] w-full">
+      <Image 
+        src={heroImage}
+        alt="A high-performance workspace"
+        fill
+        priority
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        quality={85}
+      />
+    </div>
+  );
+}
+```
+
+**Key Takeaways:**
+-   **`priority`**: Always add this prop to your LCP element (usually the hero image) to preload it.
+-   **`sizes`**: This is crucial for responsive images. It tells the browser how much space the image serves, allowing it to pick the smallest appropriate file.
+-   **`quality`**: The default is 75, typically sufficient, but lowering it to 60-70 often yields negligible visual difference with significant file size savings.
+
+## 2. Leveraging React Server Components (RSC)
+
+Next.js's shift to Server Components by default in the App Router is a game-changer for performance.
+
+### Reducing Client-Side JavaScript
+
+With RSC, component logic runs entirely on the server. The dependencies used in these components (like a heavy Markdown parser or a date formatting library) are **never sent to the client**. This drastically reduces the JavaScript bundle size, improving Time to Interactive (TTI).
+
+### When to use Client Components?
+
+Use `'use client'` strictly for interactivity:
+-   `onClick`, `onChange` listeners.
+-   `useState`, `useEffect`.
+-   Browser-only APIs (`localStorage`, `window`).
+
+Keep your client components as leaf nodes in your component tree. Wrap interactive parts in their own components rather than making the entire page a Client Component.
+
+## 3. Optimizing Fonts
+
+Fonts can delay text rendering (FOIT) or cause layout shifts (FOUT). `next/font` automatically optimizes your fonts (including Google Fonts) and removes external network requests for improved privacy and performance.
+
+```tsx
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+It preloads font files at build time, ensuring that fonts are available immediately when the page loads.
+
+## 4. Script Optimization
+
+Third-party scripts (Analytics, Ads, Chat widgets) are notorious performance killers. The `next/script` component allows you to prioritize loading.
+
+```tsx
+import Script from 'next/script';
+
+<Script 
+  src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+  strategy="afterInteractive" 
+/>
+<Script 
+  src="https://example.com/heavy-chat-widget.js"
+  strategy="lazyOnload" 
+/>
+```
+
+**Strategies:**
+-   `beforeInteractive`: For critical scripts (rarely needed).
+-   `afterInteractive`: (Default) Loads after the page becomes interactive. Good for tag managers.
+-   `lazyOnload`: Loads during idle time. Perfect for support chats or social media widgets.
+
+## 5. Dynamic Imports and Code Splitting
+
+Don't load code the user doesn't need yet. Code splitting allows you to split your bundle into smaller chunks. Next.js does this automatically for pages, but you can manually do it for heavy components.
+
+```tsx
+import dynamic from 'next/dynamic';
+
+const HeavyChart = dynamic(() => import('@/components/HeavyChart'), {
+  loading: () => <div className="h-64 bg-gray-100 animate-pulse" />,
+  ssr: false // Disable SSR if the component relies on window
+});
+```
+
+If you have a modal or a chart that is below the fold, lazy load it!
+
+## 6. Caching and ISR
+
+Next.js provides robust caching mechanisms. Understanding **Incremental Static Regeneration (ISR)** allows you to have static pages that update periodically without rebuilding the whole site.
+
+```tsx
+export const revalidate = 3600; // Revalidate every hour
+
+export default async function Page() {
+  const data = await fetchData();
+  return <main>{/* ... */}</main>;
+}
+```
+
+This ensures users always get a static fast (HTML) response from the Edge, while the background worker updates the cache.
+
+## Conclusion
+
+Performance is a continuous journey. By leveraging Next.js features like `next/image`, Server Components, Font optimization, and aggressive code splitting, you can provide top-tier experiences for your users.
+
+Remember to always measure. Use LightHouse, WebPageTest, or the Vercel Analytics dashboard to track your Real User Metrics (RUM) and iterate on them.

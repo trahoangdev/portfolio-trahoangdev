@@ -1,0 +1,136 @@
+---
+title: 'Understanding React Server Components (RSC)'
+excerpt: 'A deep dive into the architecture of React Server Components. Learn the difference between Server and Client components, how to manage the boundary, and why this changes web development forever.'
+date: '2025-04-10'
+author: 'Tra Hoang'
+tags: ['React', 'Server Components', 'Architecture']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Modern Data Center Architecture'
+---
+
+# Understanding React Server Components: A Paradigm Shift
+
+React has traditionally been a client-side library. Even with frameworks like Next.js offering Server-Side Rendering (SSR), the end result was still a process of "hydration" where the browser had to download, parse, and execute JavaScript for **every** component to make it interactive. 
+
+Enter **React Server Components (RSC)**. This is not just a feature; it's a fundamental re-architecture of how we build React applications.
+
+## What Problem Does RSC Solve?
+
+In traditional React (CSR or SSR + Hydration), you face a "Waterfall" problem.
+1. Download HTML.
+2. Download JS bundle.
+3. Hydrate.
+4. Component Mounts -> `useEffect` -> Fetch Data.
+5. Loading Spinner.
+6. Render Data.
+
+This is slow. RSC aims to solve this by moving the data fetching and rendering logic **to the server** for components that don't need interactivity.
+
+## Server Components vs Client Components
+
+The mental model is simple: everything is a Server Component by default in the Next.js App Router.
+
+### Server Components
+-   **Where they run:** Only on the server.
+-   **What they can do:**
+    -   Access Database directly (`db.query()`).
+    -   Access Filesystem.
+    -   Keep sensitive keys (API Keys) secret.
+-   **What they send to client:** The *result* (HTML/JSON-like format), not the code. **Zero Bundle Size.**
+-   **Constraints:** No `useState`, `useEffect`, or browser events (`onClick`).
+
+### Client Components
+-   **Where they run:** On the Server (during SSR) AND on the Client.
+-   **What they can do:** Use State, Effects, Event Listeners, Browser APIs.
+-   **Constraints:** Cannot import Server Components directly (cannot pass them as children unless passed as props).
+
+## The "Network Boundary"
+
+Thinking in RSC requires managing the boundary between server and client. This is marked by the `'use client'` directive at the top of a file.
+
+```tsx
+// ServerComponent.tsx
+import db from '@/lib/db';
+import ClientCounter from './ClientCounter';
+
+export default async function Page() {
+    const data = await db.post.findFirst();
+    
+    return (
+        <div>
+            <h1>{data.title}</h1>
+            <p>{data.body}</p>
+            {/* We can pass valid props (serializable) to client components */}
+            <ClientCounter initialCount={data.views} />
+        </div>
+    );
+}
+```
+
+```tsx
+// ClientCounter.tsx
+'use client';
+
+import { useState } from 'react';
+
+export default function ClientCounter({ initialCount }) {
+    const [count, setCount] = useState(initialCount);
+    return <button onClick={() => setCount(c => c+1)}>{count}</button>;
+}
+```
+
+## Data Fetching in RSC
+
+Gone are the days of `useEffect`. In RSC, components can be async.
+
+```tsx
+async function PostList() {
+    // This runs on server. No API route needed!
+    const posts = await db.posts.findMany();
+    
+    return (
+        <ul>
+            {posts.map(post => <li key={post.id}>{post.title}</li>)}
+        </ul>
+    );
+}
+```
+
+This brings backend logic right into your UI components, but securely. It significantly reduces boilerplate code.
+
+## Composition Pattern
+
+A common confusion: "I can't put a Server Component inside a Client Component".
+**False.** You can, but you must pass it as `children` or a prop.
+
+**Bad (will error import):**
+```tsx
+'use client';
+import ServerComp from './ServerComp'; // Error
+```
+
+**Good (Composition):**
+```tsx
+// ParentServerComp.tsx
+import ClientWrapper from './ClientWrapper';
+import ServerComp from './ServerComp';
+
+export default function Page() {
+  return (
+    <ClientWrapper>
+      <ServerComp />
+    </ClientWrapper>
+  );
+}
+
+// ClientWrapper.tsx
+'use client';
+export default function ClientWrapper({ children }) {
+  // uses state...
+  return <div>{children}</div>;
+}
+```
+
+## Conclusion
+
+React Server Components allow us to build applications that are faster by default (less JS) and easier to maintain (direct data access). While the learning curve involves understanding boundaries and serialization, the benefits for large-scale web applications are immense.

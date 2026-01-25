@@ -1,0 +1,158 @@
+---
+title: 'Clean Code Principles for JavaScript Developers'
+excerpt: 'A comprehensive guide to writing maintainable, readable, and scalable JavaScript. We cover naming conventions, function purity, SOLID principles, and the art of refactoring.'
+date: '2025-01-15'
+author: 'Tra Hoang'
+tags: ['JavaScript', 'Clean Code', 'Best Practices']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Minimalist geometric structure'
+---
+
+# Clean Code Principles for JavaScript Developers
+
+"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler.
+
+In the fast-paced world of software development, it's tempting to write code that "just works" and move on. However, technical debt accumulates fast. Clean code is about writing software that is easy to understand, easy to change, and easy to maintain.
+
+In this guide, we'll explore key Clean Code principles adapted for the modern JavaScript/TypeScript ecosystem.
+
+## 1. Meaningful Names
+
+The hardest problem in Computer Science is naming things. But it's also the most important.
+
+### Use Intention-Revealing Names
+
+**Bad:**
+```javascript
+const d = 10; // time in days
+const list = []; 
+
+function get(x) {
+    if (x.s === 4) return true;
+}
+```
+
+**Good:**
+```javascript
+const daysSinceModification = 10;
+const rawUserList = [];
+
+function isTaskCompleted(task) {
+    const COMPLETED_STATUS = 4;
+    return task.status === COMPLETED_STATUS;
+}
+```
+
+### Avoid Magic Numbers
+
+Don't use raw numbers in logic. Assign them to constants.
+
+## 2. Functions Should Do One Thing (SRP)
+
+The Single Responsibility Principle (SRP) applies to functions too. A function should do one thing, and do it well.
+
+**Bad:**
+```javascript
+function emailClients(clients) {
+  clients.forEach(client => {
+    const clientRecord = database.lookup(client);
+    if (clientRecord.isActive()) {
+      email(client);
+    }
+  });
+}
+```
+
+This function does three things: iterating, checking active status, and emailing.
+
+**Good:**
+```javascript
+function emailActiveClients(clients) {
+    clients
+        .filter(isActiveClient)
+        .forEach(sendEmail);
+}
+
+function isActiveClient(client) {
+    const clientRecord = database.lookup(client);
+    return clientRecord.isActive();
+}
+```
+
+Now the logic is declarative and easy to read.
+
+## 3. Function Arguments
+
+Ideally, a function should have 0-2 arguments. Three is a crowd. More than three should be a configuration object.
+
+**Bad:**
+```javascript
+function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+```
+
+**Good:**
+```javascript
+function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+
+createMenu({
+  title: 'Foo',
+  body: 'Bar',
+  buttonText: 'Baz',
+  cancellable: true
+});
+```
+
+Using Destructuring makes the call site much clearer.
+
+## 4. Avoid Side Effects (Pure Functions)
+
+A pure function always returns the same output for the same input and modifies nothing outside its scope. Side effects (changing global variables, mutation) make code unpredicable and hard to test.
+
+**Bad:**
+```javascript
+let name = 'Tra';
+
+function splitName() {
+  name = name.split(' '); // Mutates external variable
+}
+```
+
+**Good:**
+```javascript
+function splitName(name) {
+  return name.split(' '); // Returns new value
+}
+```
+
+## 5. Don't Comment Bad Code, Rewrite It
+
+Comments are often lies waiting to happen. Code changes, comments rarely do.
+
+**Bad:**
+```javascript
+// Check if user is eligible for discount
+if (user.age > 65 || (user.age < 18 && user.isStudent)) { ... }
+```
+
+**Good:**
+```javascript
+if (user.isEligibleForDiscount()) { ... }
+```
+
+Let the code tell the story. Use comments only for **"Why"**, not "What" or "How".
+
+## 6. The SOLID Principles in TypeScript
+
+-   **S: Single Responsibility**: One class/module should have one reason to change.
+-   **O: Open/Closed**: Open for extension, closed for modification.
+-   **L: Liskov Substitution**: Subtypes must be substitutable for base types.
+-   **I: Interface Segregation**: Clients shouldn't depend on methods they don't use.
+-   **D: Dependency Inversion**: Depend on abstractions, not concretions.
+
+## Conclusion
+
+Clean code is not about perfection; it's about continuous improvement. It requires discipline to rename variables, extract functions, and refactor constantly. But the investment pays off in a codebase that is a joy to work in.
