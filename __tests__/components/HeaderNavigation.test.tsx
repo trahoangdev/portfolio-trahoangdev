@@ -18,7 +18,8 @@ describe('HeaderNavigation', () => {
 
   it('should have navigation landmark', () => {
     render(<HeaderNavigation />);
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
+    const navs = screen.getAllByRole('navigation');
+    expect(navs.length).toBeGreaterThan(0);
   });
 
   it('should render logo/brand', () => {
@@ -29,7 +30,8 @@ describe('HeaderNavigation', () => {
 
   it('should have proper accessibility attributes', () => {
     render(<HeaderNavigation />);
-    const nav = screen.getByRole('navigation');
+    // Select the main navigation
+    const nav = screen.getByRole('navigation', { name: /main navigation/i });
     expect(nav).toHaveAttribute('aria-label');
   });
 
