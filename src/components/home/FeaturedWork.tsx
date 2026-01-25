@@ -89,13 +89,13 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                         <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 via-pink-500/10 to-rose-500/10 z-0" />
 
                         {/* Mockup / Image Container */}
-                        <div className="absolute inset-4 lg:inset-8 lg:-right-12 lg:my-12 rounded-lg shadow-2xl overflow-hidden border border-border/20 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
+                        <div className="absolute inset-4 lg:inset-8 lg:my-12 rounded-lg shadow-2xl overflow-hidden border border-border/20 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
                             {/* Replace with actual image path if available */}
                             <Image
                                 src="/projects/luxe-wear.png"
                                 alt="Luxe Wear AI Interface"
                                 fill
-                                className="object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                className="object-contain object-center opacity-90 group-hover:opacity-100 transition-opacity duration-500"
                             />
                         </div>
                     </div>

@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Uses - Tra Hoang',
+    title: 'Uses </> trahoangdev',
     description: 'A curated list of the tech I use, software I love, and other things I recommend.',
 };
 
