@@ -10,7 +10,7 @@ interface FeaturedWorkProps {
 
 export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
     return (
-        <section ref={sectionRef} id="featured" className="py-20 sm:py-32 relative">
+        <section ref={sectionRef} id="featured" className="py-12 sm:py-32 relative">
 
             <div className="absolute top-1/2 -left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] pointer-events-none" />
 
@@ -33,10 +33,10 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                     </Link>
                 </div>
 
-                <div className="group relative grid lg:grid-cols-12 gap-8 lg:gap-0 items-center border border-border/50 bg-background/50 backdrop-blur-sm rounded-3xl overflow-hidden p-6 lg:p-0 transition-all duration-500 hover:shadow-2xl hover:border-border/80">
+                <div className="group relative grid lg:grid-cols-12 items-center border border-border/50 bg-background/50 backdrop-blur-sm rounded-3xl overflow-hidden p-0 sm:p-6 lg:p-0 transition-all duration-500 hover:shadow-2xl hover:border-border/80">
 
                     {/* Content */}
-                    <div className="lg:col-span-5 lg:p-12 lg:pr-6 flex flex-col justify-center space-y-8 order-2 lg:order-1 relative z-10">
+                    <div className="lg:col-span-5 p-6 sm:p-0 lg:p-12 lg:pr-6 flex flex-col justify-center space-y-6 sm:space-y-8 order-2 lg:order-1 relative z-10">
                         <div className="space-y-4">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-xs font-mono font-bold uppercase tracking-wide">
                                 <span className="relative flex h-2 w-2">
@@ -64,11 +64,11 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                             ))}
                         </div>
 
-                        <div className="flex items-center gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
                             <Link
                                 href="https://luxwearai.vercel.app"
                                 target="_blank"
-                                className="flex-1 sm:flex-none px-8 py-3 bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+                                className="w-full sm:w-auto px-8 py-3 bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
                             >
                                 Live Demo
                                 <FaExternalLinkAlt className="h-3 w-3" />
@@ -76,7 +76,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                             <Link
                                 href="https://github.com/trahoangdev/client-luxe-wear-ai"
                                 target="_blank"
-                                className="flex-1 sm:flex-none px-8 py-3 border border-border font-bold uppercase tracking-wider rounded-lg hover:bg-muted transition-all duration-300 flex items-center justify-center gap-2"
+                                className="w-full sm:w-auto px-8 py-3 border border-border font-bold uppercase tracking-wider rounded-lg hover:bg-muted transition-all duration-300 flex items-center justify-center gap-2 text-sm"
                             >
                                 Source
                                 <FaGithub className="h-4 w-4" />
@@ -85,11 +85,11 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                     </div>
 
                     {/* Image/Preview */}
-                    <div className="lg:col-span-7 h-full min-h-[300px] lg:min-h-[500px] bg-muted/20 relative order-1 lg:order-2 overflow-hidden rounded-xl lg:rounded-none lg:rounded-l-3xl">
+                    <div className="lg:col-span-7 h-56 sm:h-auto min-h-[200px] lg:min-h-[500px] bg-muted/20 relative order-1 lg:order-2 overflow-hidden rounded-none sm:rounded-xl lg:rounded-none lg:rounded-l-3xl">
                         <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 via-pink-500/10 to-rose-500/10 z-0" />
 
                         {/* Mockup / Image Container */}
-                        <div className="absolute inset-4 lg:inset-8 lg:my-12 rounded-lg shadow-2xl overflow-hidden border border-border/20 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
+                        <div className="absolute inset-0 sm:inset-4 lg:inset-8 lg:my-12 sm:rounded-lg shadow-none sm:shadow-2xl overflow-hidden border-b sm:border border-border/20 group-hover:scale-[1.02] transition-transform duration-700 ease-out">
                             {/* Replace with actual image path if available */}
                             <Image
                                 src="/projects/luxe-wear.png"
