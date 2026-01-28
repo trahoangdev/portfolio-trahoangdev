@@ -12,7 +12,7 @@ export default async function BlogPage() {
     const allTags = Array.from(new Set(posts.flatMap(post => post.tags || []))).sort();
 
     return (
-        <div className="container py-12 md:py-24 space-y-12 max-w-6xl mx-auto px-4">
+        <div className="container pt-24 pb-12 md:py-24 space-y-12 max-w-6xl mx-auto px-4">
             <div className="flex flex-col items-center text-center space-y-4 animate-in slide-in-from-bottom-5 fade-in duration-500">
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl gradient-text">
                     My Blog

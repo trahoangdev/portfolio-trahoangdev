@@ -29,11 +29,11 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
               </p>
               <div className="space-y-4">
                 <Link
-                  href="mailto:info@trahoangdev"
+                  href="mailto:contact@trahoangdev.com"
                   className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
                 >
                   <span className="text-base sm:text-lg font-mono">
-                    info@trahoangdev
+                    contact@trahoangdev.com
                   </span>
                   <svg
                     className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
@@ -67,8 +67,8 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
                 key={social.name}
                 href={generateConnectUrl(social.urlTemplate, social.handle)}
                 className={`group magnet-card ${index % 2 === 0
-                    ? 'border-pulse-animated'
-                    : 'border-wave-animated'
+                  ? 'border-pulse-animated'
+                  : 'border-wave-animated'
                   } border-border p-4 hover-lift hover:bg-muted transition-all duration-300`}
               >
                 <div className="space-y-2">

@@ -8,19 +8,19 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    year: 'Dec.2025 PRESENT',
-    role: 'FRONTEND DEVELOPER',
-    company: 'Founder at DevOrbit',
-    description: 'Develop a personal blog to share in - depth knowledge about Backend and System Design. Focus on content quality and reader experience.',
-    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Markdown'],
-    tech: [],
-  },
-  {
     year: 'Oct.2025 PRESENT',
     role: 'FRONTEND DEVELOPER',
     company: 'Co-Founder at TAIKHOANXIN.COM',
     description: 'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
     //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    tech: [],
+  },
+  {
+    year: 'Oct.2025 Dec.2025',
+    role: 'FRONTEND DEVELOPER',
+    company: 'Founder at DevOrbit',
+    description: 'Develop a personal blog to share in - depth knowledge about Backend and System Design. Focus on content quality and reader experience.',
+    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Markdown'],
     tech: [],
   },
   {
@@ -34,7 +34,16 @@ export const EXPERIENCES: Experience[] = [
   },
 
   {
-    year: '2022 - 2025',
+    year: '2024 - 2025',
+    role: 'AI ENGINEER',
+    company: 'LEARNING AI ENGINEERING',
+    description: 'Focused on the theoretical and practical aspects of Artificial Intelligence. Mastering key concepts in Deep Learning, Machine Learning, and Natural Language Processing. Building intelligent agents and RAG systems.',
+    //tech: ['Python', 'PyTorch', 'TensorFlow', 'LangChain', 'OpenAI API', 'Hugging Face', 'NLP', 'Computer Vision'],
+    tech: [],
+  },
+
+  {
+    year: '2022',
     role: 'WEB DEVELOPER',
     company: 'LEARNING WEBSITE DEVELOPMENT',
     description: 'The self-taught grind. Deep diving into the web ecosystem, exploring modern frameworks, and turning curiosity into capability. Building, breaking, and refactoring—the endless cycle of growth.',

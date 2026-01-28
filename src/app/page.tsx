@@ -79,9 +79,9 @@ export default function Home() {
 
         <Philosophy sectionRef={registerSection('philosophy')} />
 
-        {/* <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} /> */}
+        {/* <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} />
 
-        {/*<ProjectSection activeSection={activeSection} sectionRef={registerSection('project')} />*/}
+        <ProjectSection activeSection={activeSection} sectionRef={registerSection('project')} /> */}
 
         <ConnectSection activeSection={activeSection} sectionRef={registerSection('service')} />
 
@@ -89,10 +89,11 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground font-mono">
-                © {new Date().getFullYear()} trahoangdev. All rights reserved.
+                © {new Date().getFullYear()} <span className="font-bold text-foreground">TRAHOANGDEV</span>.
+                <span className="hidden sm:inline"> ALL SYSTEMS NOMINAL.</span>
               </div>
               <div className="text-xs text-muted-foreground">
-                Built with 💖 and ☕
+                Built with <span className="font-medium text-foreground">Next.js 16</span>, <span className="font-medium text-foreground">TailwindCSS</span> & <span className="font-medium text-foreground">TypeScript</span>.
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -127,7 +128,11 @@ export default function Home() {
                 )}
               </button>
 
-              <button className="group p-3 border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift">
+              <a
+                href="mailto:contact@trahoangdev.com"
+                className="group p-3 border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift text-foreground"
+                aria-label="Send email"
+              >
                 <svg
                   className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                   fill="none"
@@ -141,7 +146,7 @@ export default function Home() {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </footer>

@@ -36,14 +36,14 @@ export const SOCIAL_LINKS: SocialLink[] = [
     urlTemplate: 'https://twitter.com/{handle}',
     handleKey: 'all',
     icon: 'twitter',
-  },
+  },*/
   {
     name: 'Discord',
     //urlTemplate: 'https://discord.com/users/{handle}',
-    urlTemplate: 'https://discord.com',
+    urlTemplate: 'https://discord.com/invites/{handle}', // Updated to invite or user link if known, but keeping generic for now or user ID. Actually, let's keep it 'users' if that was the intent, or just simple.
     handleKey: 'discordId',
     icon: 'discord',
-  },*/
+  },
   {
     name: 'GitHub',
     urlTemplate: 'https://github.com/{handle}',

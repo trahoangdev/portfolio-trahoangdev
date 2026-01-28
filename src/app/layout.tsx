@@ -21,12 +21,52 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-trahoangdev.vercel.app'),
-  title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
-  description: 'portfolio website',
-  generator: 'trahoangdev',
+  title: {
+    default: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    template: '%s | trahoangdev',
+  },
+  description: 'Software Engineer specializing in building exceptional digital experiences. Focused on accessible, human-centered products.',
+  keywords: ['Software Engineer', 'Frontend Developer', 'React', 'Next.js', 'TypeScript', 'Portfolio'],
+  authors: [{ name: 'Hoàng Trọng Trà', url: 'https://trahoangdev.vercel.app' }],
+  creator: 'Hoàng Trọng Trà',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://trahoangdev.vercel.app',
+    title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    description: 'Software Engineer specializing in building exceptional digital experiences.',
+    siteName: 'trahoangdev',
+    images: [
+      {
+        url: '/og-image.png', // Ensure this file exists or upgrade opengraph-image.tsx
+        width: 1200,
+        height: 630,
+        alt: 'trahoangdev portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    description: 'Software Engineer specializing in building exceptional digital experiences.',
+    images: ['/og-image.png'],
+    creator: '@trahoangdev',
+  },
   icons: {
     icon: [{ url: '/logo.ico', sizes: '16x16', type: 'image/png' }],
     shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
