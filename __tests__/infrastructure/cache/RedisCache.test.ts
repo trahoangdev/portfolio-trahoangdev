@@ -10,6 +10,7 @@ global.fetch = jest.fn();
 describe('RedisCache', () => {
   let cache: RedisCache;
   const originalEnv = process.env;
+  const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
 
   beforeEach(() => {
     // Clear environment variables for testing
@@ -18,10 +19,15 @@ describe('RedisCache', () => {
     delete process.env.KV_REST_API_TOKEN;
     cache = new RedisCache();
     jest.clearAllMocks();
+    consoleErrorSpy.mockClear();
   });
 
   afterEach(() => {
     process.env = originalEnv;
+  });
+
+  afterAll(() => {
+    consoleErrorSpy.mockRestore();
   });
 
   describe('isAvailable', () => {
@@ -69,14 +75,14 @@ describe('RedisCache', () => {
     it('should call fetchFn and return value when Redis is not available', async () => {
       const fetchFn = jest.fn().mockResolvedValue('fetched-value');
       const result = await cache.getOrSet('test-key', fetchFn);
-      
+
       expect(fetchFn).toHaveBeenCalled();
       expect(result).toBe('fetched-value');
     });
 
     it('should propagate fetchFn errors', async () => {
       const fetchFn = jest.fn().mockRejectedValue(new Error('Fetch failed'));
-      
+
       await expect(cache.getOrSet('test-key', fetchFn)).rejects.toThrow('Fetch failed');
       expect(fetchFn).toHaveBeenCalled();
     });
@@ -96,11 +102,11 @@ describe('RedisCache', () => {
       process.env.KV_REST_API_URL = 'https://test.upstash.io';
       process.env.KV_REST_API_TOKEN = 'test-token';
       const cacheWithCreds = new RedisCache();
-      
+
       const fetchFn = jest.fn().mockResolvedValue('fetched-value');
       // First call should fetch and cache
       const result = await cacheWithCreds.getOrSet('test-key', fetchFn);
-      
+
       expect(fetchFn).toHaveBeenCalledTimes(1);
       expect(result).toBe('fetched-value');
       expect(global.fetch).toHaveBeenCalledTimes(2); // GET + SET
