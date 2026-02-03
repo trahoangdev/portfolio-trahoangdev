@@ -126,24 +126,20 @@ export function ProjectExplorer() {
 
   const handleCategoryToggle = useCallback(
     (slug: string) => {
-      setFilterState((previous) => {
-        const next = previous.toggleCategory(slug);
-        runFilter(next);
-        return next;
-      });
+      const next = filterState.toggleCategory(slug);
+      setFilterState(next);
+      runFilter(next);
     },
-    [runFilter]
+    [filterState, runFilter]
   );
 
   const handleLanguageToggle = useCallback(
     (slug: string) => {
-      setFilterState((previous) => {
-        const next = previous.toggleLanguage(slug);
-        runFilter(next);
-        return next;
-      });
+      const next = filterState.toggleLanguage(slug);
+      setFilterState(next);
+      runFilter(next);
     },
-    [runFilter]
+    [filterState, runFilter]
   );
 
   const handleReset = useCallback(() => {

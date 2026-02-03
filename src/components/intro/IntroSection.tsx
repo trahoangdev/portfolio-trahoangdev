@@ -57,19 +57,19 @@ export function IntroSection({
         {/* Left column - Main info */}
         <div className="lg:col-span-1 space-y-8">
           <div
-            className="magnet-card rounded-3xl border-solid-animated border-border
-           p-6  hover:shadow-2xl
+            className="magnet-card rounded-3xl border-2 border-border
+           p-6 hover:shadow-2xl
            transition-all duration-500
            group/info
-           dark:hover:bg-background dark:hover:text-foreground"
+           overflow-hidden bg-background"
           >
             {/* Shimmer effect */}
             <div
               className="absolute inset-0 
-                   dark:from-transparent dark:via-black/20dark:to-transparent
+                   bg-gradient-to-r from-transparent via-foreground/30 to-transparent
                    -translate-x-full group-hover/info:translate-x-full 
                    transition-transform duration-1000 ease-in-out
-                   dark:bg-background dark:text-foreground"
+                   pointer-events-none z-10 -skew-x-12"
             ></div>
 
             <div className="space-y-4">
@@ -109,22 +109,22 @@ export function IntroSection({
           </div>
 
           {/* Action buttons */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Link
               href="/#service"
-              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               Connect
             </Link>
             <Link
               href="/project"
-              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               My Matrix
             </Link>
             <Link
               href="/resume"
-              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               CV
             </Link>
@@ -224,18 +224,29 @@ export function IntroSection({
         {/* Right column - Business cards */}
         <div className="lg:col-span-1 space-y-8">
           {/* Studio card */}
-          <div className="magnet-card rounded-3xl border-double-animated border-border p-6  hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center">
-            <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-5 transform group-hover:scale-150 transition-transform duration-700 pointer-events-none">
-              <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
-                <path d="M50 0 C22.4 0 0 22.4 0 50 C0 77.6 22.4 100 50 100 C77.6 100 100 77.6 100 50 C100 22.4 77.6 0 50 0 Z M50 80 C33.4 80 20 66.6 20 50 C20 33.4 33.4 20 50 20 C66.6 20 80 33.4 80 50 C80 66.6 66.6 80 50 80 Z" fill="currentColor" />
-              </svg>
-            </div>
-            <div className="space-y-2 relative z-10 text-center">
-              <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors">ARCHITECT OF FLOW</div>
+          {/* Studio card */}
+          <div className="magnet-card rounded-3xl border-neon-animated border-border p-6 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center bg-background">
+
+            {/* Background blobs */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl transform translate-x-16 -translate-y-16 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 ease-out"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl transform -translate-x-16 translate-y-16 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 ease-out"></div>
+
+            <div className="space-y-3 relative z-10 text-center">
+              <div className="text-[10px] font-bold tracking-[0.3em] text-muted-foreground uppercase group-hover:text-cyan-500 transition-colors duration-300">
+                Architect of Flow
+              </div>
+
               <div className="text-2xl font-black tracking-tighter uppercase relative">
-                <span className="relative z-10">TRAHOANGDEV</span>
-                <span className="absolute inset-0 text-foreground/20 blur-[2px] translate-x-[2px] translate-y-[2px] z-0">TRAHOANGDEV</span>
+                {/* Glitch effect layers */}
+                <span className="relative z-10 block group-hover:-translate-y-1 transition-transform duration-300">
+                  TRAHOANGDEV
+                </span>
+                <div className="absolute inset-0 text-red-500 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
+                  TRAHOANGDEV
+                </div>
+                <div className="absolute inset-0 text-cyan-500 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
+                  TRAHOANGDEV
+                </div>
               </div>
             </div>
           </div>

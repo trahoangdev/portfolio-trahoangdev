@@ -11,7 +11,7 @@ export default function ResumePage() {
     };
 
     return (
-        <div className="min-h-screen bg-background text-foreground pt-36 pb-20 px-4 sm:px-8 md:px-12 print:p-0 print:bg-white print:text-black">
+        <div className="min-h-screen bg-background text-foreground pt-36 pb-20 px-4 sm:px-8 md:px-12 print:p-8 print:bg-white print:text-black">
             {/* Navigation & Actions - Hidden when printing */}
             {/* Navigation & Actions - Hidden when printing */}
             <div className="max-w-4xl mx-auto mb-12 flex flex-col sm:flex-row justify-between items-center gap-4 print:hidden animate-fade-in-up">
