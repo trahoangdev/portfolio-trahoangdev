@@ -21,7 +21,7 @@ export interface SocialLink {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: 'Facebook',
-    urlTemplate: 'https://facebook.com/trahoangdev',
+    urlTemplate: 'https://facebook.com/profile.php?id=61587242162656',
     handleKey: 'all',
     icon: 'facebook',
   },
@@ -37,13 +37,13 @@ export const SOCIAL_LINKS: SocialLink[] = [
     handleKey: 'all',
     icon: 'twitter',
   },*/
-  {
-    name: 'Discord',
-    //urlTemplate: 'https://discord.com/users/{handle}',
-    urlTemplate: 'https://discord.com/invites/{handle}', // Updated to invite or user link if known, but keeping generic for now or user ID. Actually, let's keep it 'users' if that was the intent, or just simple.
-    handleKey: 'discordId',
-    icon: 'discord',
-  },
+  // {
+  //   name: 'Discord',
+  //   //urlTemplate: 'https://discord.com/users/{handle}',
+  //   urlTemplate: 'https://discord.com/invites/{handle}', // Updated to invite or user link if known, but keeping generic for now or user ID. Actually, let's keep it 'users' if that was the intent, or just simple.
+  //   handleKey: 'discordId',
+  //   icon: 'discord',
+  // },
   {
     name: 'GitHub',
     urlTemplate: 'https://github.com/{handle}',
@@ -99,7 +99,8 @@ export const CONNECT_LINKS: ConnectLink[] = [
   {
     name: 'Facebook',
     handle: 'trahoangdev',
-    urlTemplate: 'https://facebook.com/{handle}',
+    //urlTemplate: 'https://facebook.com/{handle}',
+    urlTemplate: 'https://www.facebook.com/profile.php?id=61587242162656',
     handleKey: 'all',
   },
   {
