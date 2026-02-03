@@ -122,6 +122,12 @@ export function IntroSection({
             >
               My Matrix
             </Link>
+            <Link
+              href="/resume"
+              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+            >
+              CV
+            </Link>
           </div>
         </div>
 
