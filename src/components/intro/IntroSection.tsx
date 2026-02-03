@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { SocialLinks } from '@/components/intro/SocialLinks';
 import { CommunityInfo } from '@/components/intro/CommunityInfo';
 import { WebsiteInfoCard } from '@/components/intro/WebsiteInfoCard';
+import { User } from 'lucide-react';
 
 export function IntroSection({
   sectionRef,
@@ -99,8 +100,9 @@ export function IntroSection({
                   quality={90}
                 />
               ) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                  Portrait not found
+                <div className="flex flex-col items-center justify-center h-full text-muted-foreground space-y-2 bg-muted/50">
+                  <User className="w-20 h-20 opacity-50" />
+                  <span className="text-sm font-medium tracking-wider">OFFLINE</span>
                 </div>
               )}
             </div>
@@ -216,12 +218,18 @@ export function IntroSection({
         {/* Right column - Business cards */}
         <div className="lg:col-span-1 space-y-8">
           {/* Studio card */}
-          <div className="magnet-card border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden">
-            <div className="absolute inset-0 bg-white transform scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out"></div>
-            <div className="space-y-4 relative z-10">
-              <div className="bg-foreground text-background p-4 text-center transition-all duration-500 group-hover:bg-white group-hover:text-black">
-                <div className="text-sm font-bold">ARCHITECT OF FLOW</div>
-                <div className="text-xs">TRAHOANGDEV</div>
+          <div className="magnet-card border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-5 transform group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
+                <path d="M50 0 C22.4 0 0 22.4 0 50 C0 77.6 22.4 100 50 100 C77.6 100 100 77.6 100 50 C100 22.4 77.6 0 50 0 Z M50 80 C33.4 80 20 66.6 20 50 C20 33.4 33.4 20 50 20 C66.6 20 80 33.4 80 50 C80 66.6 66.6 80 50 80 Z" fill="currentColor" />
+              </svg>
+            </div>
+            <div className="space-y-2 relative z-10 text-center">
+              <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors">ARCHITECT OF FLOW</div>
+              <div className="text-2xl font-black tracking-tighter uppercase relative">
+                <span className="relative z-10">TRAHOANGDEV</span>
+                <span className="absolute inset-0 text-foreground/20 blur-[2px] translate-x-[2px] translate-y-[2px] z-0">TRAHOANGDEV</span>
               </div>
             </div>
           </div>
@@ -229,21 +237,31 @@ export function IntroSection({
           {/* Mind Channel card */}
           <div
             className="relative overflow-hidden group border border-border 
-        rounded-1xl p-6 cursor-pointer
-        transition-[transform,box-shadow] duration-300 ease-out
-        hover:shadow-[0_0_0_2px_rgba(255,255,255,0.85),0_0_36px_14px_rgba(255,255,255,0.25)]
-        hover:scale-105 hover:bg-muted
-        will-change-transform transform-gpu"
+        rounded-xl p-6 cursor-pointer
+        transition-all duration-300 ease-out
+        hover:shadow-[0_0_20px_-5px_var(--foreground)]
+        hover:border-foreground
+        hover:scale-[1.02]
+        bg-background"
           >
-            <div className="space-y-4 text-center">
-              <div className="text-xs tracking-wider">= = = = =</div>
-              <div className="text-2xl font-bold">MIND</div>
-              <div className="text-sm">CHANNEL</div>
-              <div className="text-2xl font-bold font-mono bg-foreground text-background px-2 py-1 inline-block">
+            <div className="flex flex-col items-center justify-center space-y-2 text-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span className="text-xs font-bold tracking-widest text-red-500">LIVE</span>
+              </div>
+              <div className="text-4xl font-black font-mono tracking-tighter tabular-nums bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
                 {mounted ? currentTime : '00:00:00'}
               </div>
-              <div className="text-xs">UTC+7 LIVE</div>
+              <div className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground uppercase">
+                UTC+7 • HO CHI MINH
+              </div>
             </div>
+
+            {/* Scanline effect */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none animate-scan"></div>
           </div>
 
           {/* Description */}
