@@ -40,6 +40,11 @@ const NAV_ITEMS: NavItem[] = [
     href: '/uses',
     isActive: (pathname) => pathname === '/uses',
   },
+  {
+    label: 'Resume',
+    href: '/resume',
+    isActive: (pathname) => pathname === '/resume',
+  },
 ];
 
 export function HeaderNavigation() {
@@ -96,7 +101,7 @@ export function HeaderNavigation() {
   );
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center print:hidden">
       <div
         className={cn(
           'relative z-50 mt-4 flex w-[95%] max-w-5xl items-center justify-between gap-6 rounded-full border border-border/60 bg-background/80 px-6 py-3 backdrop-blur shadow-lg transition-all duration-500',
