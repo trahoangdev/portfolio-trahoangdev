@@ -8,7 +8,7 @@ interface SectionNavigationProps {
 }
 
 export function SectionNavigation({ activeSection, isVisible = true }: SectionNavigationProps) {
-  const sections = ['intro', 'featured', 'philosophy', 'service'];
+  const sections = ['intro', 'featured', 'service'];
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -22,12 +22,12 @@ export function SectionNavigation({ activeSection, isVisible = true }: SectionNa
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'
       )}
     >
-      <div className="flex flex-col gap-4 p-4 border-dotted-thick border-border bg-background/90 backdrop-blur">
+      <div className="flex flex-col gap-4 p-4 rounded-3xl border-dotted-thick border-border bg-background/90 backdrop-blur">
         {sections.map((section) => (
           <button
             key={section}
             onClick={() => scrollToSection(section)}
-            className={`w-3 h-8 border-dotted-thin transition-all duration-500 hover-lift ${activeSection === section
+            className={`w-3 h-8 rounded-full border-dotted-thin transition-all duration-500 hover-lift ${activeSection === section
               ? 'bg-foreground border-foreground'
               : 'bg-transparent border-border hover:bg-muted'
               }`}

@@ -20,7 +20,7 @@ export function WorkSection({ activeSection, sectionRef }: WorkSectionProps) {
     >
       <div className="space-y-12 sm:space-y-16">
         <div
-          className="magnet-card border-dotted-thick border-border p-6 opacity-0 translate-y-3 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0"
+          className="magnet-card rounded-3xl border-dotted-thick border-border p-6 opacity-0 translate-y-3 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0"
           data-inview={activeSection === 'work' ? 'true' : undefined}
           style={{
             transitionDelay: activeSection === 'work' ? '80ms' : '0ms',
@@ -36,11 +36,11 @@ export function WorkSection({ activeSection, sectionRef }: WorkSectionProps) {
 
         <div className="space-y-8 sm:space-y-12">
           {EXPERIENCES.map((job, index) => (
-            <ExperienceCard 
-              key={index} 
-              job={job} 
-              index={index} 
-              activeSection={activeSection} 
+            <ExperienceCard
+              key={index}
+              job={job}
+              index={index}
+              activeSection={activeSection}
             />
           ))}
         </div>

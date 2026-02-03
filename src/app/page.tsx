@@ -41,7 +41,7 @@ export default function Home() {
     return (
       <div className="min-h-screen text-foreground relative ">
         <div className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-          <div className="flex flex-col gap-4 p-4 border-dotted-thick border-border bg-background">
+          <div className="flex flex-col gap-4 p-4 rounded-3xl border-dotted-thick border-border bg-background">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="w-3 h-8 bg-transparent border-border" />
             ))}
@@ -52,7 +52,7 @@ export default function Home() {
           <div className="min-h-screen flex items-center opacity-0">
             <div className="grid lg:grid-cols-3 gap-8 w-full">
               <div className="lg:col-span-1 space-y-8">
-                <div className="border-solid-animated border-border p-6">
+                <div className="border-solid-animated rounded-3xl border-border p-6">
                   <div className="space-y-4">
                     <div className="h-8 bg-muted rounded w-3/4"></div>
                     <div className="h-4 bg-muted rounded w-1/2"></div>
@@ -77,7 +77,7 @@ export default function Home() {
 
         <FeaturedWork sectionRef={registerSection('featured')} />
 
-        <Philosophy sectionRef={registerSection('philosophy')} />
+        {/* <Philosophy sectionRef={registerSection('philosophy')} /> */}
 
         {/* <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} />
 
@@ -102,7 +102,7 @@ export default function Home() {
                   toggleTheme();
                   trackThemeChanged(isDark ? 'light' : 'dark');
                 }}
-                className="group p-3 border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift"
+                className="group p-3 rounded-full border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift"
                 aria-label="Toggle theme"
               >
                 {isDark ? (
@@ -130,7 +130,7 @@ export default function Home() {
 
               <a
                 href="mailto:contact@trahoangdev.com"
-                className="group p-3 border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift text-foreground"
+                className="group p-3 rounded-full border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift text-foreground"
                 aria-label="Send email"
               >
                 <svg

@@ -96,10 +96,10 @@ export function HeaderNavigation() {
   );
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center">
       <div
         className={cn(
-          'relative z-50 mx-auto flex w-full max-w-6xl items-center justify-between gap-6 border-b border-border/60 bg-background/80 px-6 py-4 backdrop-blur sm:px-8 lg:px-16 transition-all duration-500',
+          'relative z-50 mt-4 flex w-[95%] max-w-5xl items-center justify-between gap-6 rounded-full border border-border/60 bg-background/80 px-6 py-3 backdrop-blur shadow-lg transition-all duration-500',
           visibilityClasses
         )}
       >
@@ -126,7 +126,7 @@ export function HeaderNavigation() {
                 rel={isExternal ? 'noopener noreferrer' : undefined}
                 className={cn(
                   'text-xs font-semibold uppercase tracking-[0.2em] lg:tracking-[0.4em] transition-all duration-300',
-                  'hover:text-foreground hover:-translate-y-0.5',
+                  'hover:text-foreground hover:scale-110',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                   active ? 'text-foreground' : 'text-muted-foreground'
                 )}

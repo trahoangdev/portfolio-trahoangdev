@@ -227,6 +227,7 @@
     border-top: 2px solid var(--foreground);
     border-right: 2px solid var(--foreground);
     transition: all 0.5s ease;
+    border-radius: 1.5rem;
   }
 
   .border-solid-animated:hover::before {
@@ -248,6 +249,8 @@
     border: 2px dashed var(--foreground);
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 1.5rem;
+    pointer-events: none;
   }
 
   .border-dashed-animated:hover::after {
@@ -280,6 +283,8 @@
     border: 2px solid var(--foreground);
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 1.5rem;
+    pointer-events: none;
   }
 
   .border-wave-animated:hover::before {
@@ -418,6 +423,8 @@
     background-size: 10px 10px;
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 1.5rem;
+    pointer-events: none;
   }
 
   .border-zigzag-animated:hover::after {

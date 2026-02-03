@@ -5,7 +5,7 @@ import { FaDiscord } from 'react-icons/fa';
 export function CommunityInfo() {
   return (
     <div
-      className="relative overflow-hidden p-6
+      className="relative overflow-hidden p-6 rounded-3xl
                     group/community
                     border borrder-dashed-animated border-border
                     hover-lift hover:scale-110 hover:shadow-2xl transition-all duration-500 
@@ -42,7 +42,7 @@ export function CommunityInfo() {
         <div className="flex items-center gap-4">
           {/* Discord icon container */}
           <div
-            className="flex items-center justify-center w-12 h-12 rounded-xl 
+            className="flex items-center justify-center w-12 h-12 rounded-2xl 
                        transition-all duration-500
                        
                        /* Light mode default */

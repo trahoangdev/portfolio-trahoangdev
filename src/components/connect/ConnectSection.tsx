@@ -17,7 +17,7 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
       className="py-20 sm:py-32 opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0"
     >
       <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
-        <div className="magnet-card border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+        <div className="magnet-card rounded-3xl border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
           <div className="space-y-6 sm:space-y-8">
             <h2 id="connect-heading" className="text-3xl sm:text-4xl font-bold uppercase">
               Let's Connect
@@ -55,7 +55,7 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
         </div>
 
         <div className="space-y-6 sm:space-y-8">
-          <div className="border-dotted-thick border-border p-4">
+          <div className="border-dotted-thick rounded-3xl border-border p-4">
             <div className="text-sm text-muted-foreground font-mono uppercase">
               Elsewhere
             </div>
@@ -66,7 +66,7 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
               <Link
                 key={social.name}
                 href={generateConnectUrl(social.urlTemplate, social.handle)}
-                className={`group magnet-card ${index % 2 === 0
+                className={`group magnet-card rounded-3xl ${index % 2 === 0
                   ? 'border-pulse-animated'
                   : 'border-wave-animated'
                   } border-border p-4 hover-lift hover:bg-muted transition-all duration-300`}

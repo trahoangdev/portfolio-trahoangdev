@@ -143,7 +143,7 @@ export function ProjectSection({
           </div>
           <Link
             href="/project"
-            className="inline-flex items-center gap-3 border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
+            className="inline-flex items-center gap-3 rounded-full border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
           >
             View All
             <svg
@@ -206,7 +206,7 @@ interface FeatureCardProps {
 
 function FeatureCard({ project }: FeatureCardProps) {
   return (
-    <article className="magnet-card flex h-full flex-col gap-4 border-pulse-animated border-border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-card/50 backdrop-blur-sm">
+    <article className="magnet-card rounded-3xl flex h-full flex-col gap-4 border-pulse-animated border-border p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl bg-card/50 backdrop-blur-sm">
       <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
         <span>{project.date}</span>
         <span>{project.categories[0]?.label ?? 'Project'}</span>

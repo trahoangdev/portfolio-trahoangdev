@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { SocialLinks } from '@/components/intro/SocialLinks';
 import { CommunityInfo } from '@/components/intro/CommunityInfo';
 import { WebsiteInfoCard } from '@/components/intro/WebsiteInfoCard';
+import { User } from 'lucide-react';
 
 export function IntroSection({
   sectionRef,
@@ -56,8 +57,8 @@ export function IntroSection({
         {/* Left column - Main info */}
         <div className="lg:col-span-1 space-y-8">
           <div
-            className="magnet-card border-solid-animated border-border
-           p-6 hover-lift hover:scale-105 hover:shadow-2xl
+            className="magnet-card rounded-3xl border-solid-animated border-border
+           p-6  hover:shadow-2xl
            transition-all duration-500
            group/info
            dark:hover:bg-background dark:hover:text-foreground"
@@ -85,8 +86,8 @@ export function IntroSection({
           </div>
 
           {/* Portrait */}
-          <div className="group magnet-card border-dashed-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
-            <div className="group hover-lift hover:scale-125 out aspect-square bg-muted rounded-lg overflow-hidden relative">
+          <div className="group magnet-card rounded-3xl border-dashed-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
+            <div className="group hover-lift hover:scale-100 out aspect-square bg-muted rounded-2xl overflow-hidden relative">
               {!imageError ? (
                 <Image
                   src="/portrait.jpg"
@@ -99,8 +100,9 @@ export function IntroSection({
                   quality={90}
                 />
               ) : (
-                <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
-                  Portrait not found
+                <div className="flex flex-col items-center justify-center h-full text-muted-foreground space-y-2 bg-muted/50">
+                  <User className="w-20 h-20 opacity-50" />
+                  <span className="text-sm font-medium tracking-wider">OFFLINE</span>
                 </div>
               )}
             </div>
@@ -110,13 +112,13 @@ export function IntroSection({
           <div className="flex gap-4">
             <Link
               href="/#service"
-              className="px-6 py-2 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               Connect
             </Link>
             <Link
               href="/project"
-              className="px-6 py-2 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               My Matrix
             </Link>
@@ -126,12 +128,12 @@ export function IntroSection({
         {/* Center column - Message and contact */}
         <div className="lg:col-span-1 space-y-8">
           {/* Social icons */}
-          <div className="magnet-card border-wave-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+          <div className="magnet-card rounded-3xl border-wave-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
             <SocialLinks />
           </div>
 
           {/* Personal message */}
-          <div className="magnet-card group border-pulse-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+          <div className="magnet-card rounded-3xl group border-pulse-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
             <div className="space-y-4">
               <div className="font-medium">Yo, Fellow Traveler! 🖖</div>
               <p className="text-sm leading-relaxed">
@@ -151,14 +153,14 @@ export function IntroSection({
                 . You've just warped into my digital headquarters. It's awesome to have you here! Whether you're looking to crack the code on a new project, explore the frontiers of AI, or just hang out and talk tech — you've found your crew. Relax, explore, and let's build the future together. Stay distinctive. Stay true.
               </p>
 
-              <div className="flex gap-2 mt-4">
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+              <div className="flex flex-wrap gap-2 mt-4">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   AI Engineer
                 </div>
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   Web Developer
                 </div>
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   Software Engineer
                 </div>
               </div>
@@ -173,7 +175,7 @@ export function IntroSection({
             rel="noopener noreferrer"
             className="block mb-8"
           >
-            <div className="magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group">
+            <div className="magnet-card rounded-3xl border-dotted-thick border-border p-6  hover:shadow-2xl transition-all duration-500 group">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-lg group-hover:text-yellow-500 transition-colors">
@@ -186,10 +188,10 @@ export function IntroSection({
                   algo running!
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 bg-yellow-400 text-black font-bold text-xs rounded-sm transition-transform group-hover:scale-105">
+                  <div className="px-3 py-1 bg-yellow-400 text-black font-bold text-xs rounded-full transition-transform group-hover:scale-105">
                     Buy me a coffee
                   </div>
-                  <div className="w-8 h-8 border border-border flex items-center justify-center bg-background group-hover:bg-yellow-100 transition-colors">
+                  <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center bg-background group-hover:bg-yellow-100 transition-colors">
                     <svg
                       viewBox="0 0 24 24"
                       fill="currentColor"
@@ -216,12 +218,18 @@ export function IntroSection({
         {/* Right column - Business cards */}
         <div className="lg:col-span-1 space-y-8">
           {/* Studio card */}
-          <div className="magnet-card border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden">
-            <div className="absolute inset-0 bg-white transform scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 ease-out"></div>
-            <div className="space-y-4 relative z-10">
-              <div className="bg-foreground text-background p-4 text-center transition-all duration-500 group-hover:bg-white group-hover:text-black">
-                <div className="text-sm font-bold">ARCHITECT OF FLOW</div>
-                <div className="text-xs">TRAHOANGDEV</div>
+          <div className="magnet-card rounded-3xl border-double-animated border-border p-6  hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-5 transform group-hover:scale-150 transition-transform duration-700 pointer-events-none">
+              <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
+                <path d="M50 0 C22.4 0 0 22.4 0 50 C0 77.6 22.4 100 50 100 C77.6 100 100 77.6 100 50 C100 22.4 77.6 0 50 0 Z M50 80 C33.4 80 20 66.6 20 50 C20 33.4 33.4 20 50 20 C66.6 20 80 33.4 80 50 C80 66.6 66.6 80 50 80 Z" fill="currentColor" />
+              </svg>
+            </div>
+            <div className="space-y-2 relative z-10 text-center">
+              <div className="text-xs font-bold tracking-[0.2em] text-muted-foreground group-hover:text-foreground transition-colors">ARCHITECT OF FLOW</div>
+              <div className="text-2xl font-black tracking-tighter uppercase relative">
+                <span className="relative z-10">TRAHOANGDEV</span>
+                <span className="absolute inset-0 text-foreground/20 blur-[2px] translate-x-[2px] translate-y-[2px] z-0">TRAHOANGDEV</span>
               </div>
             </div>
           </div>
@@ -229,25 +237,35 @@ export function IntroSection({
           {/* Mind Channel card */}
           <div
             className="relative overflow-hidden group border border-border 
-        rounded-1xl p-6 cursor-pointer
-        transition-[transform,box-shadow] duration-300 ease-out
-        hover:shadow-[0_0_0_2px_rgba(255,255,255,0.85),0_0_36px_14px_rgba(255,255,255,0.25)]
-        hover:scale-105 hover:bg-muted
-        will-change-transform transform-gpu"
+        rounded-3xl p-6 cursor-pointer
+        transition-all duration-300 ease-out
+        hover:shadow-[0_0_20px_-5px_var(--foreground)]
+        hover:border-foreground
+        hover:scale-[1.02]
+        bg-background"
           >
-            <div className="space-y-4 text-center">
-              <div className="text-xs tracking-wider">= = = = =</div>
-              <div className="text-2xl font-bold">MIND</div>
-              <div className="text-sm">CHANNEL</div>
-              <div className="text-2xl font-bold font-mono bg-foreground text-background px-2 py-1 inline-block">
+            <div className="flex flex-col items-center justify-center space-y-2 text-center">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span className="text-xs font-bold tracking-widest text-red-500">LIVE</span>
+              </div>
+              <div className="text-4xl font-black font-mono tracking-tighter tabular-nums bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
                 {mounted ? currentTime : '00:00:00'}
               </div>
-              <div className="text-xs">UTC+7 LIVE</div>
+              <div className="text-[10px] font-medium tracking-[0.2em] text-muted-foreground uppercase">
+                UTC+7 • HO CHI MINH
+              </div>
             </div>
+
+            {/* Scanline effect */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/5 to-transparent opacity-0 group-hover:opacity-100 pointer-events-none animate-scan"></div>
           </div>
 
           {/* Description */}
-          <div className="magnet-card border-zigzag-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 ease-out">
+          <div className="magnet-card rounded-3xl border-zigzag-animated border-border p-6  hover:shadow-2xl transition-all duration-500 ease-out">
             <p className="text-xs leading-relaxed">
               <span className="text-foreground font-medium relative inline-block group">
                 <span className="relative z-10 transition-all duration-700 ease-out group-hover:text-purple-400 group-hover:-translate-y-0.5">
