@@ -57,8 +57,8 @@ export function IntroSection({
         {/* Left column - Main info */}
         <div className="lg:col-span-1 space-y-8">
           <div
-            className="magnet-card border-solid-animated border-border
-           p-6 hover-lift hover:scale-105 hover:shadow-2xl
+            className="magnet-card rounded-3xl border-solid-animated border-border
+           p-6  hover:shadow-2xl
            transition-all duration-500
            group/info
            dark:hover:bg-background dark:hover:text-foreground"
@@ -86,8 +86,8 @@ export function IntroSection({
           </div>
 
           {/* Portrait */}
-          <div className="group magnet-card border-dashed-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
-            <div className="group hover-lift hover:scale-125 out aspect-square bg-muted rounded-lg overflow-hidden relative">
+          <div className="group magnet-card rounded-3xl border-dashed-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
+            <div className="group hover-lift hover:scale-100 out aspect-square bg-muted rounded-2xl overflow-hidden relative">
               {!imageError ? (
                 <Image
                   src="/portrait.jpg"
@@ -112,13 +112,13 @@ export function IntroSection({
           <div className="flex gap-4">
             <Link
               href="/#service"
-              className="px-6 py-2 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               Connect
             </Link>
             <Link
               href="/project"
-              className="px-6 py-2 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-6 py-2 rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
             >
               My Matrix
             </Link>
@@ -128,12 +128,12 @@ export function IntroSection({
         {/* Center column - Message and contact */}
         <div className="lg:col-span-1 space-y-8">
           {/* Social icons */}
-          <div className="magnet-card border-wave-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+          <div className="magnet-card rounded-3xl border-wave-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
             <SocialLinks />
           </div>
 
           {/* Personal message */}
-          <div className="magnet-card group border-pulse-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+          <div className="magnet-card rounded-3xl group border-pulse-animated border-border p-6  hover:shadow-2xl transition-all duration-500">
             <div className="space-y-4">
               <div className="font-medium">Yo, Fellow Traveler! 🖖</div>
               <p className="text-sm leading-relaxed">
@@ -153,14 +153,14 @@ export function IntroSection({
                 . You've just warped into my digital headquarters. It's awesome to have you here! Whether you're looking to crack the code on a new project, explore the frontiers of AI, or just hang out and talk tech — you've found your crew. Relax, explore, and let's build the future together. Stay distinctive. Stay true.
               </p>
 
-              <div className="flex gap-2 mt-4">
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+              <div className="flex flex-wrap gap-2 mt-4">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   AI Engineer
                 </div>
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   Web Developer
                 </div>
-                <div className="px-3 py-1 text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
+                <div className="px-3 py-1 rounded-full text-xs border border-border hover:bg-foreground hover:text-background transition-all duration-300">
                   Software Engineer
                 </div>
               </div>
@@ -175,7 +175,7 @@ export function IntroSection({
             rel="noopener noreferrer"
             className="block mb-8"
           >
-            <div className="magnet-card border-dotted-thick border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group">
+            <div className="magnet-card rounded-3xl border-dotted-thick border-border p-6  hover:shadow-2xl transition-all duration-500 group">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-bold text-lg group-hover:text-yellow-500 transition-colors">
@@ -188,10 +188,10 @@ export function IntroSection({
                   algo running!
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 bg-yellow-400 text-black font-bold text-xs rounded-sm transition-transform group-hover:scale-105">
+                  <div className="px-3 py-1 bg-yellow-400 text-black font-bold text-xs rounded-full transition-transform group-hover:scale-105">
                     Buy me a coffee
                   </div>
-                  <div className="w-8 h-8 border border-border flex items-center justify-center bg-background group-hover:bg-yellow-100 transition-colors">
+                  <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center bg-background group-hover:bg-yellow-100 transition-colors">
                     <svg
                       viewBox="0 0 24 24"
                       fill="currentColor"
@@ -218,7 +218,7 @@ export function IntroSection({
         {/* Right column - Business cards */}
         <div className="lg:col-span-1 space-y-8">
           {/* Studio card */}
-          <div className="magnet-card border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center">
+          <div className="magnet-card rounded-3xl border-double-animated border-border p-6  hover:shadow-2xl transition-all duration-500 group relative overflow-hidden h-[140px] flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-tr from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-5 transform group-hover:scale-150 transition-transform duration-700 pointer-events-none">
               <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow">
@@ -237,7 +237,7 @@ export function IntroSection({
           {/* Mind Channel card */}
           <div
             className="relative overflow-hidden group border border-border 
-        rounded-xl p-6 cursor-pointer
+        rounded-3xl p-6 cursor-pointer
         transition-all duration-300 ease-out
         hover:shadow-[0_0_20px_-5px_var(--foreground)]
         hover:border-foreground
@@ -265,7 +265,7 @@ export function IntroSection({
           </div>
 
           {/* Description */}
-          <div className="magnet-card border-zigzag-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500 ease-out">
+          <div className="magnet-card rounded-3xl border-zigzag-animated border-border p-6  hover:shadow-2xl transition-all duration-500 ease-out">
             <p className="text-xs leading-relaxed">
               <span className="text-foreground font-medium relative inline-block group">
                 <span className="relative z-10 transition-all duration-700 ease-out group-hover:text-purple-400 group-hover:-translate-y-0.5">

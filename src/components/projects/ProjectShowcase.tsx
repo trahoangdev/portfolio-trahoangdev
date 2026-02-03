@@ -74,7 +74,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
   if (projects.length === 0) return null;
 
   return (
-    <div 
+    <div
       className="relative group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -130,7 +130,7 @@ function ShowcaseCard({
     <Link href={project.link || '#'} target="_blank" className="block h-full">
       <article
         className={cn(
-          'magnet-card relative h-full overflow-hidden rounded-xl border border-border bg-card transition-all duration-500',
+          'magnet-card relative h-full overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500',
           isActive
             ? 'scale-100 opacity-100 ring-2 ring-primary/20'
             : 'scale-95 opacity-70 hover:opacity-100'
@@ -181,7 +181,7 @@ function ShowcaseCard({
             {project.languages.slice(0, 3).map((lang) => (
               <span
                 key={lang.slug}
-                className="text-[10px] uppercase tracking-wider border border-border rounded px-2 py-1 text-muted-foreground"
+                className="text-[10px] uppercase tracking-wider border border-border rounded-full px-2 py-1 text-muted-foreground"
               >
                 {lang.label}
               </span>

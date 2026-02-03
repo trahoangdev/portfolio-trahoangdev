@@ -29,7 +29,7 @@ export function ExperienceCard({
   const border =
     index % 2 === 0 ? 'border-wave-animated' : 'border-pulse-animated';
   const CARD_BASE = [
-    'group magnet-card border-border p-6 cursor-pointer',
+    'group magnet-card rounded-3xl border-border p-6 cursor-pointer',
     'transition-[transform,opacity,shadow,background-color,color] duration-500',
     'ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu will-change-transform will-change-opacity',
     'hover:-translate-y-1 hover:shadow-2xl hover:bg-muted/60',
@@ -87,7 +87,7 @@ export function ExperienceCard({
             return (
               <span
                 key={tech}
-                className="px-2 py-1 text-xs border border-border rounded-sm inline-flex items-center gap-1 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
+                className="px-2 py-1 text-xs border border-border rounded-full inline-flex items-center gap-1 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
                 title={tech}
               >
                 {icon}

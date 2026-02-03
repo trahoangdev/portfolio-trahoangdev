@@ -30,7 +30,7 @@ export function ProjectShowcaseCard({
   const cardContent = (
     <article
       className={cn(
-        'group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/60 bg-background/40',
+        'group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-background/40',
         'transition-[transform,box-shadow,border-color,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
         'hover:-translate-y-1 hover:border-border hover:bg-muted/40 hover:shadow-2xl'
       )}
