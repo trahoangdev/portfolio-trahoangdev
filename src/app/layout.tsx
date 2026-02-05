@@ -20,19 +20,21 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-trahoangdev.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me/'),
   title: {
     default: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
     template: '%s | trahoangdev',
   },
   description: 'Software Engineer specializing in building exceptional digital experiences. Focused on accessible, human-centered products.',
   keywords: ['Software Engineer', 'Frontend Developer', 'React', 'Next.js', 'TypeScript', 'Portfolio'],
-  authors: [{ name: 'Hoàng Trọng Trà', url: 'https://trahoangdev.vercel.app' }],
+  // authors: [{ name: 'Hoàng Trọng Trà', url: 'https://trahoangdev.vercel.app' }],
+  authors: [{ name: 'Hoàng Trọng Trà', url: 'https://www.trahoangdev.me/' }],
   creator: 'Hoàng Trọng Trà',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://trahoangdev.vercel.app',
+    // url: 'https://trahoangdev.vercel.app',
+    url: 'https://www.trahoangdev.me/',
     title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
     description: 'Software Engineer specializing in building exceptional digital experiences.',
     siteName: 'trahoangdev',

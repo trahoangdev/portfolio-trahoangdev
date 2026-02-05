@@ -94,7 +94,7 @@ export default async function Image() {
             color: '#4b5563',
           }}
         >
-          trahoangdev.vercel.app
+          trahoangdev.me
         </div>
       </div>
     ),

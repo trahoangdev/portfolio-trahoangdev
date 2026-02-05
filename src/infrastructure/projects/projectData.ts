@@ -46,7 +46,7 @@ export const PROJECT_DATA: ProjectRecord[] = [
     date: 'Dec 2025',
     categories: ['Web Development', 'Minimal App'],
     languages: ['Next.js', 'TailwindCSS', 'TypeScript', 'Redis'],
-    link: 'https://trahoangdev.vercel.app',
+    link: 'https://www.trahoangdev.me/',
     image: '/projects/portfolio.png',
     featured: true,
     demoImages: ['/projects/portfolio.png'],

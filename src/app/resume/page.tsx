@@ -58,8 +58,11 @@ export default function ResumePage() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Globe className="w-4 h-4" />
-                            <Link href="https://trahoangdev.vercel.app" className="hover:text-foreground hover:underline">
+                            {/* <Link href="https://trahoangdev.vercel.app" className="hover:text-foreground hover:underline">
                                 trahoangdev.vercel.app
+                            </Link> */}
+                            <Link href="https://www.trahoangdev.me/" className="hover:text-foreground hover:underline">
+                                www.trahoangdev.me
                             </Link>
                         </div>
                         <div className="flex items-center gap-2">
@@ -169,7 +172,8 @@ export default function ResumePage() {
                 {/* Footer for Print */}
                 <div className="hidden print:flex justify-between items-center border-t border-black/20 pt-4 mt-8 text-xs text-black/50">
                     <span>Resume - Tra Hoang Trong</span>
-                    <span>Generated from trahoangdev.vercel.app</span>
+                    {/* <span>Generated from trahoangdev.vercel.app</span> */}
+                    <span>Generated from www.trahoangdev.me</span>
                 </div>
             </main>
         </div>

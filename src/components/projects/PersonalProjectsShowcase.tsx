@@ -79,7 +79,7 @@ const PERSONAL_PROJECTS = [
         description:
             'A modern, high-performance portfolio built with Next.js 16 and Tailwind CSS 4. Features a matrix-themed design, interactive particles background, and seamless animations.',
         repo: 'https://github.com/trahoangdev/portfolio-trahoangdev',
-        demo: 'https://trahoangdev.vercel.app',
+        demo: 'https://www.trahoangdev.me/',
         tags: [
             'Next.js 16',
             'Tailwind CSS 4',
