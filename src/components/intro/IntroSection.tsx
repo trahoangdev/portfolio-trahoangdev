@@ -98,6 +98,8 @@ export function IntroSection({
                   onError={() => setImageError(true)}
                   priority
                   quality={90}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PC9zdmc+"
                 />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-muted-foreground space-y-2 bg-muted/50">
@@ -112,19 +114,22 @@ export function IntroSection({
           <div className="flex flex-wrap gap-4">
             <Link
               href="/#service"
-              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="Navigate to contact section"
             >
               Connect
             </Link>
             <Link
               href="/project"
-              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="View all projects"
             >
               My Matrix
             </Link>
             <Link
               href="/resume"
-              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              aria-label="View resume"
             >
               CV
             </Link>

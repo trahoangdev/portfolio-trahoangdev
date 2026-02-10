@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BlogPostMetadata } from '@/modules/blog/types';
 import { cn } from '@/lib/utils';
 import { CalendarDays, Clock } from 'lucide-react';
@@ -13,11 +14,14 @@ export function BlogCard({ post, className }: BlogCardProps) {
         <Link href={`/blog/${post.slug}`} className={cn("group block h-full", className)}>
             <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md hover:border-primary/50">
                 {post.coverImage && (
-                    <div className="aspect-video w-full overflow-hidden">
-                        <img
+                    <div className="aspect-video w-full overflow-hidden relative">
+                        <Image
                             src={post.coverImage}
                             alt={post.title}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            loading="lazy"
                         />
                     </div>
                 )}

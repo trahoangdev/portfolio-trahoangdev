@@ -9,6 +9,8 @@ import { CodeBlock } from '@/components/blog/CodeBlock';
 
 import { getRelatedPosts } from '@/modules/blog/service';
 import { BlogCard } from '@/components/blog/BlogCard';
+import { getArticleSchema } from '@/lib/schema/article';
+import { getBreadcrumbSchema } from '@/lib/schema/breadcrumb';
 
 // Custom components map for markdown
 const components: any = {
@@ -84,8 +86,32 @@ export default async function BlogPostPage({ params }: PageProps) {
 
     const relatedPosts = getRelatedPosts(resolvedParams.slug, 3);
 
+    // Generate structured data
+    const articleSchema = getArticleSchema({
+      title: post.title,
+      description: post.excerpt,
+      image: post.coverImage,
+      datePublished: post.date,
+      slug: resolvedParams.slug,
+      author: post.author,
+    });
+
+    const breadcrumbSchema = getBreadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+      { name: post.title, url: `/blog/${resolvedParams.slug}` },
+    ]);
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <article className="container max-w-4xl py-12 md:py-24 mx-auto px-4">
                 <Link
                     href="/blog"

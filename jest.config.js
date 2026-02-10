@@ -13,7 +13,6 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/.next/',
-    '/tests/e2e/',
   ],
 };
 

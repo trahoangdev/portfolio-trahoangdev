@@ -144,28 +144,32 @@ export function HeaderNavigation() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors"
+          className="md:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           )}
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
         className={cn(
           'fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md transition-all duration-500 md:hidden',
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
         )}
+        aria-hidden={!isMobileMenuOpen}
       >
-        <nav className="flex flex-col items-center gap-8 p-4">
+        <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-8 p-4">
           {NAV_ITEMS.map((item, index) => {
             const active = item.isActive(pathname);
             const isExternal = item.href.startsWith('http');

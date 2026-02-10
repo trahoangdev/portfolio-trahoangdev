@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { getUserFriendlyErrorMessage, logError } from '@/lib/utils/error-boundary';
 
 export default function Error({
   error,
@@ -11,11 +12,14 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log error to console in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error boundary caught:', error);
-    }
+    // Log error with context
+    logError(error, {
+      digest: error.digest,
+      page: typeof window !== 'undefined' ? window.location.pathname : 'unknown',
+    });
   }, [error]);
+
+  const friendlyMessage = getUserFriendlyErrorMessage(error);
 
   return (
     <div className="min-h-screen text-foreground flex items-center justify-center px-6">
@@ -26,7 +30,7 @@ export default function Error({
               Something went wrong
             </h1>
             <p className="text-muted-foreground">
-              An unexpected error occurred. Don&apos;t worry, we&apos;re on it.
+              {friendlyMessage}
             </p>
           </div>
 
@@ -38,16 +42,18 @@ export default function Error({
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={reset}
-              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift"
+              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+              aria-label="Try loading the page again"
             >
               Try again
             </button>
             <Link
               href="/"
-              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift"
+              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded text-center"
+              aria-label="Navigate to home page"
             >
               Go home
             </Link>
