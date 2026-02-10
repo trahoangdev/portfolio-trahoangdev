@@ -53,7 +53,7 @@ export function IntroSection({
       ref={sectionRef}
       className="min-h-screen flex items-center opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0"
     >
-      <div className="grid lg:grid-cols-3 gap-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full">
         {/* Left column - Main info */}
         <div className="lg:col-span-1 space-y-8">
           <div
@@ -112,19 +112,19 @@ export function IntroSection({
           <div className="flex flex-wrap gap-4">
             <Link
               href="/#service"
-              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
             >
               Connect
             </Link>
             <Link
               href="/project"
-              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
             >
               My Matrix
             </Link>
             <Link
               href="/resume"
-              className="px-4 sm:px-6 py-2 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift"
+              className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center"
             >
               CV
             </Link>

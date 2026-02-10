@@ -80,7 +80,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       onMouseLeave={handleMouseLeave}
     >
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 py-4">
+        <div className="flex gap-4 md:gap-6 py-4">
           {projects.map((project, index) => (
             <div
               key={project.id}

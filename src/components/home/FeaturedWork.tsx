@@ -36,7 +36,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                 <div className="group relative grid lg:grid-cols-12 items-center border border-border/50 bg-background/50 backdrop-blur-sm rounded-3xl overflow-hidden p-0 sm:p-6 lg:p-0 transition-all duration-500 hover:shadow-2xl hover:border-border/80">
 
                     {/* Content */}
-                    <div className="lg:col-span-5 p-6 sm:p-0 lg:p-12 lg:pr-6 flex flex-col justify-center space-y-6 sm:space-y-8 order-2 lg:order-1 relative z-10">
+                    <div className="lg:col-span-5 p-6 sm:p-8 md:p-10 lg:p-12 lg:pr-6 flex flex-col justify-center space-y-6 sm:space-y-8 order-2 lg:order-1 relative z-10">
                         <div className="space-y-4">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wide">
                                 <span className="relative flex h-2 w-2">
@@ -66,7 +66,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                             <Link
                                 href="https://taikhoanxin.com"
                                 target="_blank"
-                                className="w-full sm:w-auto px-8 py-3 bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
+                                className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[44px] bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm"
                             >
                                 Live Demo
                                 <FaExternalLinkAlt className="h-3 w-3" />
@@ -76,7 +76,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                     </div>
 
                     {/* Image/Preview */}
-                    <div className="lg:col-span-7 h-56 sm:h-auto min-h-[200px] lg:min-h-[500px] bg-muted/20 relative order-1 lg:order-2 overflow-hidden rounded-none sm:rounded-xl lg:rounded-none lg:rounded-l-3xl">
+                    <div className="lg:col-span-7 h-64 sm:h-80 md:h-96 lg:min-h-[500px] bg-muted/20 relative order-1 lg:order-2 overflow-hidden rounded-none sm:rounded-xl lg:rounded-none lg:rounded-l-3xl">
                         <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-teal-500/10 to-green-500/10 z-0" />
 
                         {/* Mockup / Image Container */}
