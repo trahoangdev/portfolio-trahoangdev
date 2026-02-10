@@ -131,7 +131,7 @@ export function ProjectSection({
     >
       <div className="space-y-12 sm:space-y-16">
         {/* Header */}
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
             <h2 className="text-3xl sm:text-4xl font-bold uppercase tracking-tight">
               Project Hypergrid
@@ -183,7 +183,7 @@ export function ProjectSection({
             />
           </div>
 
-          <div className="grid gap-6 sm:gap-8 lg:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredProjects.map((project) => (
               <FeatureCard key={project.id} project={project} />
             ))}
@@ -214,7 +214,7 @@ function FeatureCard({ project }: FeatureCardProps) {
       <h3 className="text-lg font-semibold uppercase tracking-[0.3em]">
         {project.title}
       </h3>
-      <p className="text-sm text-muted-foreground line-clamp-3">
+      <p className="text-sm text-muted-foreground line-clamp-2 md:line-clamp-3">
         {project.summary}
       </p>
       <div className="mt-auto flex flex-wrap gap-2 text-xs uppercase tracking-wide text-muted-foreground pt-4">

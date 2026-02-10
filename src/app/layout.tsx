@@ -9,6 +9,7 @@ import { Background } from '@/components/ui/background';
 import { SkipLink } from '@/components/ui/SkipLink';
 import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from 'sonner';
+import { getPersonSchema } from '@/lib/schema/person';
 
 
 
@@ -70,6 +71,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
+  },
 };
 
 export default function RootLayout({
@@ -77,13 +83,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personSchema = getPersonSchema();
+
   return (
     <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        {/* Preload critical resources */}
+        <link rel="preload" href="/portrait.jpg" as="image" />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://avatars.githubusercontent.com" />
+        <link rel="dns-prefetch" href="https://huggingface.co" />
+      </head>
       <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           disableTransitionOnChange
+          enableSystem={false}
+          storageKey="portfolio-theme"
         >
           <SkipLink />
           <Background />
@@ -130,6 +151,30 @@ export default function RootLayout({
           {children}
           <Analytics />
           <Toaster position="bottom-right" richColors />
+          <Script
+            id="init-preloading"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  if (typeof window === 'undefined') return;
+                  const criticalRoutes = ['/project', '/blog', '/experience'];
+                  const links = document.querySelectorAll('a[href^="/"]');
+                  links.forEach((link) => {
+                    const href = link.getAttribute('href');
+                    if (criticalRoutes.includes(href)) {
+                      link.addEventListener('mouseenter', function() {
+                        const prefetchLink = document.createElement('link');
+                        prefetchLink.rel = 'prefetch';
+                        prefetchLink.href = href;
+                        document.head.appendChild(prefetchLink);
+                      }, { once: true });
+                    }
+                  });
+                })();
+              `,
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

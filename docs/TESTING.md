@@ -45,11 +45,6 @@ This project uses **Jest** and **React Testing Library** for testing. We follow 
 ### 1. Test Pyramid
 
 ```
-        /\
-       /  \      E2E Tests (Future)
-      /____\     - Playwright
-     /      \    - Critical user flows
-    /________\   
    /          \  Integration Tests (Minimal)
   /____________\ - API integration
  /              \

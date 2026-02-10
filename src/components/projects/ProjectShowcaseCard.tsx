@@ -44,6 +44,7 @@ export function ProjectShowcaseCard({
           sizes="(min-width: 1024px) 360px, 100vw"
           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
           priority={index < 4}
+          loading={index < 4 ? undefined : 'lazy'}
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-gradient-to-t from-background via-background/90 to-transparent p-4">
           {project.categories.map((category) => (

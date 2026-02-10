@@ -80,7 +80,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
       onMouseLeave={handleMouseLeave}
     >
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 py-4">
+        <div className="flex gap-4 md:gap-6 py-4">
           {projects.map((project, index) => (
             <div
               key={project.id}
@@ -144,6 +144,9 @@ function ShowcaseCard({
               alt={project.title}
               fill
               className="object-cover transition-transform duration-700 hover:scale-105"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PC9zdmc+"
+              sizes="(min-width: 1024px) 50vw, 100vw"
             />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground">

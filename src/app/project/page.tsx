@@ -7,8 +7,8 @@ const ProjectExplorer = dynamic(
     loading: () => (
       <div className="space-y-8">
         <div className="h-14 w-3/4 rounded-2xl bg-muted/40 animate-pulse" />
-        <div className="grid gap-6 md:grid-cols-2">
-          {[...Array(4)].map((_, index) => (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, index) => (
             <div key={index} className="h-64 rounded-2xl bg-muted/30 animate-pulse" />
           ))}
         </div>

@@ -6,6 +6,7 @@ class SectionVisibilityObserver {
   private readonly observer: IntersectionObserver;
   private readonly elementBySection = new Map<SectionId, HTMLElement>();
   private readonly sectionByElement = new WeakMap<HTMLElement, SectionId>();
+  private readonly activeSections = new Set<SectionId>();
 
   constructor(
     private readonly handleEnter: (sectionId: SectionId) => void,
@@ -22,6 +23,7 @@ class SectionVisibilityObserver {
     this.observer.unobserve(element);
     this.elementBySection.delete(sectionId);
     this.sectionByElement.delete(element);
+    this.activeSections.delete(sectionId);
   }
 
   register(sectionId: SectionId, element: HTMLElement | null) {
@@ -43,27 +45,40 @@ class SectionVisibilityObserver {
     }
     this.observer.observe(element);
 
-    if (this.isElementVisible(element)) {
-      element.dataset.inview = 'true';
-      this.handleEnter(sectionId);
-    }
+    // Don't call handleEnter here to avoid infinite loops
+    // IntersectionObserver will automatically trigger handleEntries when element becomes visible
+    // This prevents state updates during render phase
   }
 
   disconnect() {
     this.observer.disconnect();
     this.elementBySection.clear();
+    this.activeSections.clear();
   }
 
   private handleEntries = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
       const element = entry.target as HTMLElement;
       const sectionId = this.sectionByElement.get(element) ?? element.id;
-      element.dataset.inview = 'true';
-      if (sectionId) {
-        this.handleEnter(sectionId);
+      
+      if (!sectionId) {
+        return;
+      }
+      
+      if (entry.isIntersecting) {
+        // Only update if not already marked as visible to prevent unnecessary updates
+        if (element.dataset.inview !== 'true') {
+          element.dataset.inview = 'true';
+          // Only call handleEnter if section is not already active to prevent infinite loops
+          if (!this.activeSections.has(sectionId)) {
+            this.activeSections.add(sectionId);
+            this.handleEnter(sectionId);
+          }
+        }
+      } else {
+        // Mark as not visible when leaving viewport
+        element.dataset.inview = 'false';
+        this.activeSections.delete(sectionId);
       }
     });
   };
@@ -99,6 +114,8 @@ export function useIntersectionObserver(options?: IntersectionObserverInit) {
   useEffect(() => {
     const observer = new SectionVisibilityObserver(setActiveSection, mergedOptions);
     observerRef.current = observer;
+    
+    // Register all existing sections
     sectionsRef.current.forEach((element, id) => observer.register(id, element));
 
     return () => observer.disconnect();
@@ -112,6 +129,12 @@ export function useIntersectionObserver(options?: IntersectionObserverInit) {
         if (!element) {
           sectionsRef.current.delete(sectionId);
           observer?.unregister(sectionId);
+          return;
+        }
+
+        // Prevent re-registering the same element to avoid infinite loops
+        const existingElement = sectionsRef.current.get(sectionId);
+        if (existingElement === element) {
           return;
         }
 

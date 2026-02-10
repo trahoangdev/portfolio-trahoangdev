@@ -28,12 +28,17 @@ This is my personal portfolio website, built with **Next.js 16**, **Tailwind CSS
 ## 🚀 Key Features
 
 *   **Modern Tech Stack**: Built with the latest Next.js 16 features (Server Components, App Router).
-*   **Performance First**: Optimized for core web vitals and fast load times.
+*   **Performance First**: Optimized for core web vitals and fast load times with image optimization, lazy loading, and resource preloading.
 *   **Elegant Design**: Minimalist aesthetic with a focus on typography and whitespace.
-*   **Dark Mode**: Fully supported dark/light mode toggle.
-*   **MDX Blog**: Integrated blog using MDX for rich content authoring.
-*   **Responsive**: Looks great on all devices, from mobile to desktop.
+*   **Dark Mode**: Fully supported dark/light mode toggle with system preference detection.
+*   **MDX Blog**: Integrated blog using MDX for rich content authoring with syntax highlighting.
+*   **RSS Feed**: Subscribe to blog updates via `/feed.xml` RSS feed.
+*   **SEO Optimized**: Comprehensive SEO with structured data (Schema.org), sitemap, and Open Graph tags.
+*   **Accessibility**: WCAG compliant with keyboard navigation, ARIA labels, and skip links.
+*   **Responsive**: Looks great on all devices, from mobile to desktop with mobile-first design.
 *   **Animations**: Subtle animations using Framer Motion to enhance user experience.
+*   **Error Handling**: User-friendly error pages with recovery options.
+*   **Analytics**: Integrated with Vercel Analytics and Sentry for monitoring.
 
 ##  Tech Stack
 
@@ -81,23 +86,39 @@ This is my personal portfolio website, built with **Next.js 16**, **Tailwind CSS
 4.  **Open your browser:**
     Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
+## 📡 RSS Feed
+
+Subscribe to blog updates via RSS feed at `/feed.xml`:
+
+- **RSS Feed URL**: `https://www.trahoangdev.me/feed.xml`
+- **Format**: RSS 2.0
+- **Updates**: Automatically includes all blog posts
+
+The RSS feed is also accessible from the blog page with a direct link in the header.
+
 ## 📂 Project Structure
 
 ```bash
 portfolio-trahoangdev/
 ├── .github/          # GitHub Actions & workflows
-├── __tests__/        # Unit and Integration tests
+├── __tests__/        # Unit and Integration tests (Jest)
 ├── content/          # MDX blog posts
 ├── public/           # Static assets (images, fonts, etc.)
 ├── src/
 │   ├── app/          # Next.js App Router pages & layouts
+│   │   ├── feed.xml/ # RSS feed endpoint
+│   │   ├── sitemap.ts # Dynamic sitemap generation
+│   │   └── robots.ts # Robots.txt configuration
 │   ├── components/   # Reusable React components
 │   ├── lib/          # Utility functions and shared logic
+│   │   ├── schema/   # Schema.org structured data
+│   │   └── utils/    # Helper utilities (performance, error handling)
 │   └── styles/       # Global styles (Tailwind, CSS variables)
 ├── .eslintrc.json    # Linter configuration
-├── next.config.mjs   # Next.js configuration
+├── next.config.ts    # Next.js configuration
 ├── package.json      # Dependencies and scripts
 ├── postcss.config.mjs # PostCSS configuration
+├── CHANGELOG.md      # Project changelog
 ├── tailwind.config.ts # Tailwind CSS configuration
 └── tsconfig.json     # TypeScript configuration
 ```
