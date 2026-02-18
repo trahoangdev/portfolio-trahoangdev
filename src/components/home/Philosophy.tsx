@@ -6,7 +6,7 @@ interface PhilosophyProps {
 
 export function Philosophy({ sectionRef }: PhilosophyProps) {
     return (
-        <section ref={sectionRef} id="philosophy" className="py-20 sm:py-32 relative overflow-hidden">
+        <section ref={sectionRef} id="philosophy" className="py-20 sm:py-32 relative overflow-hidden opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0 scroll-mt-20">
             <div className="flex flex-col items-center justify-center text-center space-y-12">
                 <div className="space-y-6 max-w-4xl mx-auto z-10">
                     <h2 className="text-sm font-mono text-muted-foreground uppercase tracking-[0.5em]">

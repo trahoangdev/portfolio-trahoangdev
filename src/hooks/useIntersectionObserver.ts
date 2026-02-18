@@ -69,15 +69,15 @@ class SectionVisibilityObserver {
         // Only update if not already marked as visible to prevent unnecessary updates
         if (element.dataset.inview !== 'true') {
           element.dataset.inview = 'true';
-          // Only call handleEnter if section is not already active to prevent infinite loops
-          if (!this.activeSections.has(sectionId)) {
-            this.activeSections.add(sectionId);
-            this.handleEnter(sectionId);
-          }
+        }
+        // Only call handleEnter if section is not already active to prevent infinite loops
+        if (!this.activeSections.has(sectionId)) {
+          this.activeSections.add(sectionId);
+          this.handleEnter(sectionId);
         }
       } else {
-        // Mark as not visible when leaving viewport
-        element.dataset.inview = 'false';
+        // Do NOT reset data-inview to 'false' — keep sections visible once animated in
+        // to prevent flash/re-animation when scrolling back
         this.activeSections.delete(sectionId);
       }
     });

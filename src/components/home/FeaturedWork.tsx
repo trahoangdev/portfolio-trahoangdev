@@ -10,7 +10,7 @@ interface FeaturedWorkProps {
 
 export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
     return (
-        <section ref={sectionRef} id="featured" aria-label="Featured work" className="py-12 sm:py-32 relative">
+        <section ref={sectionRef} id="featured" aria-label="Featured work" className="py-12 sm:py-32 relative scroll-mt-20">
 
             <div className="absolute top-1/2 -left-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-[100px] pointer-events-none" />
 

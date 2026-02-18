@@ -61,7 +61,7 @@ export const EXPERIENCES: Experience[] = [
   {
     year: '2022 - 2026',
     role: 'SENIOR STUDENT',
-    company: 'HUTECH UNIVERSITY',
+    company: 'Ho Chi Minh City University of Technology',
     description: 'Majoring in Software Engineering. Consuming knowledge, compiling experience, and shipping code. Bridging the gap between theory and reality, one commit at a time.',
     tech: [],
   },

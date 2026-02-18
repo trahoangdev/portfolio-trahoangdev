@@ -13,6 +13,7 @@ import { ProjectSection } from '@/components/projects/ProjectSection';
 import { ConnectSection } from '@/components/connect/ConnectSection';
 import { FeaturedWork } from '@/components/home/FeaturedWork';
 import { Philosophy } from '@/components/home/Philosophy';
+import { LatestBlog } from '@/components/home/LatestBlog';
 import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
 import { trackThemeChanged } from '@/lib/analytics';
 
@@ -21,7 +22,6 @@ export default function Home() {
   const { activeSection, registerSection } = useIntersectionObserver();
   const introOverlay = useIntroOverlay();
   const shouldShowNavigation = activeSection !== '' && activeSection !== 'intro';
-  const mainTopPadding = shouldShowNavigation ? 'pt-28' : 'pt-10';
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -48,7 +48,7 @@ export default function Home() {
           </div>
         </div>
 
-        <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28">
+        <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-10">
           <div className="min-h-screen flex items-center opacity-0">
             <div className="grid lg:grid-cols-3 gap-8 w-full">
               <div className="lg:col-span-1 space-y-8">
@@ -72,16 +72,14 @@ export default function Home() {
 
       <SectionNavigation activeSection={activeSection} isVisible={shouldShowNavigation} />
 
-      <main id="main-content" className={`max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 ${mainTopPadding}`}>
+      <main id="main-content" className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-10">
         <IntroSection sectionRef={registerSection('intro')} />
 
         <FeaturedWork sectionRef={registerSection('featured')} />
 
-        {/* <Philosophy sectionRef={registerSection('philosophy')} /> */}
+        <Philosophy sectionRef={registerSection('philosophy')} />
 
-        {/* <WorkSection activeSection={activeSection} sectionRef={registerSection('work')} />
-
-        <ProjectSection activeSection={activeSection} sectionRef={registerSection('project')} /> */}
+        <LatestBlog sectionRef={registerSection('blog')} />
 
         <ConnectSection activeSection={activeSection} sectionRef={registerSection('service')} />
 
