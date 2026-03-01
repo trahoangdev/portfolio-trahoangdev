@@ -31,19 +31,25 @@ export class HuggingFaceModelDataSource implements ProjectDataSource {
     }
 
     const username = profile.getHuggingFaceUser()!;
-    const models = await this.httpClient.get<HuggingFaceModel[]>(
-      `https://huggingface.co/api/models`,
-      {
-        query: {
-          author: username,
-          limit: 200,
-        },
-      }
-    );
 
-    return models
-      .filter((model) => model.private !== true)
-      .map((model) => this.toRecord(model));
+    try {
+      const models = await this.httpClient.get<HuggingFaceModel[]>(
+        `https://huggingface.co/api/models`,
+        {
+          query: {
+            author: username,
+            limit: 200,
+          },
+        }
+      );
+
+      return models
+        .filter((model) => model.private !== true)
+        .map((model) => this.toRecord(model));
+    } catch (error) {
+      console.error('[HuggingFaceModelDataSource] Failed to fetch models:', error);
+      return [];
+    }
   }
 
   private toRecord(model: HuggingFaceModel): ExternalProjectRecord {

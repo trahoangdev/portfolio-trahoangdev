@@ -14,10 +14,13 @@ import { StaticToolRepository } from '@/infrastructure/tools/StaticToolRepositor
 import { ToolPaletteController } from '@/modules/tools/controllers/ToolPaletteController';
 import { ToolStackShowcase } from '@/components/tools/ToolStackShowcase';
 import { PersonalProjectsShowcase } from '@/components/projects/PersonalProjectsShowcase';
+import { ProjectPagination } from '@/components/projects/ProjectPagination';
 import {
   createProjectPreferenceController,
 } from '@/modules/projects/ProjectModule';
 import { getProjectCatalog } from '@/app/actions/project';
+
+const PROJECTS_PER_PAGE = 8;
 
 export function ProjectExplorer() {
   // projectController and refreshController removed in favor of Server Action
@@ -42,7 +45,9 @@ export function ProjectExplorer() {
   const [error, setError] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [featuredIds, setFeaturedIds] = useState<Set<string>>(new Set());
+  const [currentPage, setCurrentPage] = useState(1);
   const requestIdRef = useRef(0);
+  const projectGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -105,6 +110,7 @@ export function ProjectExplorer() {
   const runFilter = useCallback(
     (state: ProjectFilterState) => {
       const requestId = ++requestIdRef.current;
+      setCurrentPage(1);
 
       void getProjectCatalog(state.getCategorySlugs(), state.getLanguageSlugs())
         .then((data) => {
@@ -123,6 +129,12 @@ export function ProjectExplorer() {
     },
     []
   );
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+    // Scroll to top of project grid
+    projectGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   const handleCategoryToggle = useCallback(
     (slug: string) => {
@@ -229,6 +241,11 @@ export function ProjectExplorer() {
   const activeCategories = filterState.getCategorySlugs();
   const activeLanguages = filterState.getLanguageSlugs();
   const projects = catalog.projects;
+  const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE);
+  const paginatedProjects = projects.slice(
+    (currentPage - 1) * PROJECTS_PER_PAGE,
+    currentPage * PROJECTS_PER_PAGE
+  );
 
   return (
     <div className="space-y-12">
@@ -274,7 +291,7 @@ export function ProjectExplorer() {
 
       <PersonalProjectsShowcase />
 
-      <div className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+      <div ref={projectGridRef} className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
         <ProjectFilterPanel
           categories={catalog.facets.categories}
           languages={catalog.facets.languages}
@@ -308,17 +325,24 @@ export function ProjectExplorer() {
               to reveal a new dimension.
             </div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2">
-              {projects.map((project, index) => (
-                <ProjectShowcaseCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  isFeatured={featuredIds.has(project.id)}
-                  onToggleFeatured={handleToggleFeatured}
-                />
-              ))}
-            </div>
+            <>
+              <div className="grid gap-6 md:grid-cols-2">
+                {paginatedProjects.map((project, index) => (
+                  <ProjectShowcaseCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                    isFeatured={featuredIds.has(project.id)}
+                    onToggleFeatured={handleToggleFeatured}
+                  />
+                ))}
+              </div>
+              <ProjectPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </>
           )}
         </section>
       </div>
