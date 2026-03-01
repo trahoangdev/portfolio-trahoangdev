@@ -39,7 +39,7 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen text-foreground relative ">
+      <div className="min-h-screen text-foreground relative overflow-x-hidden">
         <div className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
           <div className="flex flex-col gap-4 p-4 rounded-3xl border-dotted-thick border-border bg-background">
             {[...Array(4)].map((_, i) => (
@@ -48,7 +48,7 @@ export default function Home() {
           </div>
         </div>
 
-        <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-10">
+        <main className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
           <div className="min-h-screen flex items-center opacity-0">
             <div className="grid lg:grid-cols-3 gap-8 w-full">
               <div className="lg:col-span-1 space-y-8">
@@ -68,11 +68,11 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen text-foreground relative ">
+    <div className="min-h-screen text-foreground relative overflow-x-hidden">
 
       <SectionNavigation activeSection={activeSection} isVisible={shouldShowNavigation} />
 
-      <main id="main-content" className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-10">
+      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
         <IntroSection sectionRef={registerSection('intro')} />
 
         <FeaturedWork sectionRef={registerSection('featured')} />

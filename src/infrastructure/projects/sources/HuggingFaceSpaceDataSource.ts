@@ -26,19 +26,25 @@ export class HuggingFaceSpaceDataSource implements ProjectDataSource {
     }
 
     const username = profile.getHuggingFaceUser()!;
-    const spaces = await this.httpClient.get<HuggingFaceSpace[]>(
-      `https://huggingface.co/api/spaces`,
-      {
-        query: {
-          author: username,
-          limit: 200,
-        },
-      }
-    );
 
-    return spaces
-      .filter((space) => space.private !== true)
-      .map((space) => this.toRecord(space));
+    try {
+      const spaces = await this.httpClient.get<HuggingFaceSpace[]>(
+        `https://huggingface.co/api/spaces`,
+        {
+          query: {
+            author: username,
+            limit: 200,
+          },
+        }
+      );
+
+      return spaces
+        .filter((space) => space.private !== true)
+        .map((space) => this.toRecord(space));
+    } catch (error) {
+      console.error('[HuggingFaceSpaceDataSource] Failed to fetch spaces:', error);
+      return [];
+    }
   }
 
   private toRecord(space: HuggingFaceSpace): ExternalProjectRecord {

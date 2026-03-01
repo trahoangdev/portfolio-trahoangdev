@@ -44,18 +44,24 @@ export class GitHubProjectDataSource implements ProjectDataSource {
     }
 
     const username = profile.getGitHubUser()!;
-    const repositories = await this.requestRepositories(username);
 
-    const projects = await Promise.all(
-      repositories
-        .filter((repo) => !repo.fork && !repo.archived)
-        .map(async (repo) => {
-          const languages = await this.fetchLanguages(repo.owner.login, repo.name);
-          return this.toProjectRecord(repo, languages);
-        })
-    );
+    try {
+      const repositories = await this.requestRepositories(username);
 
-    return projects;
+      const projects = await Promise.all(
+        repositories
+          .filter((repo) => !repo.fork && !repo.archived)
+          .map(async (repo) => {
+            const languages = await this.fetchLanguages(repo.owner.login, repo.name);
+            return this.toProjectRecord(repo, languages);
+          })
+      );
+
+      return projects;
+    } catch (error) {
+      console.error('[GitHubProjectDataSource] Failed to fetch GitHub projects:', error);
+      return [];
+    }
   }
 
   private async requestRepositories(username: string): Promise<GitHubRepository[]> {

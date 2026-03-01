@@ -35,8 +35,8 @@ export class FetchHttpClient implements HttpClient {
         next: { revalidate: 0 },
       });
 
-      // Handle rate limiting with retry
-      if (response.status === 429 && retriesLeft > 0) {
+      // Handle rate limiting with retry (GitHub returns 403, others use 429)
+      if ((response.status === 429 || response.status === 403) && retriesLeft > 0) {
         const retryAfter = response.headers.get('Retry-After');
         const delay = retryAfter
           ? parseInt(retryAfter, 10) * 1000

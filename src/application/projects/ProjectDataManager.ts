@@ -19,12 +19,19 @@ export class ProjectDataManager {
    * @returns Promise resolving to array of external project records
    */
   async loadAll(profile: ProjectProfile): Promise<ExternalProjectRecord[]> {
-    const results = await Promise.all(this.sources.map((source) => source.fetchProjects(profile)));
+    const results = await Promise.allSettled(
+      this.sources.map((source) => source.fetchProjects(profile))
+    );
     const merged: ExternalProjectRecord[] = [];
     const seen = new Set<string>();
 
-    for (const records of results) {
-      for (const record of records) {
+    for (const result of results) {
+      if (result.status === 'rejected') {
+        console.warn('[ProjectDataManager] A data source failed:', result.reason);
+        continue;
+      }
+
+      for (const record of result.value) {
         if (seen.has(record.id)) {
           continue;
         }
