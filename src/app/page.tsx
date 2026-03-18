@@ -127,7 +127,7 @@ export default function Home() {
               </button>
 
               <a
-                href="mailto:contact@trahoangdev.com"
+                href="mailto:trahoangdev@gmail.com"
                 className="group p-3 rounded-full border-dotted-thick border-border hover:bg-muted transition-all duration-300 hover-lift text-foreground"
                 aria-label="Send email"
               >

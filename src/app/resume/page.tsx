@@ -52,8 +52,8 @@ export default function ResumePage() {
                     <div className="flex flex-col gap-2 text-sm text-muted-foreground print:text-black/70">
                         <div className="flex items-center gap-2">
                             <Mail className="w-4 h-4" />
-                            <a href="mailto:contact@trahoangdev.com" className="hover:text-foreground hover:underline">
-                                contact@trahoangdev.com
+                            <a href="mailto:trahoangdev@gmail.com" className="hover:text-foreground hover:underline">
+                                trahoangdev@gmail.com
                             </a>
                         </div>
                         <div className="flex items-center gap-2">
