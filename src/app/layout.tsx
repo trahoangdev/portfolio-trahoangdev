@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Background } from '@/components/ui/background';
 import { SkipLink } from '@/components/ui/SkipLink';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 import { getPersonSchema } from '@/lib/schema/person';
 
@@ -150,6 +151,7 @@ export default function RootLayout({
       })();`}</Script>
           {children}
           <Analytics />
+          <SpeedInsights />
           <Toaster position="bottom-right" richColors />
           <Script
             id="init-preloading"
