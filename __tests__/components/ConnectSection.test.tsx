@@ -36,9 +36,9 @@ describe('ConnectSection', () => {
 
   it('should render email link', () => {
     render(<ConnectSection activeSection="" sectionRef={mockRef} />);
-    const emailLink = screen.getByRole('link', { name: /contact@trahoangdev\.com/i });
+    const emailLink = screen.getByRole('link', { name: /trahoangdev@gmail\.com/i });
     expect(emailLink).toBeInTheDocument();
-    expect(emailLink).toHaveAttribute('href', 'mailto:contact@trahoangdev.com');
+    expect(emailLink).toHaveAttribute('href', 'mailto:trahoangdev@gmail.com');
   });
 
   it('should call sectionRef with section element', () => {

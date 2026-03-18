@@ -27,7 +27,7 @@ export function LatestBlog({ sectionRef }: LatestBlogProps) {
             ref={sectionRef}
             id="blog"
             aria-label="Latest blog posts"
-            className="py-20 sm:py-32 relative opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0 scroll-mt-20 overflow-hidden"
+            className="py-20 sm:py-32 relative opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0 scroll-mt-20"
         >
             {/* Decorative blob */}
             <div className="absolute top-1/2 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
