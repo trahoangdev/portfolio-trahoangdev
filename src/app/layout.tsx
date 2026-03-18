@@ -21,8 +21,14 @@ const geist = Geist({
   variable: '--font-geist',
 });
 
+const PRODUCTION_SITE_URL = 'https://www.trahoangdev.me';
+const SITE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : PRODUCTION_SITE_URL;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me/'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
     template: '%s | trahoangdev',
@@ -35,8 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    // url: 'https://trahoangdev.vercel.app',
-    url: 'https://www.trahoangdev.me/',
+    url: PRODUCTION_SITE_URL,
     title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
     description: 'Software Engineer specializing in building exceptional digital experiences.',
     siteName: 'trahoangdev',
@@ -53,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
     description: 'Software Engineer specializing in building exceptional digital experiences.',
-    images: ['/og-image.png'],
+    images: [`${PRODUCTION_SITE_URL}/og-image.png`],
     creator: '@trahoangdev',
   },
   icons: {
