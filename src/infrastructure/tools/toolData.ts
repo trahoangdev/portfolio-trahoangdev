@@ -36,6 +36,13 @@ export const TOOL_DATA: ToolRecord[] = [
     description: 'Type-safe patterns, generics, and domain modelling.',
   },
   {
+    id: 'javascript',
+    name: 'JavaScript',
+    techId: 'javascript',
+    category: 'Frontend',
+    description: 'Core language for interactive web experiences and modern tooling.',
+  },
+  {
     id: 'nodejs',
     name: 'Node.js',
     techId: 'node.js',
@@ -43,12 +50,19 @@ export const TOOL_DATA: ToolRecord[] = [
     description: 'Lightweight APIs, automation scripts, and platform tooling.',
   },
   {
-    id: 'nestjs',
-    name: 'NestJS',
-    techId: 'nestjs',
+    id: 'expressjs',
+    name: 'Express.js',
+    techId: 'express',
     category: 'Backend',
-    description: 'Progressive framework for scalable, enterprise-grade server-side apps.',
+    description: 'Minimal and flexible Node.js web framework for APIs and middleware.',
   },
+  // {
+  //   id: 'nestjs',
+  //   name: 'NestJS',
+  //   techId: 'nestjs',
+  //   category: 'Backend',
+  //   description: 'Progressive framework for scalable, enterprise-grade server-side apps.',
+  // },
   // {
   //   id: 'fastapi',
   //   name: 'FastAPI',
@@ -67,14 +81,14 @@ export const TOOL_DATA: ToolRecord[] = [
     id: 'supabase',
     name: 'Supabase',
     techId: 'supabase',
-    category: 'Backend',
+    category: 'NoSQL',
     description: 'Open source Firebase alternative. Postgres, Auth, Realtime.',
   },
   {
     id: 'docker',
     name: 'Docker',
     techId: 'docker',
-    category: 'Backend',
+    category: 'App',
     description: 'Container workflows, reproducible environments, and CI.',
   },
   {
@@ -91,13 +105,13 @@ export const TOOL_DATA: ToolRecord[] = [
     category: 'SQL',
     description: 'The world\'s most popular open-source database.',
   },
-  {
-    id: 'sqlite',
-    name: 'SQLite',
-    techId: 'sqlite',
-    category: 'SQL',
-    description: 'Edge-friendly relational engine for prototypes.',
-  },
+  // {
+  //   id: 'sqlite',
+  //   name: 'SQLite',
+  //   techId: 'sqlite',
+  //   category: 'SQL',
+  //   description: 'Edge-friendly relational engine for prototypes.',
+  // },
   {
     id: 'mongodb',
     name: 'MongoDB',
@@ -139,5 +153,12 @@ export const TOOL_DATA: ToolRecord[] = [
     techId: 'vercel',
     category: 'Platform',
     description: 'Edge-first deployment platform with instant previews and analytics.',
+  },
+  {
+    id: 'railway',
+    name: 'Railway',
+    techId: 'railway',
+    category: 'Platform',
+    description: 'Instant deployments, managed databases, and effortless scaling.',
   },
 ];

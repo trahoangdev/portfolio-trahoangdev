@@ -9,23 +9,18 @@ import { BsPuzzleFill } from 'react-icons/bs';
 const PERSONAL_PROJECTS = [
     {
         id: 'taikhoanxin',
-        title: 'Tài Khoản Xịn',
+        title: 'TAIKHOANXIN',
         description:
             'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
         repo: '',
         demo: 'https://taikhoanxin.com',
         tags: [
-            'Next.js 14',
-            'TypeScript',
-            'Supabase',
-            'Banking API',
-            'SCSS',
-            'Shadcn UI',
+            'Next.js 14', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'SCSS', 'Redux Toolkit', ' Redux Persist', 'Axios', 'SWR',
         ],
         isMaintenance: false,
         members: 2,
         image: '/projects/taikhoanxin.png',
-        gradient: 'from-emerald-500/20 via-teal-500/20 to-green-500/20',
+        gradient: 'from-[#2f78ff]/20 via-[#4b8aff]/20 to-[#6ba0ff]/20',
     },
     {
         id: 'luxe-wear-ai',
@@ -115,12 +110,12 @@ export function PersonalProjectsShowcase() {
                     >
                         <div className="space-y-6">
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-wrap items-center gap-3">
                                     <h3 className="text-2xl font-bold tracking-tight">
                                         {project.title}
                                     </h3>
                                     {project.members && (
-                                        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground bg-muted/50 px-2 py-1 rounded-md border border-border/50">
+                                        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground bg-muted/50 px-2 py-1 rounded-md border border-border/50 shrink-0">
                                             <FaUsers className="h-3 w-3" />
                                             <span>{project.members} Members</span>
                                         </div>

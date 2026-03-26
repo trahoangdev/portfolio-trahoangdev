@@ -14,7 +14,7 @@ export interface ProjectRecord {
 export const PROJECT_DATA: ProjectRecord[] = [
   {
     id: 'taikhoanxin',
-    title: 'Tài Khoản Xịn',
+    title: 'TAIKHOANXIN',
     summary:
       'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
     date: 'Oct 2025',

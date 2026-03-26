@@ -8,7 +8,7 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    year: `PRESENT ${new Date().getFullYear()}`,
+    year: `PRESENT`,
     role: 'FREELANCER',
     company: 'Self-Employed',
     description: 'Working on personal projects and learning new technologies.',
@@ -16,7 +16,7 @@ export const EXPERIENCES: Experience[] = [
     tech: [],
   },
   {
-    year: 'Oct.2025 Jan.2026',
+    year: 'Oct.2025 Mar.2026',
     role: 'FRONTEND DEVELOPER',
     company: 'Co-Founder at TAIKHOANXIN.COM',
     description: 'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
@@ -61,7 +61,7 @@ export const EXPERIENCES: Experience[] = [
   {
     year: '2022 - 2026',
     role: 'SENIOR STUDENT',
-    company: 'Ho Chi Minh City University of Technology',
+    company: 'HUTECH',
     description: 'Majoring in Software Engineering. Consuming knowledge, compiling experience, and shipping code. Bridging the gap between theory and reality, one commit at a time.',
     tech: [],
   },

@@ -161,7 +161,7 @@ export default function ResumePage() {
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <h3 className="text-lg font-bold">Bachelor of Software Engineering</h3>
-                            <div className="text-muted-foreground print:text-black/70">Ho Chi Minh City University of Technology</div>
+                            <div className="text-muted-foreground print:text-black/70">HUTECH</div>
                         </div>
                         <div className="text-sm font-mono text-muted-foreground mt-1 sm:mt-0 bg-muted/50 px-2 py-0.5 rounded print:bg-transparent print:p-0 print:text-black/60">
                             2022 — 2026 (Expected)
