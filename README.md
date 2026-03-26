@@ -141,7 +141,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *   Website: [www.trahoangdev.me](https://www.trahoangdev.me)
 *   GitHub: [@trahoangdev](https://github.com/trahoangdev)
 *   LinkedIn: [Tra Hoang](https://www.linkedin.com/in/trahoangdev)
-*   Email: [trahoang.dev@gmail.com](mailto:trahoang.dev@gmail.com)
+*   Email: [trahoangdev@gmail.com](mailto:trahoangdev@gmail.com)
 
 ---
 
