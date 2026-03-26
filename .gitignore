@@ -51,6 +51,5 @@ analyze-*.html
 
 # Markdown (keep important docs)
 *.md 
-!CONTRIBUTING.md
 !README.md
 !docs/**/*.md
