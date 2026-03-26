@@ -29,6 +29,8 @@ import {
   SiSupabase,
   SiFigma,
   SiMysql,
+  SiRailway,
+  SiExpress,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -77,4 +79,8 @@ export const TECH_ICONS: Record<string, IconComponent> = {
   discordpy: FaDiscord,
   figma: SiFigma,
   mysql: SiMysql,
+  railway: SiRailway,
+  express: SiExpress,
+  expressjs: SiExpress,
+  'express.js': SiExpress,
 };

@@ -22,7 +22,7 @@ describe('FeaturedWork', () => {
 
   it('should render project title', () => {
     render(<FeaturedWork sectionRef={mockRef} />);
-    expect(screen.getByText(/tài khoản xịn/i)).toBeInTheDocument();
+    expect(screen.getByText(/TAIKHOANXIN/i)).toBeInTheDocument();
   });
 
   it('should render "View All Projects" link', () => {
@@ -32,9 +32,9 @@ describe('FeaturedWork', () => {
     expect(link).toHaveAttribute('href', '/project');
   });
 
-  it('should render "Live Demo" link with correct attributes', () => {
+  it('should render "Production" link with correct attributes', () => {
     render(<FeaturedWork sectionRef={mockRef} />);
-    const link = screen.getByRole('link', { name: /visit tài khoản xịn live demo/i });
+    const link = screen.getByRole('link', { name: /visit TAIKHOANXIN now/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', 'https://taikhoanxin.com');
     expect(link).toHaveAttribute('target', '_blank');

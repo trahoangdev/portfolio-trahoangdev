@@ -20,7 +20,7 @@ export default async function Image() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#030712', // grave-950/background
-          backgroundImage: 'radial-gradient(circle at 50% 50%, #064e3b 0%, #030712 50%)', // emerald-900 tint
+          backgroundImage: 'radial-gradient(circle at 50% 50%, #0a2d6b 0%, #030712 50%)', // blue-900 tint
           fontFamily: 'sans-serif',
         }}
       >
@@ -30,17 +30,17 @@ export default async function Image() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '2px dashed #10b981', // emerald-500
+            border: '2px dashed #2f78ff', // blue
             padding: '40px 80px',
             borderRadius: '20px',
             backgroundColor: 'rgba(3, 7, 18, 0.8)',
-            boxShadow: '0 0 50px -12px rgba(16, 185, 129, 0.5)',
+            boxShadow: '0 0 50px -12px rgba(47, 120, 255, 0.5)',
           }}
         >
           <div
             style={{
               fontSize: 24,
-              color: '#10b981', // emerald-500
+              color: '#2f78ff', // blue
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
               marginBottom: '10px',
