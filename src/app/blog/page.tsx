@@ -2,7 +2,7 @@ import { getAllPosts } from '@/modules/blog/service';
 import { BlogList } from '@/components/blog/BlogList';
 
 export const metadata = {
-    title: 'Blog </> trahoangdev',
+    title: 'Blog',
     description: 'Sharing my thoughts on software development, design, and more.',
     alternates: {
         types: {

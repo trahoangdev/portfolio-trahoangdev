@@ -68,18 +68,18 @@ export function ExperienceCard({
         </div>
 
         {/* TECH */}
-        <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
+        <div className="lg:col-span-4 flex flex-wrap items-start content-start gap-2 lg:justify-end mt-2 lg:mt-0">
           {job.tech.map((tech) => {
             const icon = hasTechIcon(tech) ? (
               <TechIcon
                 tech={tech}
                 as="span"
                 unstyled
-                className="inline-flex items-center justify-center w-3.5 h-3.5"
+                className="inline-flex items-center justify-center w-4 h-4"
                 size="1em"
               />
             ) : (
-              <span className="inline-flex items-center justify-center w-3.5 h-3.5">
+              <span className="inline-flex items-center justify-center w-4 h-4">
                 <FaPlus className="h-3 w-3" aria-hidden="true" />
               </span>
             );
@@ -87,11 +87,11 @@ export function ExperienceCard({
             return (
               <span
                 key={tech}
-                className="px-2 py-1 text-xs border border-border rounded-full inline-flex items-center gap-1 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
+                className="px-3 py-1.5 text-xs font-medium border border-border/50 bg-background/50 backdrop-blur-sm rounded-full inline-flex items-center gap-1.5 transition-colors duration-300 group-hover:bg-foreground group-hover:text-background"
                 title={tech}
               >
                 {icon}
-                <span className="leading-none">{tech}</span>
+                <span className="leading-none whitespace-nowrap">{tech}</span>
               </span>
             );
           })}

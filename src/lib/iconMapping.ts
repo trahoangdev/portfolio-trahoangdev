@@ -13,6 +13,13 @@ import {
   FaPython,
   FaDocker,
   FaLinkedin,
+  FaAws,
+  FaCloud,
+  FaBrain,
+  FaInfinity,
+  FaDatabase,
+  FaEye,
+  FaCommentDots,
 } from 'react-icons/fa';
 import {
   SiTypescript,
@@ -31,6 +38,11 @@ import {
   SiMysql,
   SiRailway,
   SiExpress,
+  SiPytorch,
+  SiTensorflow,
+  SiLangchain,
+  SiOpenai,
+  SiHuggingface,
 } from 'react-icons/si';
 import { VscCode } from 'react-icons/vsc';
 
@@ -83,4 +95,16 @@ export const TECH_ICONS: Record<string, IconComponent> = {
   express: SiExpress,
   expressjs: SiExpress,
   'express.js': SiExpress,
+  aws: FaAws,
+  'cloud architecture': FaCloud,
+  'ai/ml': FaBrain,
+  devops: FaInfinity,
+  'data engineering': FaDatabase,
+  pytorch: SiPytorch,
+  tensorflow: SiTensorflow,
+  langchain: SiLangchain,
+  'openai api': SiOpenai,
+  'hugging face': SiHuggingface,
+  nlp: FaCommentDots,
+  'computer vision': FaEye,
 };

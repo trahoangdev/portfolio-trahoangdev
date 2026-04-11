@@ -40,11 +40,11 @@ const NAV_ITEMS: NavItem[] = [
     href: '/uses',
     isActive: (pathname) => pathname === '/uses',
   },
-  {
-    label: 'Resume',
-    href: '/resume',
-    isActive: (pathname) => pathname === '/resume',
-  },
+  // {
+  //   label: 'Resume',
+  //   href: '/resume',
+  //   isActive: (pathname) => pathname === '/resume',
+  // },
 ];
 
 export function HeaderNavigation() {

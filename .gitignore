@@ -49,3 +49,25 @@ next-env.d.ts
 # Bundle analyzer
 analyze-*.html
 
+# IDEs and Editors
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cache files
+.eslintcache
+.stylelintcache
+/.swc/
+/.turbo/
+
+# OS metadata
+Thumbs.db
+Desktop.ini

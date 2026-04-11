@@ -2,7 +2,7 @@ import { EXPERIENCES } from '@/lib/constants/experiences';
 import { ExperienceCard } from '@/components/work/ExperienceCard';
 
 export const metadata = {
-    title: 'Experience </> trahoangdev',
+    title: 'Experience',
     description: 'My professional journey and work experience.',
 };
 
