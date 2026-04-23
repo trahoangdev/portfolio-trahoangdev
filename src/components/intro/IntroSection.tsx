@@ -77,7 +77,7 @@ export function IntroSection({
                 TRA HOANG DEV
               </h1>
               <div className="text-lg font-medium">
-                Software Engineer | Content Creator | Senior Student
+                Software Engineer | Content Creator | Cloud Engineer
               </div>
               <div className="text-sm text-muted-foreground">
                 Writing code that thinks, designing interfaces that feel. Let's break the loop.
@@ -126,13 +126,13 @@ export function IntroSection({
             >
               My Matrix
             </Link>
-            <Link
+            {/* <Link
               href="/resume"
               className="px-4 sm:px-6 py-3 sm:py-2.5 text-sm sm:text-base whitespace-nowrap rounded-full border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background hover:scale-110 transition-all duration-300 hover-lift min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               aria-label="View resume"
             >
               CV
-            </Link>
+            </Link> */}
           </div>
         </div>
 
@@ -244,13 +244,13 @@ export function IntroSection({
               <div className="text-2xl font-black tracking-tighter uppercase relative">
                 {/* Glitch effect layers */}
                 <span className="relative z-10 block group-hover:-translate-y-1 transition-transform duration-300">
-                  TRAHOANGDEV
+                  CALL ME TRAVIS
                 </span>
                 <div className="absolute inset-0 text-red-500 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
-                  TRAHOANGDEV
+                  CALL ME TRAVIS
                 </div>
                 <div className="absolute inset-0 text-cyan-500 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
-                  TRAHOANGDEV
+                  CALL ME TRAVIS
                 </div>
               </div>
             </div>

@@ -16,8 +16,8 @@ export const EXPERIENCES: Experience[] = [
   //   tech: [],
   // },
   {
-    year: 'Apr. 2026 Jul. 2026',
-    role: 'CLOUD & AI INTERNSHIP',
+    year: 'Apr. 2026 PRESENT',
+    role: 'CLOUD ENGINEER INTERN',
     company: 'AWS VIETNAM',
     description: 'Selected for the First Cloud AI Journey (FCAJ) Workforce Bootcamp supported by AWS. Gaining hands-on experience in AWS Cloud fundamentals, DevOps practices, Data Engineering, and building scalable AI/ML solutions through real-world labs and expert mentorship.',
     //tech: [],

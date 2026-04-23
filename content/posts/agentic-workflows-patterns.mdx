@@ -1,0 +1,115 @@
+---
+title: 'Design Patterns for Agentic Workflows'
+excerpt: 'Discover the core design patterns for building reliable and deterministic AI agents, moving beyond simple ReAct loops into Plan-and-Solve and Multi-Agent collaborative topologies.'
+date: '2026-03-20'
+author: 'Tra Hoang Trong'
+tags: ['AI Agentic', 'Architecture', 'Design Patterns', 'Python', 'LangChain']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Workflow diagrams representing agent states'
+---
+
+# Design Patterns for Agentic Workflows
+
+As software organizations aggressively transition from simple chatbots into complex autonomous applications, a stark reality often sets in: letting a Large Language Model loosely "figure it out" frequently results in catastrophic hallucinations, tool-calling errors, and infinite execution loops. 
+
+To transform AI from a probabilistic toy into a deterministic engineering component, the industry has spent the last years standardizing several **Agentic Workflow Design Patterns**. Let's break down the three most prominent architectures shaping the ecosystem today and examine exactly when to apply them.
+
+## 1. The ReAct Pattern (Reason + Act)
+
+Pioneered in late 2022 and heavily popularized by frameworks like LangChain, the ReAct pattern remains the foundational concept for single-agent systems. Within this architecture, the LLM acts as the master orchestrator operating inside a tight, recursive `while` loop.
+
+**The Execution Loop:**
+1. **Thought:** The agent analyzes the user's objective alongside current contextual memory.
+2. **Action:** The agent decides to select a specific tool from its predefined arsenal and structures the JSON arguments.
+3. **Observation:** The environment executes the tool (e.g., executing Python code, scraping a URL, or running a SQL query) and feeds the exact string format result back to the agent.
+4. *(The loop repeats until the LLM decides no further tools are needed, and outputs a Final Answer).*
+
+**Pros:** 
+- Extremely flexible and autonomous. 
+- Excellent for localized, unpredictable tasks (e.g. browsing the web for a specific piece of esoteric information).
+
+**Cons:** 
+- Highly susceptible to "looping" where the agent keeps trying the same failed tool approach recursively.
+- Burns through token limits incredibly fast as the entire context history is appended on every loop.
+
+## 2. Plan-and-Solve (The DAG Approach)
+
+To counteract the short-sighted myopia of the ReAct pattern, the **Plan-and-Solve** pattern fundamentally separates the cognition of *planning* from the tactical act of *executing*.
+
+1. **The Planner:** A highly capable, reasoning-heavy model (like GPT-4o or Claude 3.5 Opus) evaluates the user's prompt and generates a strict, structured JSON array of sequential and parallel tasks. 
+2. **The Execution Engine:** The software builds a Directed Acyclic Graph (DAG) from these tasks in memory.
+3. **The Workers:** Cheaper, highly specialized state models (like Llama-3-8B or tuned specialized agents) are spun up defensively to execute individual nodes cleanly without retaining the heavy global context.
+
+### Example Concept
+
+**User Prompt:** *"Compare the Q3 financial reports of AAPL and MSFT and summarize the differences in R&D spending."*
+
+**Planner Output:**
+```json
+{
+  "tasks": [
+    { "id": "t1", "action": "fetch_financials", "args": { "ticker": "AAPL", "quarter": "Q3" }, "dependencies": [] },
+    { "id": "t2", "action": "fetch_financials", "args": { "ticker": "MSFT", "quarter": "Q3" }, "dependencies": [] },
+    { "id": "t3", "action": "extract_rd", "args": { "data_source": "t1" }, "dependencies": ["t1"] },
+    { "id": "t4", "action": "extract_rd", "args": { "data_source": "t2" }, "dependencies": ["t2"] },
+    { "id": "t5", "action": "compare_and_summarize", "args": { "aapl_rd": "t3", "msft_rd": "t4" }, "dependencies": ["t3", "t4"] }
+  ]
+}
+```
+*Because execution control is extracted completely from LLM planning, Tasks 1 & 2, and 3 & 4 can run entirely in parallel in Node.js or Python `asyncio`. This saves massive amounts of latency compared to sequential ReAct execution.*
+
+## 3. Multi-Agent Topologies
+
+Instead of building a monolithic master orchestrator, Multi-Agent systems construct a focused committee of specialized personas. Frameworks like **CrewAI** and Microsoft's **AutoGen** have formalized this approach securely.
+
+**Architectural Layouts:**
+- **Hierarchical Routing:** A "Manager" agent evaluates the inbound request and routes it to specific workers, e.g., "Coder", "QA", and "DevOps" agents. The Manager refuses to accept the final delivery until "QA" signs off, effectively enforcing an internal CI/CD pipeline.
+- **Debate / Consensus:** Two agents with opposing system prompts (e.g., "You are an optimistic market bull" vs "You are a calculating, pessimistic market bear") debate a topic until they reach a consensus. Research proves this drastically reduces standard AI biases and mitigates hallucinations.
+
+### Code Snippet (Conceptual Multi-Agent Defensive Flow)
+
+Let's look at how we can implement a software-driven retry loop surrounding two LLM personas:
+
+```python
+def QA_Agent(code_snippet):
+    """
+    Evaluates code for security, performance, and syntax. 
+    Returns (True, None) if passing, or (False, ErrorString).
+    """
+    prompt = f"Act as a Senior QA. Does this code run perfectly? \n\n{code_snippet}"
+    result = llm_infer(prompt)
+    return parse_qa_result(result)
+
+def Developer_Agent(requirements, previous_errors=None):
+    """
+    Generates code. If previous_errors exist, adjusts the generation.
+    """
+    prompt = f"Requirements: {requirements}\n"
+    if previous_errors:
+       prompt += f"FIX THESE PREVIOUS ERRORS: {previous_errors}"
+    return llm_infer(prompt)
+
+def execute_agent_team(requirements):
+    code = Developer_Agent(requirements)
+    is_valid, errors = QA_Agent(code)
+    
+    max_retries = 3
+    attempts = 0
+    
+    # The Core Collaboration Loop
+    while not is_valid and attempts < max_retries:
+        print(f"[Notice] QA Failed. Developer revising. Error: {errors}")
+        code = Developer_Agent(requirements, previous_errors=errors)
+        is_valid, errors = QA_Agent(code)
+        attempts += 1
+        
+    if not is_valid:
+        raise Exception("Agent Team failed to produce passing code after 3 attempts.")
+        
+    print("[Success] QA Passed. Finalizing Code...")
+    return code
+```
+
+## Conclusion
+
+By intentionally designing the *flow* and *architecture* of how models interact with code and each other, we bring traditional software engineering reliability to the non-deterministic world of AI. An LLM might be unpredictable, but the orchestration logic (the graphs, the retry loops, the DAG structures) must absolutely remain rigid.

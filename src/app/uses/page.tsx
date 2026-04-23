@@ -60,10 +60,6 @@ const USES_DATA: UseCategory[] = [
             {
                 title: 'Figma',
                 description: 'The standard for interface design and prototyping. I spend half my life here.'
-            },
-            {
-                title: 'GitHub Dark Theme',
-                description: 'Easy on the eyes, high contrast, and classic.'
             }
         ]
     },

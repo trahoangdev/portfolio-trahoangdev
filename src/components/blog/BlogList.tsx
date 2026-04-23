@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { BlogPostMetadata } from '@/modules/blog/types';
 import { BlogCard } from './BlogCard';
 import { Search } from 'lucide-react';
+import { ProjectPagination as Pagination } from '@/components/projects/ProjectPagination';
 import { cn } from '@/lib/utils';
 
 interface BlogListProps {
@@ -14,6 +15,14 @@ interface BlogListProps {
 export function BlogList({ initialPosts, allTags }: BlogListProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const POSTS_PER_PAGE = 6;
+
+    // Reset pagination to 1 when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, selectedTag]);
 
     const filteredPosts = useMemo(() => {
         return initialPosts.filter((post) => {
@@ -26,6 +35,12 @@ export function BlogList({ initialPosts, allTags }: BlogListProps) {
             return matchesSearch && matchesTag;
         });
     }, [initialPosts, searchQuery, selectedTag]);
+
+    const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+    const paginatedPosts = filteredPosts.slice(
+        (currentPage - 1) * POSTS_PER_PAGE,
+        currentPage * POSTS_PER_PAGE
+    );
 
     return (
         <div className="space-y-10">
@@ -77,10 +92,24 @@ export function BlogList({ initialPosts, allTags }: BlogListProps) {
 
             {/* Results */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredPosts.map((post) => (
+                {paginatedPosts.map((post) => (
                     <BlogCard key={post.slug} post={post} />
                 ))}
             </div>
+
+            {/* Pagination */}
+            {filteredPosts.length > 0 && (
+                <div className="mt-8">
+                    <Pagination 
+                        currentPage={currentPage} 
+                        totalPages={totalPages} 
+                        onPageChange={(page) => {
+                            setCurrentPage(page);
+                            window.scrollTo({ top: 300, behavior: 'smooth' });
+                        }} 
+                    />
+                </div>
+            )}
 
             {/* Empty State */}
             {filteredPosts.length === 0 && (
