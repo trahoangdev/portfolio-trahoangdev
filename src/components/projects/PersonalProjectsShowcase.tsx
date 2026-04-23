@@ -95,11 +95,11 @@ const PERSONAL_PROJECTS = [
 export function PersonalProjectsShowcase() {
     return (
         <section className="space-y-8 rounded-2xl border border-border/60 bg-background/50 p-6 backdrop-blur md:p-8">
-            <header className="flex items-center justify-center gap-4 py-4">
-                <div className="relative flex items-center justify-center">
+            <header className="flex flex-col sm:flex-row items-center justify-center gap-4 py-4 text-center sm:text-left">
+                <div className="relative flex items-center justify-center shrink-0">
                     <BsPuzzleFill className="h-8 w-8 text-foreground animate-pulse" />
                 </div>
-                <h2 className="text-3xl font-bold font-mono tracking-tight uppercase">Personal Projects</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold font-mono tracking-tight uppercase">Personal Projects</h2>
             </header>
 
             <div className="grid gap-8">
@@ -127,22 +127,26 @@ export function PersonalProjectsShowcase() {
                             </div>
 
                             <div className="flex flex-wrap items-center gap-3">
-                                <Link
-                                    href={project.repo}
-                                    target="_blank"
-                                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95"
-                                >
-                                    <span>REPO</span>
-                                    <FaGithub className="h-4 w-4" />
-                                </Link>
-                                <Link
-                                    href={project.demo}
-                                    target="_blank"
-                                    className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95"
-                                >
-                                    <span>VISIT</span>
-                                    <FaExternalLinkAlt className="h-3 w-3" />
-                                </Link>
+                                {project.repo ? (
+                                    <Link
+                                        href={project.repo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                    >
+                                        <span>REPO</span>
+                                        <FaGithub className="h-4 w-4" />
+                                    </Link>
+                                ) : null}
+                                {project.demo ? (
+                                    <Link
+                                        href={project.demo}
+                                        target="_blank"
+                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                    >
+                                        <span>VISIT</span>
+                                        <FaExternalLinkAlt className="h-3 w-3" />
+                                    </Link>
+                                ) : null}
 
                                 {project.isMaintenance && (
                                     <div className="flex items-center gap-2 text-yellow-500 text-xs font-mono px-2 py-1 bg-yellow-500/10 rounded border border-yellow-500/20">

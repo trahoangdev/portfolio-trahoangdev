@@ -37,11 +37,11 @@ export function ToolStackShowcase({ groups }: ToolStackShowcaseProps) {
               <div className="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-transparent blur-3xl" />
             </div>
 
-            <header className="mb-4 flex items-center justify-between gap-3">
-              <h3 className="text-lg font-semibold uppercase tracking-[0.3em]">
+            <header className="mb-4 flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+              <h3 className="text-base sm:text-lg font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] break-words">
                 {group.category.label}
               </h3>
-              <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
+              <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-muted-foreground shrink-0 border border-border/40 px-2 py-0.5 rounded-md bg-background/30">
                 {group.items.length} tools
               </span>
             </header>

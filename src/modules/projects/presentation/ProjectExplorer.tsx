@@ -249,8 +249,8 @@ export function ProjectExplorer() {
 
   return (
     <div className="space-y-12">
-      <header className="space-y-4 rounded-2xl border border-border/60 bg-background/50 p-8 backdrop-blur">
-        <div className="flex items-center justify-between gap-4">
+      <header className="space-y-4 rounded-2xl border border-border/60 bg-background/50 p-6 sm:p-8 backdrop-blur">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <span className="text-xs font-semibold uppercase tracking-[0.4em] text-muted-foreground">
             Matrix Archive
           </span>
@@ -258,7 +258,7 @@ export function ProjectExplorer() {
             type="button"
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="inline-flex items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground transition-colors duration-300 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-70"
+            className="inline-flex max-w-fit items-center gap-2 rounded-full border border-border/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground transition-colors duration-300 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-70"
           >
             <span>{isRefreshing ? 'Refreshing' : 'Reload'}</span>
             <svg
@@ -276,10 +276,10 @@ export function ProjectExplorer() {
             </svg>
           </button>
         </div>
-        <h1 className="text-4xl font-bold uppercase tracking-[0.2em]">
+        <h1 className="text-3xl sm:text-4xl font-bold uppercase tracking-[0.2em] break-words">
           Project Hypergrid
         </h1>
-        <p className="max-w-3xl text-base text-muted-foreground">
+        <p className="max-w-3xl text-sm sm:text-base text-muted-foreground">
           Filter by vibe, stack, and mission to discover each build in the
           matrix. Every project couples thoughtful design with high-signal
           engineering narratives.
@@ -291,7 +291,7 @@ export function ProjectExplorer() {
 
       <PersonalProjectsShowcase />
 
-      <div ref={projectGridRef} className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+      {/* <div ref={projectGridRef} className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
         <ProjectFilterPanel
           categories={catalog.facets.categories}
           languages={catalog.facets.languages}
@@ -345,7 +345,7 @@ export function ProjectExplorer() {
             </>
           )}
         </section>
-      </div>
+      </div> */}
     </div>
   );
 }

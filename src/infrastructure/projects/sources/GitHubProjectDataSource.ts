@@ -39,6 +39,8 @@ export class GitHubProjectDataSource implements ProjectDataSource {
   }
 
   async fetchProjects(profile: ProjectProfile): Promise<ExternalProjectRecord[]> {
+    return []; // Tạm ẩn không lấy dự án từ GitHub nữa
+    /*
     if (!profile.hasGitHubUser()) {
       return [];
     }
@@ -48,20 +50,16 @@ export class GitHubProjectDataSource implements ProjectDataSource {
     try {
       const repositories = await this.requestRepositories(username);
 
-      const projects = await Promise.all(
-        repositories
-          .filter((repo) => !repo.fork && !repo.archived)
-          .map(async (repo) => {
-            const languages = await this.fetchLanguages(repo.owner.login, repo.name);
-            return this.toProjectRecord(repo, languages);
-          })
-      );
+      const projects = repositories
+        .filter((repo) => !repo.fork && !repo.archived)
+        .map((repo) => this.toProjectRecord(repo, []));
 
       return projects;
     } catch (error) {
       console.error('[GitHubProjectDataSource] Failed to fetch GitHub projects:', error);
       return [];
     }
+    */
   }
 
   private async requestRepositories(username: string): Promise<GitHubRepository[]> {
