@@ -1,0 +1,142 @@
+---
+title: 'The Rise of AI Agentic Systems in 2026'
+excerpt: 'Explore how autonomous AI agents are moving from experimental research prototypes to production-ready enterprise systems, reshaping how we build and orchestrate software.'
+date: '2026-02-10'
+author: 'Tra Hoang Trong'
+tags: ['AI Agentic', 'Machine Learning', 'Future Tech', 'TypeScript', 'Software Engineering']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'A glowing matrix representing autonomous workflow executions'
+---
+
+# The Rise of AI Agentic Systems in 2026
+
+Artificial Intelligence has dramatically shifted gears. For the last few years, we were captivated by interacting with clever conversational chatbots that ultimately just regurgitated predictive text. Now, we are aggressively orchestrating autonomous, goal-oriented programs. 
+
+As we navigate through 2026, the transition from simple conversational AI to sophisticated **Agentic Systems** has solidified itself as the defining technical trend in modern software engineering. It completely alters how we approach system design, taking us from explicitly programmed control flows to goal-directed probabilistic routines.
+
+## What Exactly is an Agentic System?
+
+Unlike a traditional Large Language Model (LLM) which responds statically to a single prompt, an agentic system is given a high-level, generalized goal and uniquely works iteratively backward to achieve it without human coddling. A true agent embraces four capabilities:
+
+1. **Planning:** The profound ability to break down a large, complex prompt ("Research our top 3 competitors and build a pricing spreadsheet") into sequential and parallel tactical steps.
+2. **Memory:** Observing and maintaining context over long-running, asynchronous tasks. This requires stitching short-term memory (chat history) with long-term memory (Vector Database RAG retrieval).
+3. **Tool Use (Action):** The capability to use external software identically to a human—calling APIs, reading the filesystem, running CLIs, searching Google, or executing sandboxed code blocks.
+4. **Reflection:** Evaluating the output of the tools, comparing it against the original goal, and autonomously correcting its own mistakes if it failed.
+
+Imagine a traditional LLM as a brilliant business consultant strapped to a chair, restricted to answering questions verbally. An Agent is that exact same consultant given a laptop, browser access, an internet connection, and corporate API keys.
+
+## The Architectural Shift in Software Engineering
+
+Developers are no longer just writing core procedural logic in monolithic pipelines; they are composing cognitive architectures. Code is transitioning heavily from deterministic "if-this-then-that" `switch/case` flows, towards dynamic behavior trees and Directed Acyclic Graphs (DAGs). 
+
+To prevent utter chaos and ensure reliability, we heavily wrap LLMs in structured orchestration layers. While Python overwhelmingly pioneered this space primarily through LangChain and AutoGen, **TypeScript** is increasingly becoming the language of choice for full-stack developers building production agents, primarily due to its type-safety and asynchronous non-blocking nature.
+
+### Building a Minimal TSA (TypeScript Agent)
+
+Let's look at a significantly detailed conceptual example of a simple agent loop using vanilla TypeScript and the OpenAI API. Instead of relying on bloated, opaque frameworks, understanding how the core recursive loop actually works is crucial for mastery:
+
+```typescript
+import { OpenAI } from 'openai';
+import { executeDatabaseQuery } from './database';
+
+/**
+ * Definition of a Tool structure we pass to the LLM.
+ */
+interface Tool {
+  name: string;
+  description: string;
+  execute: (args: Record<string, any>) => Promise<string>;
+}
+
+// Instantiate specific capabilities for the Agent
+const corporateTools: Tool[] = [
+  {
+    name: 'fetchUserData',
+    description: 'Fetch detailed user metrics and billing history from the DB given a userId',
+    execute: async ({ userId }) => {
+      console.log(`[Tool Executing] Fetching DB for: ${userId}`);
+      try {
+          const data = await executeDatabaseQuery(`SELECT * FROM users WHERE id = '${userId}'`);
+          return JSON.stringify(data);
+      } catch (err) {
+          return "Database query failed. Inform user, do not retry.";
+      }
+    }
+  }
+];
+
+/**
+ * The Core Agent Execution Loop
+ */
+export async function runAgentLoop(goal: string, maxIterations = 5) {
+  const openai = new OpenAI();
+  
+  // Initialize context memory
+  let messages: any[] = [
+    { role: 'system', content: 'You are an autonomous corporate billing agent. You must aggressively use tools to solve user inquiries. Do not guess information.' },
+    { role: 'user', content: goal }
+  ];
+
+  for (let step = 0; step < maxIterations; step++) {
+    console.log(`\n--- Iteration Step ${step + 1} ---`);
+    
+    // 1. Agent Cognition / Inference
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages,
+      function_call: 'auto',
+      functions: corporateTools.map(t => ({
+        name: t.name,
+        description: t.description,
+        parameters: { type: "object", properties: { userId: { type: "string" } }, required: ["userId"] }
+      }))
+    });
+
+    const message = response.choices[0].message;
+    messages.push(message);
+
+    // 2. Halting Condition: No Tool Needed. It has determined the Final Answer.
+    if (!message.function_call) {
+      console.log('\nFinal Answer Output:', message.content);
+      return message.content;
+    }
+
+    // 3. Execution Phase (Act)
+    const { name, arguments: argsString } = message.function_call;
+    const args = JSON.parse(argsString);
+    const selectedTool = corporateTools.find(t => t.name === name);
+    
+    if (!selectedTool) {
+        messages.push({ role: 'function', name: name, content: "Error: Tool completely unknown to system." });
+        continue; // Let the agent retry
+    }
+
+    console.log(`[LLM Decision] Requesting Tool: ${name} with args:`, args);
+    const resultContent = await selectedTool.execute(args);
+
+    // 4. Observation Phase. Record the strict output for the next iteration step.
+    messages.push({
+      role: 'function',
+      name: name,
+      content: resultContent
+    });
+  }
+  
+  throw new Error("System Safeguard Triggered: Agent reached maximum iterations without resolving the core goal.");
+}
+
+// Initiate the autonomous request
+runAgentLoop("Can you check how much money the user 'usr_981' spent last month?");
+```
+
+In this snippet, the system enters an autonomous recursive loop. Upon receiving the prompt, it knows it lacks actual knowledge of "usr_981". It autonomously halts its generation to demand a call to `fetchUserData`, waits patiently as our script executes the simulated database fetch, reads the output, and finally generates the coherent synthesized answer.
+
+## The Transition to Multi-Agent Collaboration
+
+The true power of modern corporate systems no longer rests purely on single iterative agents, but in **Multi-Agent topologies**. Instead of one monolithic agent doing everything poorly, systems are fractured into distinct roles.
+
+- **The Researcher Agent:** Specifically prompted and equipped with vast web scraping capabilities, Google Search tools, and data parsing loops merely to gather raw, verified facts.
+- **The Coder Agent:** Empowered solely with a Python or Node.js sandbox execution environment to test analytical algorithms and clean the raw data.
+- **The Reviewer Agent:** Operates purely as a critical QA tester, strictly reviewing outputs and returning detailed error logs back to the Coder Agent until code execution tests compile flawlessly.
+
+We are actively entering an era where our codebases are populated by "digital co-workers" collaborating asynchronously. Mastering this orchestration and inter-agent communication layer is arguably the most valuable skillset for software engineering leadership in 2026.
