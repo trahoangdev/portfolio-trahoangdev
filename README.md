@@ -98,29 +98,29 @@ The RSS feed is also accessible from the blog page with a direct link in the hea
 
 ## 📂 Project Structure
 
+This project follows a **Feature-based (Vertical Slicing)** architecture, ensuring that all logic related to a specific feature is grouped together for better scalability and maintainability.
+
 ```bash
 portfolio-trahoangdev/
-├── .github/          # GitHub Actions & workflows
-├── __tests__/        # Unit and Integration tests (Jest)
 ├── content/          # MDX blog posts
 ├── public/           # Static assets (images, fonts, etc.)
 ├── src/
-│   ├── app/          # Next.js App Router pages & layouts
-│   │   ├── feed.xml/ # RSS feed endpoint
-│   │   ├── sitemap.ts # Dynamic sitemap generation
-│   │   └── robots.ts # Robots.txt configuration
-│   ├── components/   # Reusable React components
-│   ├── lib/          # Utility functions and shared logic
-│   │   ├── schema/   # Schema.org structured data
-│   │   └── utils/    # Helper utilities (performance, error handling)
-│   └── styles/       # Global styles (Tailwind, CSS variables)
-├── .eslintrc.json    # Linter configuration
+│   ├── app/          # Next.js App Router pages, layouts & API routes
+│   ├── components/   # Shared/Global UI components (nav, layout, error, etc.)
+│   ├── features/     # Feature-based vertical slices (core logic)
+│   │   ├── blog/     # Blog related code (components, services, types)
+│   │   ├── projects/ # Projects showcase logic
+│   │   ├── intro/    # Introduction & overlay components
+│   │   ├── tools/    # Tech stack & tools data
+│   │   ├── certificates/ # Certificate showcase data
+│   │   ├── shared/   # Shared domain & infrastructure logic
+│   │   └── system/   # System diagnostics & utilities
+│   ├── hooks/        # Shared React hooks
+│   ├── lib/          # Global utilities, schema, caching, and constants
+│   └── styles/       # Global CSS styles (Tailwind)
+├── __tests__/        # Unit and Integration tests (Jest)
 ├── next.config.ts    # Next.js configuration
-├── package.json      # Dependencies and scripts
-├── postcss.config.mjs # PostCSS configuration
-├── CHANGELOG.md      # Project changelog
-├── tailwind.config.ts # Tailwind CSS configuration
-└── tsconfig.json     # TypeScript configuration
+└── ...               # Config files (eslint, prettier, tailwind, etc.)
 ```
 
 ##  Acknowledgements

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { CERTIFICATES } from '@/infrastructure/certificates/certificateData';
-import { CertificateCard } from '@/components/certificates/CertificateCard';
+import { CERTIFICATES } from '@/features/certificates/infrastructure/certificateData';
+import { CertificateCard } from '@/features/certificates/components/CertificateCard';
 
 export const metadata: Metadata = {
     title: 'Certificates',

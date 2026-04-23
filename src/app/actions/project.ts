@@ -1,8 +1,8 @@
 'use server';
 
-import { createProjectControllers } from '@/modules/projects/ProjectModule';
-import { ProjectCatalogDto } from '@/application/projects/ProjectCatalogService';
-import { ProjectFilterState } from '@/modules/projects/state/ProjectFilterState';
+import { createProjectControllers } from '@/features/projects/module/ProjectModule';
+import { ProjectCatalogDto } from '@/features/projects/application/ProjectCatalogService';
+import { ProjectFilterState } from '@/features/projects/module/state/ProjectFilterState';
 
 /**
  * Server Action to fetch project catalog.

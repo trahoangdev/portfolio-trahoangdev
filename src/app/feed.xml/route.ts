@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/modules/blog/service';
+import { getAllPosts } from '@/features/blog/module/service';
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';

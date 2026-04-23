@@ -1,5 +1,5 @@
-import { getAllPosts } from '@/modules/blog/service';
-import { BlogList } from '@/components/blog/BlogList';
+import { getAllPosts } from '@/features/blog/module/service';
+import { BlogList } from '@/features/blog/components/BlogList';
 
 export const metadata = {
     title: 'Blog',

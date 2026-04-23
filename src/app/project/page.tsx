@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const ProjectExplorer = dynamic(
-  () => import('@/modules/projects/presentation/ProjectExplorer').then((mod) => ({ default: mod.ProjectExplorer })),
+  () => import('@/features/projects/module/presentation/ProjectExplorer').then((mod) => ({ default: mod.ProjectExplorer })),
   {
     loading: () => (
       <div className="space-y-8">
