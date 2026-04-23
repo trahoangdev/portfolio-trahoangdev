@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import { CalendarDays, Clock, ArrowUpRight } from 'lucide-react';
 import { getLatestBlogPosts } from '@/app/actions/blog';
-import type { BlogPostMetadata } from '@/modules/blog/types';
+import type { BlogPostMetadata } from '@/features/blog/module/types';
 
 interface LatestBlogProps {
     sectionRef: (el: HTMLElement | null) => void;

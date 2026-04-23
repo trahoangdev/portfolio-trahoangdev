@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getPostSlugs } from '@/modules/blog/service';
+import { getPostBySlug, getPostSlugs } from '@/features/blog/module/service';
 import Link from 'next/link';
 import { ChevronLeft, CalendarDays, Clock, User } from 'lucide-react';
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { CodeBlock } from '@/components/blog/CodeBlock';
+import { CodeBlock } from '@/features/blog/components/CodeBlock';
 
-import { getRelatedPosts } from '@/modules/blog/service';
-import { BlogCard } from '@/components/blog/BlogCard';
+import { getRelatedPosts } from '@/features/blog/module/service';
+import { BlogCard } from '@/features/blog/components/BlogCard';
 import { getArticleSchema } from '@/lib/schema/article';
 import { getBreadcrumbSchema } from '@/lib/schema/breadcrumb';
 

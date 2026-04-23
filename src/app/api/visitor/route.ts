@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sanitizeString } from '@/lib/validation';
-import { getRedisCache } from '@/infrastructure/cache/RedisCache';
+import { getRedisCache } from '@/lib/cache/RedisCache';
 
 // Rate limiting: Track IPs and their last request time
 const rateLimitMap = new Map<string, number>();

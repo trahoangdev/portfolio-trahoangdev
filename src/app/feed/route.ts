@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/modules/blog/service';
+import { getAllPosts } from '@/features/blog/module/service';
 
 /**
  * RSS Feed endpoint

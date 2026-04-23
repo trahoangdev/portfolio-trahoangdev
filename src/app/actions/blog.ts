@@ -1,7 +1,7 @@
 'use server';
 
-import { getAllPosts } from '@/modules/blog/service';
-import { BlogPostMetadata } from '@/modules/blog/types';
+import { getAllPosts } from '@/features/blog/module/service';
+import { BlogPostMetadata } from '@/features/blog/module/types';
 
 /**
  * Server Action to fetch the latest blog posts.
