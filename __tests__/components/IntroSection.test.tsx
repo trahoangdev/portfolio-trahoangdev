@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { IntroSection } from '@/components/intro/IntroSection';
+import { IntroSection } from '@/features/intro/components/IntroSection';
 
 // Mock child components
-jest.mock('@/components/intro/SocialLinks', () => ({
+jest.mock('@/features/intro/components/SocialLinks', () => ({
   SocialLinks: () => <div data-testid="social-links">Social Links</div>,
 }));
 
-jest.mock('@/components/intro/WebsiteInfoCard', () => ({
+jest.mock('@/features/intro/components/WebsiteInfoCard', () => ({
   WebsiteInfoCard: () => <div data-testid="website-info">Website Info</div>,
 }));
 
@@ -37,7 +37,7 @@ describe('IntroSection', () => {
 
   it('should render role description', () => {
     render(<IntroSection sectionRef={mockRef} />);
-    expect(screen.getByText(/software engineer.*content creator.*student/i)).toBeInTheDocument();
+    expect(screen.getByText(/software engineer.*content creator.*cloud engineer/i)).toBeInTheDocument();
   });
 
   it('should render bio text', () => {

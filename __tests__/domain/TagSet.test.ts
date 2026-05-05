@@ -1,5 +1,5 @@
-import { TagSet } from '@/domain/shared/TagSet';
-import { Tag } from '@/domain/shared/Tag';
+import { TagSet } from '@/features/shared/domain/TagSet';
+import { Tag } from '@/features/shared/domain/Tag';
 
 describe('TagSet', () => {
   describe('constructor', () => {

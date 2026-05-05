@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BlogList } from '@/components/blog/BlogList';
-import { BlogPostMetadata } from '@/modules/blog/types';
+import { BlogList } from '@/features/blog/components/BlogList';
+import { BlogPostMetadata } from '@/features/blog/module/types';
 
 describe('BlogList', () => {
   const mockPosts: BlogPostMetadata[] = [

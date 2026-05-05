@@ -1,4 +1,4 @@
-import { Project } from '@/domain/projects/Project';
+import { Project } from '@/features/projects/domain/Project';
 
 describe('Project', () => {
   const validProps = {

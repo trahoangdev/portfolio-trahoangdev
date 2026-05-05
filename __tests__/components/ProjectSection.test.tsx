@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { ProjectSection } from '@/components/projects/ProjectSection';
+import { ProjectSection } from '@/features/projects/components/ProjectSection';
 
 // Mock child components
-jest.mock('@/components/projects/ProjectShowcase', () => ({
+jest.mock('@/features/projects/components/ProjectShowcase', () => ({
   ProjectShowcase: ({ projects }: { projects: any[] }) => (
     <div data-testid="project-showcase">
       Showcase: {projects.length} projects
@@ -10,7 +10,7 @@ jest.mock('@/components/projects/ProjectShowcase', () => ({
   ),
 }));
 
-jest.mock('@/components/projects/ProjectFilterBar', () => ({
+jest.mock('@/features/projects/components/ProjectFilterBar', () => ({
   ProjectFilterBar: ({ availableLanguages }: { availableLanguages: string[] }) => (
     <div data-testid="project-filter">
       Filters: {availableLanguages.length} languages
@@ -19,7 +19,7 @@ jest.mock('@/components/projects/ProjectFilterBar', () => ({
 }));
 
 // Mock project module
-jest.mock('@/modules/projects/ProjectModule', () => ({
+jest.mock('@/features/projects/module/ProjectModule', () => ({
   createProjectControllers: () => ({
     refresh: {
       initialLoad: jest.fn().mockResolvedValue({

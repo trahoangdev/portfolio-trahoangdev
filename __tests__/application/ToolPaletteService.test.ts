@@ -1,7 +1,7 @@
-import { ToolPaletteService } from '@/application/tools/ToolPaletteService';
-import type { ToolRepository } from '@/domain/tools/ToolRepository';
-import { ToolCollection } from '@/domain/tools/ToolCollection';
-import { Tool } from '@/domain/tools/Tool';
+import { ToolPaletteService } from '@/features/tools/application/ToolPaletteService';
+import type { ToolRepository } from '@/features/tools/domain/ToolRepository';
+import { ToolCollection } from '@/features/tools/domain/ToolCollection';
+import { Tool } from '@/features/tools/domain/Tool';
 
 describe('ToolPaletteService', () => {
   let service: ToolPaletteService;
