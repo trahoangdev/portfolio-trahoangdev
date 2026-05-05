@@ -104,6 +104,33 @@ export class RedisCache {
     }
   }
 
+  async increment(key: string): Promise<number | null> {
+    if (!this.redis) {
+      return null;
+    }
+
+    try {
+      return await this.redis.incr(key);
+    } catch (error) {
+      console.error('Redis increment error:', error);
+      return null;
+    }
+  }
+
+  async expire(key: string, seconds: number): Promise<boolean> {
+    if (!this.redis) {
+      return false;
+    }
+
+    try {
+      const result = await this.redis.expire(key, seconds);
+      return result === 1;
+    } catch (error) {
+      console.error('Redis expire error:', error);
+      return false;
+    }
+  }
+
   /**
    * Get or set pattern - fetch from cache or compute and cache
    */

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { BlogCard } from '@/components/blog/BlogCard';
-import { BlogPostMetadata } from '@/modules/blog/types';
+import { BlogCard } from '@/features/blog/components/BlogCard';
+import { BlogPostMetadata } from '@/features/blog/module/types';
 
 describe('BlogCard', () => {
   const mockPost: BlogPostMetadata = {

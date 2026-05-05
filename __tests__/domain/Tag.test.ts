@@ -1,4 +1,4 @@
-import { Tag } from '@/domain/shared/Tag';
+import { Tag } from '@/features/shared/domain/Tag';
 
 describe('Tag', () => {
   describe('constructor', () => {

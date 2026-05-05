@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { RedisCache } from '@/infrastructure/cache/RedisCache';
+import { RedisCache } from '@/lib/cache/RedisCache';
 
 // Mock global fetch
 global.fetch = jest.fn();
@@ -67,6 +67,20 @@ describe('RedisCache', () => {
   describe('exists', () => {
     it('should return false when Redis is not available', async () => {
       const result = await cache.exists('test-key');
+      expect(result).toBe(false);
+    });
+  });
+
+  describe('increment', () => {
+    it('should return null when Redis is not available', async () => {
+      const result = await cache.increment('test-key');
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('expire', () => {
+    it('should return false when Redis is not available', async () => {
+      const result = await cache.expire('test-key', 60);
       expect(result).toBe(false);
     });
   });

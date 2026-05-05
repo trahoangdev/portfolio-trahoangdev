@@ -1,10 +1,10 @@
-import { ProjectCatalogService } from '@/application/projects/ProjectCatalogService';
-import { ProjectRefreshService } from '@/application/projects/ProjectRefreshService';
-import { ProjectCollection } from '@/domain/projects/ProjectCollection';
-import { Project } from '@/domain/projects/Project';
+import { ProjectCatalogService } from '@/features/projects/application/ProjectCatalogService';
+import { ProjectRefreshService } from '@/features/projects/application/ProjectRefreshService';
+import { ProjectCollection } from '@/features/projects/domain/ProjectCollection';
+import { Project } from '@/features/projects/domain/Project';
 
 // Mock ProjectRefreshService
-jest.mock('@/application/projects/ProjectRefreshService');
+jest.mock('@/features/projects/application/ProjectRefreshService');
 
 describe('ProjectCatalogService', () => {
   let service: ProjectCatalogService;

@@ -1,4 +1,4 @@
-import { Tool } from '@/domain/tools/Tool';
+import { Tool } from '@/features/tools/domain/Tool';
 
 describe('Tool', () => {
   describe('constructor', () => {

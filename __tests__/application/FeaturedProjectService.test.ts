@@ -1,5 +1,5 @@
-import { FeaturedProjectService } from '@/application/projects/FeaturedProjectService';
-import type { ProjectPreferenceRepository } from '@/application/projects/ports/ProjectPreferenceRepository';
+import { FeaturedProjectService } from '@/features/projects/application/FeaturedProjectService';
+import type { ProjectPreferenceRepository } from '@/features/projects/application/ports/ProjectPreferenceRepository';
 
 describe('FeaturedProjectService', () => {
   let service: FeaturedProjectService;
@@ -123,7 +123,7 @@ describe('FeaturedProjectService', () => {
 
     it('normalizes IDs in listener callback', () => {
       let repositoryListener: (ids: string[]) => void = () => {};
-      mockRepository.addListener.mockImplementation((listener) => {
+      mockRepository.addListener.mockImplementation((listener: (ids: string[]) => void) => {
         repositoryListener = listener;
         return jest.fn();
       });

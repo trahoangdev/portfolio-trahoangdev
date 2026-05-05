@@ -1,148 +1,213 @@
-# Portfolio - trahoangdev
-
-This is my personal portfolio website, built with **Next.js 16**, **Tailwind CSS**, and **TypeScript**. It serves as a digital garden where I showcase my projects, share my thoughts on software development, and experiment with new technologies.
-
+# Personal Portfolio
 
 <div align="center">
 
-![Portfolio Banner](https://img.shields.io/badge/Portfolio-2025-blue?style=for-the-badge&logo=react&logoColor=white)
-[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://trahoangdev.vercel.app/)
+![Portfolio](https://img.shields.io/badge/Portfolio-2026-blue?style=for-the-badge&logo=react&logoColor=white)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](LICENSE)
 
-[![GitHub Stars](https://img.shields.io/github/stars/trahoangdev?style=social)](https://github.com/trahoangdev/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/trahoangdev/portfolio-trahoangdev?style=social)](https://github.com/trahoangdev/portfolio-trahoangdev/network/members)
-[![GitHub Repo Size](https://img.shields.io/github/repo-size/trahoangdev/portfolio-trahoangdev)](https://github.com/trahoangdev/portfolio-trahoangdev)
+**Personal portfolio website of Tra Hoang Trong (`trahoangdev`)**
+
+[Live Preview](https://trahoangdev.me) · [RSS Feed](https://www.trahoangdev.me/feed.xml) · [GitHub](https://github.com/trahoangdev)
 
 </div>
 
-<!-- ![Portfolio Preview](/public/projects/portfolio.png) -->
+## Overview
 
-<div align="center">
+This is a personal portfolio website built with **Next.js 16**, **React 19 RC**, **TypeScript**, and **Tailwind CSS 4**. The project serves as a digital garden to showcase personal profile, projects, technical blog posts, experience, certificates, resume, and tools being used.
 
-  <a href="https://trahoangdev.vercel.app">
-    <img src="https://img.shields.io/badge/Live_Preview-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Preview"/>
-  </a>
+The project is designed as production-ready with SEO, RSS, structured data, error monitoring, analytics, security headers, automated testing, and a clear feature-based architecture.
 
-</div>
+## Key Features
 
-## 🚀 Key Features
+- **Modern personal portfolio**: Homepage showcasing profile, projects, latest blog posts, work philosophy, and contact information.
+- **App Router**: Using Next.js App Router with server actions, route handlers, and static generation where appropriate.
+- **Blog MDX**: Blog content stored in `content/posts`, supporting metadata, tags, reading time, and detail pages by slug.
+- **RSS Feed**: Automatically provides feed at `/feed.xml`.
+- **Dynamic project showcase**: Fetches project data from GitHub and Hugging Face via data source/repository layer.
+- **Visitor counter**: Tracks visits using Upstash Redis with atomic increment and Redis-backed rate limiting.
+- **Dark mode**: Supports light/dark themes via `next-themes`.
+- **Animations**: Smooth interactions with Framer Motion and custom UI effects.
+- **SEO & metadata**: Includes Open Graph, Twitter cards, sitemap, robots, and Schema.org.
+- **Observability**: Integrated with Sentry, Vercel Analytics, and Vercel Speed Insights.
+- **Security headers**: Configured with HSTS, CSP, frame options, referrer policy, and permissions policy.
+- **Testing**: Includes Jest, Testing Library, type-check, and lint pipeline.
 
-*   **Modern Tech Stack**: Built with the latest Next.js 16 features (Server Components, App Router).
-*   **Performance First**: Optimized for core web vitals and fast load times with image optimization, lazy loading, and resource preloading.
-*   **Elegant Design**: Minimalist aesthetic with a focus on typography and whitespace.
-*   **Dark Mode**: Fully supported dark/light mode toggle with system preference detection.
-*   **MDX Blog**: Integrated blog using MDX for rich content authoring with syntax highlighting.
-*   **RSS Feed**: Subscribe to blog updates via `/feed.xml` RSS feed.
-*   **SEO Optimized**: Comprehensive SEO with structured data (Schema.org), sitemap, and Open Graph tags.
-*   **Accessibility**: WCAG compliant with keyboard navigation, ARIA labels, and skip links.
-*   **Responsive**: Looks great on all devices, from mobile to desktop with mobile-first design.
-*   **Animations**: Subtle animations using Framer Motion to enhance user experience.
-*   **Error Handling**: User-friendly error pages with recovery options.
-*   **Analytics**: Integrated with Vercel Analytics and Sentry for monitoring.
+## Tech stack
 
-##  Tech Stack
+| Category | Technologies |
+| --- | --- |
+| **Core** | Next.js 16, React 19 RC, TypeScript |
+| **Styling** | Tailwind CSS 4, `@tailwindcss/postcss`, `tailwind-merge`, `tailwindcss-animate`, `tw-animate-css` |
+| **UI & UX** | Framer Motion, Lucide React, React Icons, Sonner |
+| **Content** | MDX, Gray Matter, React Markdown, Remark GFM, `next-mdx-remote` |
+| **Data & cache** | Upstash Redis, Vercel KV, Redis |
+| **Monitoring** | Sentry, Vercel Analytics, Vercel Speed Insights |
+| **Testing** | Jest, Testing Library, jsdom |
+| **Tooling** | ESLint 9, TypeScript, PostCSS |
+| **Deployment** | Vercel |
 
-<div align="center">
+## Project Architecture
 
-| **Core** | **Styling & UI** | **Tools & Deployment** |
-| :---: | :---: | :---: |
-| ![Next.js](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js&logoColor=white) <br/> ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) <br/> ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) <br/> ![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=white) <br/> ![MDX](https://img.shields.io/badge/MDX-191A1B?style=for-the-badge&logo=mdx&logoColor=white) | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) <br/> ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) <br/> ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black) |
+The project follows a **Feature-based / Vertical Slicing Architecture**. Each feature groups domain, application logic, infrastructure, module/controller, and related components together for easier scalability and maintenance.
 
-</div>
-
-## 🏃‍♂️ Getting Started
-
-### Prerequisites
-
-*   Node.js 18+ installed
-*   npm or yarn or pnpm
-
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/trahoangdev/portfolio-trahoangdev.git
-    cd portfolio-trahoangdev
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    ```
-
-3.  **Run the development server:**
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    ```
-
-4.  **Open your browser:**
-    Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
-
-## 📡 RSS Feed
-
-Subscribe to blog updates via RSS feed at `/feed.xml`:
-
-- **RSS Feed URL**: `https://www.trahoangdev.me/feed.xml`
-- **Format**: RSS 2.0
-- **Updates**: Automatically includes all blog posts
-
-The RSS feed is also accessible from the blog page with a direct link in the header.
-
-## 📂 Project Structure
-
-This project follows a **Feature-based (Vertical Slicing)** architecture, ensuring that all logic related to a specific feature is grouped together for better scalability and maintainability.
-
-```bash
+```text
 portfolio-trahoangdev/
-├── content/          # MDX blog posts
-├── public/           # Static assets (images, fonts, etc.)
+├── content/
+│   └── posts/                  # MDX blog posts
+├── public/                     # Static assets
 ├── src/
-│   ├── app/          # Next.js App Router pages, layouts & API routes
-│   ├── components/   # Shared/Global UI components (nav, layout, error, etc.)
-│   ├── features/     # Feature-based vertical slices (core logic)
-│   │   ├── blog/     # Blog related code (components, services, types)
-│   │   ├── projects/ # Projects showcase logic
-│   │   ├── intro/    # Introduction & overlay components
-│   │   ├── tools/    # Tech stack & tools data
-│   │   ├── certificates/ # Certificate showcase data
-│   │   ├── shared/   # Shared domain & infrastructure logic
-│   │   └── system/   # System diagnostics & utilities
-│   ├── hooks/        # Shared React hooks
-│   ├── lib/          # Global utilities, schema, caching, and constants
-│   └── styles/       # Global CSS styles (Tailwind)
-├── __tests__/        # Unit and Integration tests (Jest)
-├── next.config.ts    # Next.js configuration
-└── ...               # Config files (eslint, prettier, tailwind, etc.)
+│   ├── app/                    # Next.js App Router, pages, routes, server actions
+│   ├── components/             # Shared/global UI components
+│   ├── features/
+│   │   ├── blog/               # Blog components, service, types
+│   │   ├── certificates/       # Certificate showcase
+│   │   ├── intro/              # Intro section, overlay, website info
+│   │   ├── projects/           # Project domain, application, infrastructure, module, UI
+│   │   ├── shared/             # Shared domain/infrastructure primitives
+│   │   ├── system/             # Diagnostics/system utilities
+│   │   └── tools/              # Tool palette/domain/application
+│   ├── hooks/                  # Shared React hooks
+│   └── lib/                    # Analytics, cache, schema, constants, utils, validation
+├── __tests__/                  # Unit/component tests
+├── docs/                       # Additional documentation
+├── next.config.ts              # Next.js + Sentry + security headers
+├── postcss.config.mjs          # Tailwind CSS 4 via PostCSS
+├── jest.config.js              # Jest config
+└── package.json
 ```
 
-##  Acknowledgements
+## Main Routes
 
-This project was inspired by the work of [NirussVn0](https://github.com/NirussVn0).
+| Route | Description |
+| --- | --- |
+| `/` | Portfolio homepage |
+| `/blog` | Blog post list |
+| `/blog/[slug]` | MDX blog post detail |
+| `/project` | Project showcase page |
+| `/certificates` | Certificates |
+| `/experience` | Experience |
+| `/resume` | Resume/CV |
+| `/uses` | Setup, tools and stack in use |
+| `/feed.xml` | RSS feed |
+| `/sitemap.xml` | Sitemap |
+| `/robots.txt` | Robots config |
+| `/api/visitor` | Visitor counter API |
 
-This project uses the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) license.
+## Key Data Flows
 
-## 📄 License
+### Blog
 
+- Posts are stored at `content/posts/*.mdx`.
+- Metadata is parsed using `gray-matter`.
+- Blog list and detail pages are rendered through routes in `src/app/blog`.
+- RSS feed fetches post data to output standard RSS 2.0.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Projects
 
-## ✍️ Author
+The projects feature is divided into multiple layers:
 
-**Tra Hoang Trong (trahoangdev)**
+- **Domain**: `Project`, `ProjectCollection`, `ProjectFilter`, `ProjectProfile`.
+- **Application**: `ProjectCatalogService`, `ProjectRefreshService`, `ProjectDataManager`.
+- **Infrastructure**: GitHub/Hugging Face data sources, repository, profile providers.
+- **Module**: Factory creating controllers for catalog, refresh, and preference.
+- **UI**: Project section, showcase, filter bar, pagination.
 
-*   Website: [www.trahoangdev.me](https://www.trahoangdev.me)
-*   GitHub: [@trahoangdev](https://github.com/trahoangdev)
-*   LinkedIn: [Tra Hoang](https://www.linkedin.com/in/trahoangdev)
-*   Email: [trahoang.dev@gmail.com](mailto:trahoang.dev@gmail.com)
+Supported data sources:
+
+- GitHub repositories
+- Hugging Face models
+- Hugging Face spaces
+
+### Visitor counter
+
+The visitor counter uses Upstash Redis:
+
+- `GET /api/visitor`: reads total visit count.
+- `POST /api/visitor`: increments visit count using Redis atomic `INCR`.
+- Rate limiting uses Redis keys with TTL, better suited for serverless/edge runtime.
+- When Redis is not configured, the API returns `available: false` so the UI doesn't display incorrect numbers.
+
+## System Requirements
+
+- **Node.js**: recommended Node.js 20+
+- **Package manager**: npm
+- **Deployment**: Vercel or environment supporting Next.js 16
+
+## Scripts
+
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Run Next.js development server |
+| `npm run build` | Build production |
+| `npm run start` | Run production server after build |
+| `npm run lint` | Run ESLint |
+| `npm run type-check` | Type-check using `tsc --noEmit` |
+| `npm run test` | Run all tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Run tests with coverage |
+| `npm run test:ci` | Run tests in CI mode |
+
+## Testing and Quality
+
+Commands to run before commit/deploy:
+
+```bash
+npm run type-check
+npm run lint
+npm run test
+npm run build
+```
+
+Latest test status:
+
+```text
+Test Suites: 18 passed, 18 total
+Tests: 181 passed, 181 total
+```
+
+## SEO, RSS and Metadata
+
+SEO configuration is in `src/app/layout.tsx` with schemas in `src/lib/schema`.
+
+- Production metadata base: `https://www.trahoangdev.me`
+- Open Graph image: `/og-image.png`
+- RSS feed: `https://www.trahoangdev.me/feed.xml`
+- Sitemap: `/sitemap.xml`
+- Robots: `/robots.txt`
+- Schema.org: Person, Article, Breadcrumb
+
+## Security
+
+Security headers are configured in `next.config.ts`, including:
+
+- `Strict-Transport-Security`
+- `X-Frame-Options`
+- `X-Content-Type-Options`
+- `X-XSS-Protection`
+- `Referrer-Policy`
+- `Permissions-Policy`
+- `Cross-Origin-Embedder-Policy`
+- `Cross-Origin-Opener-Policy`
+- `Cross-Origin-Resource-Policy`
+- `Content-Security-Policy`
+
+## License
+
+This project is licensed under **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
+
+See details at [LICENSE](LICENSE).
+
+## Author
+
+**Tra Hoang Trong (`trahoangdev`)**
+
+- **Website**: [www.trahoangdev.me](https://www.trahoangdev.me)
+- **GitHub**: [@trahoangdev](https://github.com/trahoangdev)
+- **LinkedIn**: [Tra Hoang](https://www.linkedin.com/in/trahoangdev)
+- **Email**: [trahoangdev@gmail.com](mailto:trahoangdev@gmail.com)
 
 ---
 
-*“Code is like humor. When you have to explain it, it’s bad.” – Cory House*
+> "Simplicity is the ultimate sophistication." — Leonardo da Vinci

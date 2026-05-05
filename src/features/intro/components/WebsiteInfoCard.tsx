@@ -4,14 +4,24 @@ import { Eye, Globe, Code } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export function WebsiteInfoCard() {
-  const [visitorCount, setVisitorCount] = useState<number>(0);
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const trackVisitor = async () => {
       const parseVisitors = (data: unknown) => {
-        const total = Number((data as { total?: number; count?: number })?.total ?? (data as { total?: number; count?: number })?.count ?? 0);
-        return Number.isFinite(total) ? total : 0;
+        const payload = data as {
+          total?: number | null;
+          count?: number | null;
+          available?: boolean;
+        };
+
+        if (payload?.available === false) {
+          return null;
+        }
+
+        const total = Number(payload?.total ?? payload?.count);
+        return Number.isFinite(total) ? total : null;
       };
 
       const requestCount = async (options?: RequestInit) => {
@@ -36,7 +46,7 @@ export function WebsiteInfoCard() {
       }
 
       const fallback = await requestCount();
-      setVisitorCount(fallback ?? 0);
+      setVisitorCount(fallback);
       setLoading(false);
     };
 
@@ -65,6 +75,8 @@ export function WebsiteInfoCard() {
               <div className="text-lg font-bold">
                 {loading ? (
                   <div className="h-5 w-12 bg-muted rounded animate-pulse" />
+                ) : visitorCount === null ? (
+                  <span className="text-sm text-muted-foreground">Unavailable</span>
                 ) : (
                   visitorCount.toLocaleString()
                 )}
