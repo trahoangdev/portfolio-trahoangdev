@@ -30,19 +30,22 @@ const SITE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    default: 'Tra Hoang Trong (Hoàng Trọng Trà) (trahoangdev) - Software Engineer',
     template: '%s | trahoangdev',
   },
   description: 'Software Engineer specializing in building exceptional digital experiences. Focused on accessible, human-centered products.',
   keywords: ['Software Engineer', 'Frontend Developer', 'React', 'Next.js', 'TypeScript', 'Portfolio'],
   // authors: [{ name: 'Hoàng Trọng Trà', url: 'https://trahoangdev.vercel.app' }],
-  authors: [{ name: 'Hoàng Trọng Trà', url: 'https://www.trahoangdev.me/' }],
-  creator: 'Hoàng Trọng Trà',
+  authors: [
+    { name: 'Tra Hoang Trong', url: 'https://www.trahoangdev.me/' },
+    { name: 'Hoàng Trọng Trà', url: 'https://www.trahoangdev.me/' },
+  ],
+  creator: 'Tra Hoang Trong',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: PRODUCTION_SITE_URL,
-    title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    title: 'Tra Hoang Trong (Hoàng Trọng Trà) (trahoangdev) - Software Engineer',
     description: 'Software Engineer specializing in building exceptional digital experiences.',
     siteName: 'trahoangdev',
     images: [
@@ -56,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hoàng Trọng Trà (trahoangdev) - Software Engineer',
+    title: 'Tra Hoang Trong (Hoàng Trọng Trà) (trahoangdev) - Software Engineer',
     description: 'Software Engineer specializing in building exceptional digital experiences.',
     images: [`${PRODUCTION_SITE_URL}/og-image.png`],
     creator: '@trahoangdev',
