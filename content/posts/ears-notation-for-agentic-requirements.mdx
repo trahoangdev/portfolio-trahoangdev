@@ -1,0 +1,83 @@
+---
+title: 'EARS notation: writing requirements so AI doesn’t guess'
+excerpt: 'EARS turns fuzzy ideas into testable requirements—especially useful when you rely on agents to implement features.'
+date: '2026-05-09'
+author: 'Tra Hoang Trong'
+tags: ['Requirements', 'EARS', 'AI Agents', 'Spec-Driven']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Make requirements testable'
+---
+
+# EARS notation: writing requirements so AI doesn’t guess
+
+AI coding is at its best when you give it **clear constraints**. When requirements are vague, an agent will fill in the blanks with assumptions—leading to bugs, UX mismatch, or scope creep.
+
+Kiro emphasizes this by turning prompts into requirements using **EARS notation**.
+Reference: [EARS requirements in Kiro specs](https://kiro.dev/docs/specs/feature-specs/#requirements-with-ears-notation).
+
+## 1) What is EARS?
+
+EARS (Easy Approach to Requirements Syntax) is a template-based way to write requirements so they are:
+
+- Easy for humans to read
+- Easier for agents to parse/execute
+- Straightforward to convert into tests/acceptance criteria
+
+Think of it as an intermediate language between intent and an executable spec.
+
+## 2) Five patterns you’ll actually use
+
+You don’t need to memorize everything—these few patterns go a long way.
+
+### Ubiquitous (always true)
+
+> **The system shall** …
+
+Example:
+
+- The system shall persist featured project IDs in local storage.
+
+### Event‑driven
+
+> **When** <event>, **the system shall** …
+
+- When the user clicks “Generate notes”, the system shall show a loading state.
+
+### State‑driven
+
+> **While** <state>, **the system shall** …
+
+- While the websocket is connecting, the system shall disable the “Start listening” button.
+
+### Optional features
+
+> **Where** <feature is enabled>, **the system shall** …
+
+- Where “Live Assist” is enabled, the system shall produce micro‑summaries per final segment.
+
+### Unwanted behavior (guard rails)
+
+> **If** <condition>, **the system shall** …
+
+- If the transcript is empty, the system shall not call the LLM endpoint.
+
+## 3) From EARS to acceptance criteria
+
+You can convert each EARS statement into a simple pass/fail checklist:
+
+- Given: transcript empty
+- When: click Generate notes
+- Then: no network call + show hint UI
+
+This is the key advantage: the agent doesn’t just implement—it also knows how to **prove correctness**.
+
+## 4) Tips for writing agent-friendly requirements
+
+- Include **units** (ms, bytes, page size, limits…)
+- Avoid fuzzy words like “fast” or “smooth” without a target
+- Separate requirements by concerns: data, UI, error handling, telemetry
+
+## Closing
+
+EARS isn’t bureaucracy—it’s ambiguity reduction. The more you rely on agents, the more you’ll feel it: *better requirements = less debugging*.
+

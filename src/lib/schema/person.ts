@@ -7,6 +7,7 @@ export interface PersonSchema {
   '@context': string;
   '@type': string;
   name: string;
+  alternateName?: string | string[];
   jobTitle: string;
   url: string;
   sameAs: string[];
@@ -29,7 +30,8 @@ export function getPersonSchema(): PersonSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Hoàng Trọng Trà',
+    name: 'Tra Hoang Trong',
+    alternateName: ['Hoàng Trọng Trà', 'Tra Hoang Trong'],
     jobTitle: 'Software Engineer',
     url: baseUrl,
     sameAs: [

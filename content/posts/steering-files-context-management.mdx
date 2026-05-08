@@ -1,0 +1,66 @@
+---
+title: 'Steering files and context management: teaching agents your “house style”'
+excerpt: 'Steering helps you define rules, style, and workflows so agents follow your team’s conventions instead of inventing their own.'
+date: '2026-05-10'
+author: 'Tra Hoang Trong'
+tags: ['AI Agents', 'Context', 'Workflow', 'Engineering']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Teach the agent your rules'
+---
+
+# Steering files and context management: teaching agents your “house style”
+
+A common issue with AI/agents is inconsistency: the same prompt can produce different styles or decisions each time. You fix it once, then you have to repeat yourself again. That’s “prompt debt.”
+
+Kiro addresses this with **steering** and **context management**:
+
+- [Steering](https://kiro.dev/docs/steering/)
+- [Context management in chat](https://kiro.dev/docs/chat/#context-management)
+
+## 1) What are steering files for?
+
+Think of steering files as “team conventions” written down as files:
+
+- Coding style (naming, folder structure)
+- Testing expectations
+- Preferred libraries/patterns
+- Release checklist
+- “Don’ts” (e.g., don’t change the API contract)
+
+Instead of reminding the agent every time, you encode it into the repo.
+
+## 2) Context management: less, but correct
+
+Agents are stronger with context, but too much context can:
+
+- waste tokens
+- distract the agent
+
+Kiro aims for “smart context management” (the right pieces at the right time). A practical set of rules you can apply:
+
+- **Prefer sources of truth**: types, interfaces, internal docs
+- **Keep specs near code**: feature specs next to the module
+- **Avoid duplication**: each rule lives in one place
+
+## 3) A simple steering template for a Next.js portfolio
+
+You can express rules like this (tool-agnostic):
+
+- **UI**: Tailwind + `cn`, minimize inline styles
+- **Data**: server actions should not throw into the UI; always return a safe fallback
+- **Blog**: MDX must include `title/excerpt/date/author/tags` frontmatter
+- **Images**: prefer local assets under `public/` to avoid 404s/blocked remotes
+
+The idea is to make the agent match your “house style” from the start.
+
+## 4) Why this matters
+
+The more you automate with agents, the more you need rails:
+
+- With rails → agents move faster with fewer mistakes
+- Without rails → agents generate fast, but you pay the cost in review and rework
+
+## Closing
+
+Steering doesn’t slow you down—it prevents repetition. Once your workflow stabilizes, an agent starts to feel like a teammate who has actually read your `CONTRIBUTING.md`.
+

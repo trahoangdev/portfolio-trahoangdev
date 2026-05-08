@@ -287,9 +287,9 @@ export function ProjectExplorer() {
         {error ? <p className="text-sm text-destructive">{error}</p> : null}
       </header>
 
-      <ToolStackShowcase groups={toolGroups} />
-
       <PersonalProjectsShowcase />
+
+      <ToolStackShowcase groups={toolGroups} />
 
       {/* <div ref={projectGridRef} className="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
         <ProjectFilterPanel

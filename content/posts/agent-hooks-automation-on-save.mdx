@@ -1,0 +1,65 @@
+---
+title: 'Agent hooks: automate the small things you always forget'
+excerpt: 'Event-driven hooks (like on file save) can run docs/tests/formatting automatically—keeping your PRs merge-ready.'
+date: '2026-05-11'
+author: 'Tra Hoang Trong'
+tags: ['Automation', 'AI Agents', 'Testing', 'Developer Experience']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'Automate the boring parts'
+---
+
+# Agent hooks: automate the small things you always forget
+
+Everyone has:
+
+- forgotten to update docs after changing an API
+- forgotten to run tests
+- forgotten to format/lint before committing
+
+Then the PR turns red, CI fails, or a teammate has to remind you.
+
+Kiro introduces **agent hooks**: agents trigger on events (like file save) so the “small stuff” becomes the default.
+References: [Hooks overview](https://kiro.dev/docs/hooks/) and [hook types](https://kiro.dev/docs/hooks/types/).
+
+## 1) What problem do hooks solve?
+
+Hooks aren’t meant to “code everything for you.” They’re meant to:
+
+- ensure standards are consistently applied
+- reduce cognitive load
+- make repetitive workflows reliable
+
+You still review outputs—you just don’t have to remember to do the steps.
+
+## 2) The highest-leverage hooks
+
+In a Next.js/TypeScript repo, I prioritize:
+
+- **On save**: run formatter / ESLint fixes (lightweight)
+- **On save**: update snapshot tests (if used) or suggest relevant test scope
+- **On PR prep**: generate changelog / PR summary
+- **On content update** (blog): validate frontmatter, check broken links, estimate reading time
+
+## 3) Safe automation principles
+
+Automate—but keep it safe:
+
+- auto-fix only deterministic changes (formatting, import ordering)
+- changes with side effects (refactors, dependency bumps) should require confirmation
+- always log output clearly so rollbacks are easy
+
+## 4) Apply this immediately to the blog in this repo
+
+For an MDX blog, a practical hook could:
+
+- detect new files in `content/posts/*.mdx`
+- validate required frontmatter
+- enforce `YYYY-MM-DD` date formatting
+- warn if the excerpt is too long or tags are missing
+
+The goal: publish posts without debugging builds because of missing fields.
+
+## Closing
+
+Hooks move agents from “respond on demand” to “actively maintain the repo,” so you can focus on what matters: product quality and user experience.
+

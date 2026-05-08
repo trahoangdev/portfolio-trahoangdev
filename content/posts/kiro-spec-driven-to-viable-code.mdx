@@ -1,0 +1,81 @@
+---
+title: 'Kiro and Spec-Driven Development: from vibe coding to viable code'
+excerpt: 'Kiro turns prompts into EARS-style requirements, designs, and task plans—helping you move from “ideas” to shippable, verifiable code.'
+date: '2026-05-08'
+author: 'Tra Hoang Trong'
+tags: ['AI Agents', 'Spec-Driven', 'Productivity', 'Engineering']
+coverImage: '/portrait.jpg'
+coverImageCaption: 'From intent to implementation'
+---
+
+# Kiro and Spec-Driven Development: from vibe coding to viable code
+
+If you’ve ever “vibe coded” (ship fast with AI, then patch until it runs), you’ve likely hit the same wall: **lack of structure**. As the project grows, nobody is fully sure:
+
+- What was the original intent?
+- Which constraints are non-negotiable?
+- What’s done, what’s missing?
+- What needs to be tested?
+
+Kiro positions itself clearly: *“Bring engineering rigor to agentic development”*—adding engineering discipline to agentic coding. Its core idea is **spec-driven development**: turning conversations into specs you can actually execute and validate.
+
+Sources: [Kiro homepage](https://kiro.dev/) and the docs on [specs](https://kiro.dev/docs/specs/).
+
+## 1) A key shift: a prompt is not a requirement
+
+Prompts are often vague:
+
+> “Make /project look better and filtering faster.”
+
+Requirements must be *verifiable*:
+
+- When selecting tag A, only projects with tag A are shown.
+- Pagination resets to page 1 when filters change.
+- Do not re-fetch data when only changing pages.
+
+Kiro tries to pull you out of “hope-driven development” by transforming prompts into requirements and acceptance criteria, then bridging into design and tasks.
+
+## 2) EARS requirements: small, but powerful
+
+Kiro uses [EARS notation](https://kiro.dev/docs/specs/feature-specs/#requirements-with-ears-notation) to force clarity.
+
+Examples (illustrative):
+
+- **When** user selects a tag, **the system shall** update the visible list within 200ms.
+- **If** there are no matches, **the system shall** show an empty-state message.
+
+You don’t have to be “perfect EARS,” but this style helps both humans and agents align on what “done” means.
+
+## 3) Architecture before code
+
+Kiro describes a flow like:
+
+- Prompt → requirements/acceptance criteria
+- Requirements → architecture/design
+- Design → task plan (sequenced by dependencies)
+
+The goal is to replace “code to understand” with “understand to code.” For larger systems, this ordering usually accelerates delivery over the long run.
+
+## 4) A task plan is the rail system
+
+A good task plan usually includes:
+
+- Clear scope (which files/modules)
+- Dependencies (what must be done first)
+- Validation (how you know it’s correct)
+
+Kiro calls this “discrete tasks that map to requirements” in the docs on [task execution](https://kiro.dev/docs/specs/#task-execution).
+
+## 5) A lightweight way to apply this today
+
+If you want the spec-driven benefits (even without Kiro), try this minimal loop:
+
+- Write 5–10 bullet requirements using “shall/must”
+- Write 3 pass/fail acceptance criteria
+- Create a dependency-ordered task list (UI → data → tests)
+- Implement tasks and validate against the acceptance criteria
+
+## Closing
+
+Kiro isn’t just “a faster code generator.” It’s a way of working where **intent becomes a spec first**, and code is the implementation of that spec. If you’re scaling from a small portfolio project to something real, it’s a mindset worth trying.
+
