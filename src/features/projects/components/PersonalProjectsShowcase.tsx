@@ -8,11 +8,41 @@ import { BsPuzzleFill } from 'react-icons/bs';
 
 const PERSONAL_PROJECTS = [
     {
+        id: 'valsea-classroom-copilot',
+        title: 'VALSEA Classroom Copilot',
+        description:
+            'Speech-first classroom copilot for Vietnamese–English code-switching lectures. Realtime mic → VALSEA ASR → structured notes, key terms, English recap, quizzes, exports, and session history.',
+        repo: 'https://github.com/trahoangdev/valsea-classroom-copilot',
+        demo: 'https://valsea-classroom-copilot.vercel.app',
+        tags: [
+            'Next.js',
+            'TypeScript',
+            'Fastify',
+            'WebSocket',
+            'Realtime ASR',
+            'VALSEA',
+            'Supabase (optional)',
+        ],
+        isMaintenance: false,
+        members: 1,
+        image: '/projects/valsea-classroom-copilot.png',
+        gradient: 'from-emerald-500/20 via-cyan-500/20 to-blue-500/20',
+    },
+    {
         id: 'taikhoanxin',
         title: 'TAIKHOANXIN',
         description:
-            'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
-        repo: '',
+            'Affordable licensed accounts with a fast, streamlined marketplace experience focused on reliability and convenience.',
+        repos: [
+            {
+                label: 'Admin',
+                url: 'https://github.com/trahoangdev/client-admin-taikhoanxin',
+            },
+            {
+                label: 'Client',
+                url: 'https://github.com/trahoangdev/client-taikhoanxin',
+            },
+        ],
         demo: 'https://taikhoanxin.com',
         tags: [
             'Next.js 14', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'SCSS', 'Redux Toolkit', ' Redux Persist', 'Axios', 'SWR',
@@ -127,16 +157,28 @@ export function PersonalProjectsShowcase() {
                             </div>
 
                             <div className="flex flex-wrap items-center gap-3">
-                                {project.repo ? (
-                                    <Link
-                                        href={project.repo}
-                                        target="_blank"
-                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
-                                    >
-                                        <span>REPO</span>
-                                        <FaGithub className="h-4 w-4" />
-                                    </Link>
-                                ) : null}
+                                {project.repos && project.repos.length > 0
+                                    ? project.repos.map((repo) => (
+                                        <Link
+                                            key={repo.url}
+                                            href={repo.url}
+                                            target="_blank"
+                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                        >
+                                            <span>REPO {repo.label}</span>
+                                            <FaGithub className="h-4 w-4" />
+                                        </Link>
+                                    ))
+                                    : project.repo ? (
+                                        <Link
+                                            href={project.repo}
+                                            target="_blank"
+                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                        >
+                                            <span>REPO</span>
+                                            <FaGithub className="h-4 w-4" />
+                                        </Link>
+                                    ) : null}
                                 {project.demo ? (
                                     <Link
                                         href={project.demo}

@@ -11,8 +11,8 @@ export async function GET() {
     <description>Software Engineer specializing in building exceptional digital experiences. Focused on accessible, human-centered products.</description>
     <link>${baseUrl}</link>
     <language>en-US</language>
-    <managingEditor>trahoang.dev@gmail.com (Tra Hoang Trong)</managingEditor>
-    <webMaster>trahoang.dev@gmail.com (Tra Hoang Trong)</webMaster>
+    <managingEditor>trahoangdev@gmail.com (Tra Hoang Trong)</managingEditor>
+    <webMaster>trahoangdev@gmail.com (Tra Hoang Trong)</webMaster>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
@@ -28,7 +28,7 @@ export async function GET() {
       <link>${baseUrl}/blog/${post.slug}</link>
       <guid isPermaLink="true">${baseUrl}/blog/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <author>trahoang.dev@gmail.com (${post.author || 'Tra Hoang Trong'})</author>
+      <author>trahoangdev@gmail.com (${post.author || 'Tra Hoang Trong'})</author>
       ${post.tags?.map((tag) => `<category><![CDATA[${tag}]]></category>`).join('\n      ') || ''}
     </item>`
       )

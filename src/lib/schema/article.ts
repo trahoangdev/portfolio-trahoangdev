@@ -47,7 +47,7 @@ export function getArticleSchema({
   datePublished,
   dateModified,
   slug,
-  author = 'Hoàng Trọng Trà',
+  author = 'Tra Hoang Trong (Hoàng Trọng Trà)',
 }: ArticleSchemaProps): ArticleSchema {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
   const url = `${baseUrl}/blog/${slug}`;

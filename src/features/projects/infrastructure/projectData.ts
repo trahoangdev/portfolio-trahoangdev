@@ -13,6 +13,18 @@ export interface ProjectRecord {
 
 export const PROJECT_DATA: ProjectRecord[] = [
   {
+    id: 'valsea-classroom-copilot',
+    title: 'VALSEA Classroom Copilot',
+    summary:
+      'Speech-first classroom copilot for Vietnamese–English code-switching lectures. Streams realtime mic audio to VALSEA ASR, then turns transcripts into structured learning material: Vietnamese summary, key terms, English recap, quizzes, exports, and session history.',
+    date: 'May 2026',
+    categories: ['EdTech', 'AI', 'Real-time'],
+    languages: ['Next.js', 'TypeScript', 'Fastify', 'WebSocket', 'VALSEA ASR', 'Supabase'],
+    link: 'https://valsea-classroom-copilot.vercel.app',
+    image: '/projects/valsea-classroom-copilot.png',
+    demoImages: ['/projects/valsea-classroom-copilot.png'],
+  },
+  {
     id: 'taikhoanxin',
     title: 'TAIKHOANXIN',
     summary:

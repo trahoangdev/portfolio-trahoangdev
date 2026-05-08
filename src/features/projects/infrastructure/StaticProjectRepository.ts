@@ -16,6 +16,8 @@ export class StaticProjectRepository implements ProjectRepository {
           languages: record.languages,
           link: record.link,
           image: record.image,
+          featured: record.featured,
+          demoImages: record.demoImages,
         })
     );
 

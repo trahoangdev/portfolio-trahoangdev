@@ -48,12 +48,12 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                             </div>
 
                             <p className="text-muted-foreground text-lg leading-relaxed">
-                                A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.
+                                Affordable licensed accounts with a fast, streamlined marketplace experience focused on reliability and convenience.
                             </p>
                         </div>
 
                         <div className="flex flex-wrap gap-2">
-                            {['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'SCSS', 'Redux Toolkit', ' Redux Persist', 'Axios', 'SWR'].map((tag) => (
+                            {['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Ant Design', 'SCSS', 'Redux Toolkit', 'Redux Persist', 'Axios', 'SWR'].map((tag) => (
                                 <span
                                     key={tag}
                                     className="px-3 py-1 bg-muted/50 text-muted-foreground text-xs font-mono border border-border/50 rounded-md"
@@ -63,18 +63,37 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                             ))}
                         </div>
 
-                        <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
                             <Link
                                 href="https://taikhoanxin.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto px-6 sm:px-8 py-3 min-h-[44px] bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 aria-label="Visit TAIKHOANXIN now (opens in new tab)"
                             >
                                 Production
                                 <FaExternalLinkAlt className="h-3 w-3" aria-hidden="true" />
                             </Link>
-                            {/* Repo button hidden as repo is private in data */}
+                            {/* <Link
+                                href="https://github.com/trahoangdev/client-admin-taikhoanxin"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                aria-label="Open Admin repo (opens in new tab)"
+                            >
+                                Admin Repo
+                                <FaGithub className="h-4 w-4" aria-hidden="true" />
+                            </Link> */}
+                            <Link
+                                href="https://github.com/trahoangdev/client-taikhoanxin"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                aria-label="Open Client repo (opens in new tab)"
+                            >
+                                Client Repo
+                                <FaGithub className="h-4 w-4" aria-hidden="true" />
+                            </Link>
                         </div>
                     </div>
 
