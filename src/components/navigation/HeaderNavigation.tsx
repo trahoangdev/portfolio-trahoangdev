@@ -21,6 +21,11 @@ const NAV_ITEMS: NavItem[] = [
     isActive: (pathname) => pathname === '/experience',
   },
   {
+    label: 'Honors',
+    href: '/honors-awards',
+    isActive: (pathname) => pathname === '/honors-awards',
+  },
+  {
     label: 'Tools & Projects',
     href: '/project',
     isActive: (pathname) => pathname === '/project',
@@ -117,7 +122,7 @@ export function HeaderNavigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-6">
+        <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-6">
           {NAV_ITEMS.map((item) => {
             const active = item.isActive(pathname);
             const isExternal = item.href.startsWith('http');
@@ -144,7 +149,7 @@ export function HeaderNavigation() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+          className="lg:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
@@ -162,7 +167,7 @@ export function HeaderNavigation() {
       <div
         id="mobile-menu"
         className={cn(
-          'fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md transition-all duration-500 md:hidden',
+          'fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md transition-all duration-500 lg:hidden',
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
