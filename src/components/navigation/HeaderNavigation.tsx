@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
+//import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
 import { SCROLL_THRESHOLD, THROTTLE_MS } from '@/lib/constants/ui';
 interface NavItem {
   label: string;
@@ -122,7 +122,7 @@ export function HeaderNavigation() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-6">
+        <nav aria-label="Main navigation" className="flex max-lg:hidden items-center gap-6">
           {NAV_ITEMS.map((item) => {
             const active = item.isActive(pathname);
             const isExternal = item.href.startsWith('http');
@@ -149,7 +149,7 @@ export function HeaderNavigation() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+          className="flex lg:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}

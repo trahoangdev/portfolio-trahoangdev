@@ -7,6 +7,22 @@ export interface Experience {
 }
 
 export const EXPERIENCES: Experience[] = [
+  {
+    year: 'June. 2026 PRESENT',
+    role: 'AMBASSADOR',
+    company: 'GENAI FUND',
+    description: 'Ambassador for Agentic AI Build Week, a global initiative by GenAI Fund to empower developers in building autonomous agents. Engaging with the community, sharing insights, and fostering innovation in the rapidly evolving landscape of AI agents.',
+    tech: [],
+    //tech: ['AWS', 'Cloud Architecture', 'AI/ML', 'DevOps', 'Data Engineering'],
+  },
+  {
+    year: `May. 2026 PRESENT`,
+    role: 'AMBASSADOR',
+    company: 'VALSEA',
+    description: 'Participated in building and experimenting with speech AI and real-time communication applications. Explored use cases around speech recognition, accented speech, mixed-language transcription, and workflow automation.',
+    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
+    tech: [],
+  },
   // {
   //   year: `PRESENT`,
   //   role: 'FREELANCER',
