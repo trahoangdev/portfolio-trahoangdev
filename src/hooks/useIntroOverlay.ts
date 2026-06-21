@@ -45,8 +45,21 @@ export function useIntroOverlay(options: IntroOverlayOptions = {}): IntroOverlay
     startVisible = true,
   } = options;
 
-  const [isVisible, setIsVisible] = useState(startVisible);
-  const [shouldRender, setShouldRender] = useState(startVisible);
+  const [isVisible, setIsVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    if (!startVisible) return;
+
+    if (typeof window !== 'undefined') {
+      const hasShown = sessionStorage.getItem('portfolio-intro-shown');
+      if (!hasShown) {
+        setShouldRender(true);
+        setIsVisible(true);
+        sessionStorage.setItem('portfolio-intro-shown', 'true');
+      }
+    }
+  }, [startVisible]);
 
   const exitTimeoutRef = useRef<number | null>(null);
   const autoCloseTimeoutRef = useRef<number | null>(null);

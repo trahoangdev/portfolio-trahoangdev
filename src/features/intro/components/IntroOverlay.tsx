@@ -227,10 +227,10 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black text-white transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${overlayOpacityClass}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xl text-white transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${overlayOpacityClass}`}
       role="presentation"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.05)_0%,_rgba(0,0,0,0.95)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03)_0%,_rgba(0,0,0,0.6)_100%)]" />
 
       <div className="relative z-10 flex flex-col items-center gap-10 px-6 text-center">
         {showWindow ? (
@@ -243,14 +243,14 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
         ) : null}
 
         {phase === 'hero' || phase === 'fadeOut' ? (
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-2 sm:gap-4">
             <span
-              className="text-5xl font-black uppercase tracking-[0.4em]"
+              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.15em] sm:tracking-[0.4em] leading-none block"
               style={{ animation: 'matrixFloat 2s ease-in-out infinite' }}
             >
               {heroTitle}
             </span>
-            <span className="text-xs font-semibold uppercase tracking-[0.5em] text-muted-foreground/70">
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.5em] text-purple-400/90">
               Entering the Matrix
             </span>
           </div>
