@@ -239,6 +239,17 @@ export function PersonalProjectsShowcase() {
                     </div>
                 ))}
             </div>
+
+            <div className="flex justify-center pt-4">
+                <Link
+                    href="https://github.com/trahoangdev"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 rounded-xl border border-dashed border-border/80 bg-background/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] font-mono transition-all duration-300 hover:border-solid hover:border-foreground hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                >
+                    <span>More Projects on GitHub</span>
+                    <FaGithub className="h-5 w-5" />
+                </Link>
+            </div>
         </section>
     );
 }
