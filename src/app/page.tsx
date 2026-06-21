@@ -8,8 +8,6 @@ import { useIntroOverlay } from '@/hooks/useIntroOverlay';
 import { SectionNavigation } from '@/components/navigation/SectionNavigation';
 import { IntroOverlay } from '@/features/intro/components/IntroOverlay';
 import { IntroSection } from '@/features/intro/components/IntroSection';
-import { WorkSection } from '@/components/work/WorkSection';
-import { ProjectSection } from '@/features/projects/components/ProjectSection';
 import { ConnectSection } from '@/components/connect/ConnectSection';
 import { FeaturedWork } from '@/components/home/FeaturedWork';
 import { Philosophy } from '@/components/home/Philosophy';
@@ -20,7 +18,7 @@ import { trackThemeChanged } from '@/lib/analytics';
 export default function Home() {
   const { isDark, toggleTheme, mounted } = useTheme();
   const { activeSection, registerSection } = useIntersectionObserver();
-  const introOverlay = useIntroOverlay();
+  const introOverlay = useIntroOverlay({ autoCloseDelayMs: 10000 });
   const shouldShowNavigation = activeSection !== '' && activeSection !== 'intro';
 
   useEffect(() => {
@@ -71,6 +69,8 @@ export default function Home() {
     <div className="min-h-screen text-foreground relative overflow-x-hidden">
 
       <SectionNavigation activeSection={activeSection} isVisible={shouldShowNavigation} />
+
+      <IntroOverlay title="Tra Hoang Dev" controller={introOverlay} />
 
       <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
         <IntroSection sectionRef={registerSection('intro')} />
