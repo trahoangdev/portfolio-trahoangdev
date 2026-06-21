@@ -243,14 +243,14 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
         ) : null}
 
         {phase === 'hero' || phase === 'fadeOut' ? (
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-2 sm:gap-4">
             <span
-              className="text-5xl font-black uppercase tracking-[0.4em]"
+              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.15em] sm:tracking-[0.4em] leading-none block"
               style={{ animation: 'matrixFloat 2s ease-in-out infinite' }}
             >
               {heroTitle}
             </span>
-            <span className="text-xs font-semibold uppercase tracking-[0.5em] text-purple-400/90">
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.5em] text-purple-400/90">
               Entering the Matrix
             </span>
           </div>
