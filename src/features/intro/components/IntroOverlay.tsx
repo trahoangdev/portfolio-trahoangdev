@@ -239,19 +239,20 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
             targetLines={displayLines}
             typedLines={typedLines}
             activeLineIndex={activeLineIndex}
+            onClose={controller.dismiss}
           />
         ) : null}
 
         {phase === 'hero' || phase === 'fadeOut' ? (
           <div className="flex flex-col items-center gap-2 sm:gap-4">
             <span
-              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.15em] sm:tracking-[0.4em] leading-none block"
+              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.08em] sm:tracking-[0.16em] leading-none block"
               style={{ animation: 'matrixFloat 2s ease-in-out infinite' }}
             >
               {heroTitle}
             </span>
-            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.5em] text-purple-400/90">
-              Entering the Matrix
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.3em] text-purple-400/90">
+              ENTERING THE MATRIX
             </span>
           </div>
         ) : null}

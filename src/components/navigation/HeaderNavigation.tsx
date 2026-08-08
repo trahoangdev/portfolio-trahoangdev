@@ -21,12 +21,7 @@ const NAV_ITEMS: NavItem[] = [
     isActive: (pathname) => pathname === '/experience',
   },
   {
-    label: 'Honors',
-    href: '/honors-awards',
-    isActive: (pathname) => pathname === '/honors-awards',
-  },
-  {
-    label: 'Tools & Projects',
+    label: 'Skills & Projects',
     href: '/project',
     isActive: (pathname) => pathname === '/project',
   },
@@ -39,11 +34,6 @@ const NAV_ITEMS: NavItem[] = [
     label: 'Blog',
     href: '/blog',
     isActive: (pathname) => pathname === '/blog' || pathname.startsWith('/blog/'),
-  },
-  {
-    label: 'Uses',
-    href: '/uses',
-    isActive: (pathname) => pathname === '/uses',
   },
   // {
   //   label: 'Resume',

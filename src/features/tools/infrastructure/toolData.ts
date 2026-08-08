@@ -56,13 +56,13 @@ export const TOOL_DATA: ToolRecord[] = [
     category: 'Backend',
     description: 'Minimal and flexible Node.js web framework for APIs and middleware.',
   },
-  // {
-  //   id: 'nestjs',
-  //   name: 'NestJS',
-  //   techId: 'nestjs',
-  //   category: 'Backend',
-  //   description: 'Progressive framework for scalable, enterprise-grade server-side apps.',
-  // },
+  {
+    id: 'nestjs',
+    name: 'NestJS',
+    techId: 'nestjs',
+    category: 'Backend',
+    description: 'Progressive framework for scalable, enterprise-grade server-side apps.',
+  },
   // {
   //   id: 'fastapi',
   //   name: 'FastAPI',

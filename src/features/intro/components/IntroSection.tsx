@@ -77,7 +77,7 @@ export function IntroSection({
                 TRA HOANG DEV
               </h1>
               <div className="text-lg font-medium">
-                Software Engineer | Content Creator | Cloud Engineer
+                Software Engineer | AI Engineer | Cloud Engineer
               </div>
               <div className="text-sm text-muted-foreground">
                 Writing code that thinks, designing interfaces that feel. Let's break the loop.
@@ -159,7 +159,7 @@ export function IntroSection({
     before:absolute before:-bottom-1 before:left-0 before:w-0 before:h-[2px] before:bg-yellow-400
     before:transition-all before:duration-500 group-hover:before:w-full`}
                 >
-                  Lucas (Tra Hoang Trong)
+                  Tra
                 </span>
                 . You've just warped into my digital headquarters. It's awesome to have you here! Whether you're looking to crack the code on a new project, explore the frontiers of AI, or just hang out and talk tech — you've found your crew. Relax, explore, and let's build the future together. Stay distinctive. Stay true.
               </p>
@@ -244,13 +244,13 @@ export function IntroSection({
               <div className="text-2xl font-black tracking-tighter uppercase relative">
                 {/* Glitch effect layers */}
                 <span className="relative z-10 block group-hover:-translate-y-1 transition-transform duration-300">
-                  Lucas Hoang
+                  Hoàng Trọng Trà
                 </span>
                 <div className="absolute inset-0 text-red-500 opacity-0 group-hover:opacity-70 group-hover:translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
-                  Lucas Hoang
+                  Hoàng Trọng Trà
                 </div>
                 <div className="absolute inset-0 text-cyan-500 opacity-0 group-hover:opacity-70 group-hover:-translate-x-[2px] transition-all duration-100 mix-blend-multiply dark:mix-blend-screen -z-10">
-                  Lucas Hoang
+                  Hoàng Trọng Trà
                 </div>
               </div>
             </div>

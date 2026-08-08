@@ -70,7 +70,7 @@ export default function Home() {
 
       <SectionNavigation activeSection={activeSection} isVisible={shouldShowNavigation} />
 
-      <IntroOverlay title="Tra Hoang Dev" controller={introOverlay} />
+      <IntroOverlay title="WELCOME MY FELLOW" controller={introOverlay} />
 
       <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
         <IntroSection sectionRef={registerSection('intro')} />

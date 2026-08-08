@@ -1,6 +1,9 @@
 import { Monitor, Cpu, Code2, Headphones, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+const USES_PAGE_ENABLED = false;
 
 export const metadata: Metadata = {
     title: 'Uses',
@@ -84,6 +87,10 @@ const USES_DATA: UseCategory[] = [
 ];
 
 export default function UsesPage() {
+    if (!USES_PAGE_ENABLED) {
+        notFound();
+    }
+
     return (
         <div className="container pt-24 pb-12 md:py-24 space-y-16 max-w-4xl mx-auto px-6">
             <div className="flex flex-col items-start space-y-4 animate-in slide-in-from-bottom-5 fade-in duration-500">
