@@ -202,10 +202,10 @@ See details at [LICENSE](LICENSE).
 
 **Tra Hoang Trong (`trahoangdev`)**
 
-- **Website**: [www.trahoangdev.me](https://www.trahoangdev.me)
-- **GitHub**: [@trahoangdev](https://github.com/trahoangdev)
-- **LinkedIn**: [Tra Hoang](https://www.linkedin.com/in/trahoangdev)
-- **Email**: [trahoangdev@gmail.com](mailto:trahoangdev@gmail.com)
+*   Website: [www.trahoangdev.me](https://www.trahoangdev.me)
+*   GitHub: [@trahoangdev](https://github.com/trahoangdev)
+*   LinkedIn: [Tra Hoang](https://www.linkedin.com/in/trahoangdev)
+*   Email: [trahoang.dev@gmail.com](mailto:trahoang.dev@gmail.com)
 
 ---
 
