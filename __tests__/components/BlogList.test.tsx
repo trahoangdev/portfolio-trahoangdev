@@ -4,6 +4,10 @@ import { BlogList } from '@/features/blog/components/BlogList';
 import { BlogPostMetadata } from '@/features/blog/module/types';
 
 describe('BlogList', () => {
+  beforeEach(() => {
+    window.history.replaceState(null, '', '/blog');
+  });
+
   const mockPosts: BlogPostMetadata[] = [
     {
       slug: 'post-1',
@@ -35,7 +39,7 @@ describe('BlogList', () => {
 
   it('should render without crashing', () => {
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
-    expect(screen.getByPlaceholderText(/search articles/i)).toBeInTheDocument();
+    expect(screen.getByRole('searchbox', { name: /search the archive/i })).toBeInTheDocument();
   });
 
   it('should render all posts initially', () => {
@@ -49,7 +53,7 @@ describe('BlogList', () => {
     const user = userEvent.setup();
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
     
-    const searchInput = screen.getByPlaceholderText(/search articles/i);
+    const searchInput = screen.getByRole('searchbox', { name: /search the archive/i });
     await user.type(searchInput, 'React');
 
     expect(screen.getByText('React Server Components')).toBeInTheDocument();
@@ -69,10 +73,10 @@ describe('BlogList', () => {
     expect(screen.queryByText('Tailwind CSS Guide')).not.toBeInTheDocument();
   });
 
-  it('should show "All" button as active initially', () => {
+  it('should show "All topics" button as active initially', () => {
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
-    const allButton = screen.getByRole('button', { name: 'All' });
-    expect(allButton).toHaveClass('bg-primary');
+    const allButton = screen.getByRole('button', { name: 'All topics' });
+    expect(allButton).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('should toggle tag selection when clicking same tag twice', async () => {
@@ -81,31 +85,31 @@ describe('BlogList', () => {
     
     const reactTag = screen.getByRole('button', { name: 'React' });
     await user.click(reactTag);
-    expect(reactTag).toHaveClass('bg-primary');
+    expect(reactTag).toHaveAttribute('aria-pressed', 'true');
 
     await user.click(reactTag);
-    expect(reactTag).not.toHaveClass('bg-primary');
+    expect(reactTag).toHaveAttribute('aria-pressed', 'false');
   });
 
   it('should show empty state when no posts match', async () => {
     const user = userEvent.setup();
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
     
-    const searchInput = screen.getByPlaceholderText(/search articles/i);
+    const searchInput = screen.getByRole('searchbox', { name: /search the archive/i });
     await user.type(searchInput, 'NonExistentPost');
 
-    expect(screen.getByText(/no posts found/i)).toBeInTheDocument();
-    expect(screen.getByText(/clear all filters/i)).toBeInTheDocument();
+    expect(screen.getByText(/no matching notes/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /clear filters/i })).toBeInTheDocument();
   });
 
   it('should clear filters when clicking "Clear all filters"', async () => {
     const user = userEvent.setup();
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
     
-    const searchInput = screen.getByPlaceholderText(/search articles/i);
+    const searchInput = screen.getByRole('searchbox', { name: /search the archive/i });
     await user.type(searchInput, 'NonExistentPost');
 
-    const clearButton = screen.getByRole('button', { name: /clear all filters/i });
+    const clearButton = screen.getByRole('button', { name: /clear filters/i });
     await user.click(clearButton);
 
     expect(screen.getByText('React Server Components')).toBeInTheDocument();
@@ -124,7 +128,7 @@ describe('BlogList', () => {
     const user = userEvent.setup();
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
     
-    const searchInput = screen.getByPlaceholderText(/search articles/i);
+    const searchInput = screen.getByRole('searchbox', { name: /search the archive/i });
     await user.type(searchInput, 'Server');
 
     const reactTag = screen.getByRole('button', { name: 'React' });
@@ -138,7 +142,7 @@ describe('BlogList', () => {
     const user = userEvent.setup();
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
     
-    const searchInput = screen.getByPlaceholderText(/search articles/i);
+    const searchInput = screen.getByRole('searchbox', { name: /search the archive/i });
     await user.type(searchInput, 'react');
 
     expect(screen.getByText('React Server Components')).toBeInTheDocument();
