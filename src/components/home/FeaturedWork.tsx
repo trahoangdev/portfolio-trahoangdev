@@ -17,7 +17,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
             <div className="space-y-12">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 px-4">
                     <div className="space-y-2">
-                        <h2 className="text-sm font-mono text-[#2f78ff] tracking-[0.2em] uppercase">
+                        <h2 className="text-sm font-mono text-blue-700 dark:text-blue-300 tracking-[0.2em] uppercase">
                             Masterpiece
                         </h2>
                         <h3 className="text-3xl sm:text-5xl font-bold uppercase tracking-tighter">
@@ -34,12 +34,12 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                     </Link>
                 </div>
 
-                <div className="group relative grid lg:grid-cols-12 items-center border border-border/50 bg-background/50 backdrop-blur-sm rounded-3xl overflow-hidden p-0 sm:p-6 lg:p-0 transition-all duration-500 hover:shadow-2xl hover:border-border/80">
+                <div className="group relative grid lg:grid-cols-12 items-center border border-border/50 bg-background/50 backdrop-blur-sm rounded-3xl overflow-hidden p-0 sm:p-6 lg:p-0 transition-interface duration-500 hover:shadow-2xl hover:border-border/80">
 
                     {/* Content */}
                     <div className="lg:col-span-5 p-6 sm:p-8 md:p-10 lg:p-12 lg:pr-6 flex flex-col justify-center space-y-6 sm:space-y-8 order-2 lg:order-1 relative z-10">
                         <div className="space-y-4">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#2f78ff]/30 bg-[#2f78ff]/10 text-[#5a94ff] text-xs font-mono font-bold uppercase tracking-wide">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-700/30 bg-blue-700/10 text-blue-700 dark:border-blue-300/40 dark:bg-blue-300/10 dark:text-blue-300 text-xs font-mono font-bold uppercase tracking-wide">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#5a94ff] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2f78ff]"></span>
@@ -68,7 +68,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                                 href="https://taikhoanxin.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] bg-foreground text-background font-bold uppercase tracking-wider rounded-lg hover:scale-105 active:scale-95 transition-interface duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 aria-label="Visit TAIKHOANXIN now (opens in new tab)"
                             >
                                 Production
@@ -78,7 +78,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                                 href="https://github.com/trahoangdev/client-admin-taikhoanxin"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-interface duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 aria-label="Open Admin repo (opens in new tab)"
                             >
                                 Admin Repo
@@ -88,7 +88,7 @@ export function FeaturedWork({ sectionRef }: FeaturedWorkProps) {
                                 href="https://github.com/trahoangdev/client-taikhoanxin"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="w-full sm:w-auto whitespace-nowrap px-6 sm:px-8 py-3 min-h-[44px] border border-border bg-background font-bold uppercase tracking-wider rounded-lg hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 transition-interface duration-300 flex items-center justify-center gap-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 aria-label="Open Client repo (opens in new tab)"
                             >
                                 Client Repo

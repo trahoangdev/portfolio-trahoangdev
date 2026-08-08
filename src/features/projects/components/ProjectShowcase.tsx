@@ -103,7 +103,7 @@ export function ProjectShowcase({ projects }: ProjectShowcaseProps) {
               key={index}
               type="button"
               className={cn(
-                'h-2 rounded-full transition-all duration-300 cursor-pointer',
+                'h-2 rounded-full transition-interface duration-300 cursor-pointer',
                 index === selectedIndex
                   ? 'bg-foreground w-6'
                   : 'bg-border hover:bg-muted-foreground w-2'
@@ -130,7 +130,7 @@ function ShowcaseCard({
     <Link href={project.link || '#'} target="_blank" className="block h-full">
       <article
         className={cn(
-          'magnet-card relative h-full overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500',
+          'magnet-card relative h-full overflow-hidden rounded-3xl border border-border bg-card transition-interface duration-500',
           isActive
             ? 'scale-100 opacity-100 ring-2 ring-primary/20'
             : 'scale-95 opacity-70 hover:opacity-100'

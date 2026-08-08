@@ -16,30 +16,10 @@
   ],
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
+      "src": "/logo.png",
+      "sizes": "any",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshot-desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "form_factor": "narrow"
+      "purpose": "any"
     }
   ],
   "shortcuts": [
@@ -47,25 +27,13 @@
       "name": "View Projects",
       "short_name": "Projects",
       "description": "Browse my featured projects",
-      "url": "/#projects",
-      "icons": [
-        {
-          "src": "/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/project"
     },
     {
       "name": "Contact Me",
       "short_name": "Contact",
       "description": "Get in touch for collaboration",
-      "url": "/#contact",
-      "icons": [
-        {
-          "src": "/icon-192.png",
-          "sizes": "192x192"
-        }
-      ]
+      "url": "/#service"
     }
   ],
   "related_applications": [

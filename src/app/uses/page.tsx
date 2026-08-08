@@ -1,6 +1,8 @@
-import { Monitor, Cpu, Code2, Headphones, Terminal } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Monitor, Headphones, Terminal } from 'lucide-react';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
+const USES_PAGE_ENABLED = false;
 
 export const metadata: Metadata = {
     title: 'Uses',
@@ -84,6 +86,10 @@ const USES_DATA: UseCategory[] = [
 ];
 
 export default function UsesPage() {
+    if (!USES_PAGE_ENABLED) {
+        notFound();
+    }
+
     return (
         <div className="container pt-24 pb-12 md:py-24 space-y-16 max-w-4xl mx-auto px-6">
             <div className="flex flex-col items-start space-y-4 animate-in slide-in-from-bottom-5 fade-in duration-500">
@@ -115,7 +121,7 @@ export default function UsesPage() {
                             {category.items.map((item) => (
                                 <div
                                     key={item.title}
-                                    className="group relative rounded-xl border border-border/50 bg-card p-6 transition-all hover:bg-secondary/20 hover:border-border"
+                                    className="group relative rounded-xl border border-border/50 bg-card p-6 transition-interface hover:bg-secondary/20 hover:border-border"
                                 >
                                     <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                                         {item.title}

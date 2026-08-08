@@ -42,10 +42,10 @@ Sentry.init({
     'Can\'t find variable: ZiteReader',
   ],
 
-  beforeSend(event, hint) {
+  beforeSend(event, _hint) {
     // Filter out non-error events in development
     if (process.env.NODE_ENV === 'development') {
-      console.log('Sentry Event:', event);
+      console.warn('Sentry event suppressed in development:', event.event_id);
       return null; // Don't send to Sentry in development
     }
     return event;

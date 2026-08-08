@@ -7,7 +7,7 @@ interface CertificateCardProps {
 
 export function CertificateCard({ certificate }: CertificateCardProps) {
     return (
-        <div className="group relative flex flex-col justify-between rounded-2xl border border-border/60 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-primary/5">
+        <div className="group relative flex flex-col justify-between rounded-2xl border border-border/60 bg-card p-6 transition-interface duration-300 hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-primary/5">
             <div className="space-y-4">
                 {/* Header: Date & Issuer */}
                 <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground">

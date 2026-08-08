@@ -79,7 +79,7 @@ function FilterGroup({ title, options, active, onToggle }: FilterGroupProps) {
               key={option.slug}
               onClick={() => onToggle(option.slug)}
               className={cn(
-                'group rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-all duration-300',
+                'group rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-interface duration-300',
                 'hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
                 isActive
                   ? 'border-foreground bg-foreground text-background'

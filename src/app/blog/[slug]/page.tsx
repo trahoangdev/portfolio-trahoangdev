@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import { getPostBySlug, getPostSlugs } from '@/features/blog/module/service';
 import Link from 'next/link';
 import { ChevronLeft, CalendarDays, Clock, User } from 'lucide-react';
-import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CodeBlock } from '@/features/blog/components/CodeBlock';
 
@@ -13,38 +13,38 @@ import { getArticleSchema } from '@/lib/schema/article';
 import { getBreadcrumbSchema } from '@/lib/schema/breadcrumb';
 
 // Custom components map for markdown
-const components: any = {
-    h1: ({ node, ...props }: any) => (
+const components: Components = {
+    h1: ({ node: _node, ...props }) => (
         <h1 className="text-3xl font-bold mt-8 mb-4 text-foreground" {...props} />
     ),
-    h2: ({ node, ...props }: any) => (
+    h2: ({ node: _node, ...props }) => (
         <h2 className="text-2xl font-semibold mt-8 mb-4 border-b pb-2 text-foreground" {...props} />
     ),
-    h3: ({ node, ...props }: any) => (
+    h3: ({ node: _node, ...props }) => (
         <h3 className="text-xl font-semibold mt-6 mb-3 text-foreground" {...props} />
     ),
-    p: ({ node, ...props }: any) => (
+    p: ({ node: _node, ...props }) => (
         <p className="leading-7 [&:not(:first-child)]:mt-6 text-foreground/90" {...props} />
     ),
-    ul: ({ node, ...props }: any) => (
+    ul: ({ node: _node, ...props }) => (
         <ul className="my-6 ml-6 list-disc [&>li]:mt-2 text-foreground/90" {...props} />
     ),
-    ol: ({ node, ...props }: any) => (
+    ol: ({ node: _node, ...props }) => (
         <ol className="my-6 ml-6 list-decimal [&>li]:mt-2 text-foreground/90" {...props} />
     ),
-    li: ({ node, ...props }: any) => (
+    li: ({ node: _node, ...props }) => (
         <li className="mt-2" {...props} />
     ),
-    strong: ({ node, ...props }: any) => (
+    strong: ({ node: _node, ...props }) => (
         <strong className="font-bold text-foreground" {...props} />
     ),
-    a: ({ node, ...props }: any) => (
+    a: ({ node: _node, ...props }) => (
         <a className="font-medium text-primary underline underline-offset-4 hover:text-primary/80" {...props} />
     ),
-    pre: ({ node, ...props }: any) => (
+    pre: ({ node: _node, ...props }) => (
         <CodeBlock {...props} />
     ),
-    code: ({ node, ...props }: any) => (
+    code: ({ node: _node, ...props }) => (
         <code className="relative rounded bg-muted/80 px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium text-foreground border border-border/30" {...props} />
     ),
 };
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: PageProps) {
             title: `${post.title} - Tra Hoang`,
             description: post.excerpt,
         };
-    } catch (error) {
+    } catch {
         return {
             title: 'Post Not Found'
         };
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     let post;
     try {
         post = getPostBySlug(resolvedParams.slug);
-    } catch (error) {
+    } catch {
         notFound();
     }
 
@@ -162,6 +162,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                 {post.coverImage && (
                     <div className="mb-12 overflow-hidden rounded-xl border bg-muted shadow-lg">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src={post.coverImage}
                             alt={post.title}

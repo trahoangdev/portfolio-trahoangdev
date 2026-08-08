@@ -1,6 +1,5 @@
 'use client';
 
-import { ElementType } from 'react';
 import { TECH_ICONS } from '@/lib/iconMapping';
 import { cn } from '@/lib/utils';
 
@@ -35,7 +34,7 @@ export function TechIcon({
   );
 
   return (
-    <Wrapper className={wrapperClassName}>
+    <Wrapper className={wrapperClassName} aria-hidden="true">
       <Icon size={size} className={iconClassName} />
     </Wrapper>
   );

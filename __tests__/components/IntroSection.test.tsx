@@ -37,7 +37,7 @@ describe('IntroSection', () => {
 
   it('should render role description', () => {
     render(<IntroSection sectionRef={mockRef} />);
-    expect(screen.getByText(/software engineer.*content creator.*cloud engineer/i)).toBeInTheDocument();
+    expect(screen.getByText(/software engineer.*ai engineer.*cloud engineer/i)).toBeInTheDocument();
   });
 
   it('should render bio text', () => {

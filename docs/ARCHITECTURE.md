@@ -140,9 +140,8 @@ infrastructure/
 ├── projects/
 │   ├── sources/
 │   │   ├── GitHubProjectDataSource.ts    # GitHub API
-│   │   ├── HuggingFaceDataSource.ts      # HuggingFace API
-│   │   └── StaticProjectDataSource.ts    # Static data
-│   ├── projectData.ts                     # Static projects
+│   │   ├── HuggingFaceModelDataSource.ts # Hugging Face models
+│   │   └── HuggingFaceSpaceDataSource.ts # Hugging Face spaces
 │   └── RemoteProjectRepository.ts         # Repository impl
 ├── tools/
 │   └── StaticToolRepository.ts            # Tool data
@@ -297,9 +296,9 @@ ProjectRefreshService (Application)
     ↓
 ProjectDataManager (Application)
     ↓
-[GitHubDataSource, StaticDataSource] (Infrastructure)
+[GitHubDataSource, HuggingFaceDataSources] (Infrastructure)
     ↓
-External APIs / Static Data
+External APIs
     ↓
 ProjectCollection (Domain)
     ↓
@@ -427,7 +426,7 @@ class Service {
 
 // ❌ Bad: Depend on concrete implementations
 class Service {
-  constructor(private readonly repo: StaticProjectRepository) {}
+  constructor(private readonly repo: RemoteProjectRepository) {}
 }
 ```
 
@@ -533,7 +532,7 @@ const ProjectExplorer = dynamic(
 
 ### 4. Caching Strategy
 
-- Static data cached at build time
+- Blog content and personal showcase data prerendered at build time
 - API responses cached with ISR
 - Client-side caching with React Query (future)
 

@@ -47,7 +47,7 @@ export function ExperienceCard({
       <div className="grid lg:grid-cols-12 gap-4 sm:gap-8">
         {/* YEAR */}
         <div className="lg:col-span-2">
-          <div className="text-xl sm:text-2xl font-bold h-full flex items-center justify-center text-center leading-tight transition-all duration-500 group-hover:text-foreground group-hover:scale-110">
+          <div className="text-xl sm:text-2xl font-bold h-full flex items-center justify-center text-center leading-tight transition-interface duration-500 group-hover:text-foreground group-hover:scale-110">
             {job.year}
           </div>
         </div>

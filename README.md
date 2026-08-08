@@ -89,7 +89,6 @@ portfolio-trahoangdev/
 | `/certificates` | Certificates |
 | `/experience` | Experience |
 | `/resume` | Resume/CV |
-| `/uses` | Setup, tools and stack in use |
 | `/feed.xml` | RSS feed |
 | `/sitemap.xml` | Sitemap |
 | `/robots.txt` | Robots config |

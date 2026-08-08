@@ -29,7 +29,7 @@ export default function GlobalError({
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
+              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-interface duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
             >
               Try Again
             </button>

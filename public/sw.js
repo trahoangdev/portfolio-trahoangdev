@@ -1,19 +1,12 @@
-const CACHE_NAME = 'portfolio-v1';
 const STATIC_CACHE = 'static-v1';
 const DYNAMIC_CACHE = 'dynamic-v1';
 
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
-  '/_next/static/css/',
-  '/_next/static/js/',
+  '/logo.png',
+  '/logo.ico',
 ];
-
-const CACHE_STRATEGIES = {
-  CACHE_FIRST: 'cache-first',
-  NETWORK_FIRST: 'network-first',
-  STALE_WHILE_REVALIDATE: 'stale-while-revalidate',
-};
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -105,7 +98,7 @@ async function handleStaticAssets(request) {
     return networkResponse;
   } catch (error) {
     console.error('Static asset request failed:', error);
-    return cachedResponse || new Response('Asset not available', { status: 404 });
+    return new Response('Asset not available', { status: 404 });
   }
 }
 

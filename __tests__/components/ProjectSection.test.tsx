@@ -18,6 +18,27 @@ jest.mock('@/features/projects/components/ProjectFilterBar', () => ({
   ),
 }));
 
+jest.mock('@/app/actions/project', () => ({
+  getProjectCatalog: jest.fn().mockResolvedValue({
+    projects: [
+      {
+        id: '1',
+        title: 'Test Project',
+        summary: 'Test summary',
+        languages: [{ label: 'TypeScript', slug: 'typescript' }],
+        categories: [{ label: 'Web', slug: 'web' }],
+        date: '2024',
+        featured: true,
+      },
+    ],
+    facets: {
+      categories: [{ label: 'Web', slug: 'web', count: 1 }],
+      languages: [{ label: 'TypeScript', slug: 'typescript', count: 1 }],
+    },
+    activeFilter: { categories: [], languages: [] },
+  }),
+}));
+
 // Mock project module
 jest.mock('@/features/projects/module/ProjectModule', () => ({
   createProjectControllers: () => ({

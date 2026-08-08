@@ -18,7 +18,7 @@ export function SectionNavigation({ activeSection, isVisible = true }: SectionNa
     <nav
       className={cn(
         'fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block',
-        'transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'transition-interface duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'
       )}
     >
@@ -27,7 +27,7 @@ export function SectionNavigation({ activeSection, isVisible = true }: SectionNa
           <button
             key={section}
             onClick={() => scrollToSection(section)}
-            className={`w-3 h-8 rounded-full border-dotted-thin transition-all duration-500 hover-lift ${activeSection === section
+            className={`w-3 h-8 rounded-full border-dotted-thin transition-interface duration-500 hover-lift ${activeSection === section
               ? 'bg-foreground border-foreground'
               : 'bg-transparent border-border hover:bg-muted'
               }`}

@@ -29,7 +29,7 @@ export function SocialLinks() {
               "bg-background/50 border border-border/50",
               "hover:bg-foreground hover:text-background hover:scale-110",
               "hover:border-foreground hover:shadow-[0_0_20px_-5px_var(--foreground)]",
-              "transition-all duration-300 ease-out"
+              "transition-interface duration-300 ease-out"
             )}
             aria-label={link.name}
           >

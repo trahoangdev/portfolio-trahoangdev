@@ -54,12 +54,18 @@ export function useIntroOverlay(options: IntroOverlayOptions = {}): IntroOverlay
     if (typeof window !== 'undefined') {
       const hasShown = sessionStorage.getItem('portfolio-intro-shown');
       if (!hasShown) {
-        setShouldRender(true);
-        setIsVisible(true);
         sessionStorage.setItem('portfolio-intro-shown', 'true');
+        const prefersReducedMotion =
+          respectReducedMotion &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion) {
+          setShouldRender(true);
+          setIsVisible(true);
+        }
       }
     }
-  }, [startVisible]);
+  }, [respectReducedMotion, startVisible]);
 
   const exitTimeoutRef = useRef<number | null>(null);
   const autoCloseTimeoutRef = useRef<number | null>(null);
@@ -103,28 +109,6 @@ export function useIntroOverlay(options: IntroOverlayOptions = {}): IntroOverlay
       };
     }
 
-    let removePreferenceListener: (() => void) | undefined;
-
-    if (respectReducedMotion && typeof window !== 'undefined') {
-      const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-      if (reduceMotionQuery.matches) {
-        setShouldRender(true);
-        setIsVisible(true);
-      }
-
-      const handlePreferenceChange = (event: MediaQueryListEvent) => {
-        if (event.matches) {
-          clearTimers();
-          setShouldRender(true);
-          setIsVisible(true);
-        }
-      };
-
-      reduceMotionQuery.addEventListener('change', handlePreferenceChange);
-      removePreferenceListener = () => reduceMotionQuery.removeEventListener('change', handlePreferenceChange);
-    }
-
     autoCloseTimeoutRef.current = window.setTimeout(() => {
       setIsVisible(false);
     }, autoCloseDelayMs);
@@ -134,9 +118,8 @@ export function useIntroOverlay(options: IntroOverlayOptions = {}): IntroOverlay
         window.clearTimeout(autoCloseTimeoutRef.current);
         autoCloseTimeoutRef.current = null;
       }
-      removePreferenceListener?.();
     };
-  }, [autoCloseDelayMs, clearTimers, isVisible, respectReducedMotion, shouldRender]);
+  }, [autoCloseDelayMs, clearTimers, isVisible, shouldRender]);
 
   useEffect(() => clearTimers, [clearTimers]);
 

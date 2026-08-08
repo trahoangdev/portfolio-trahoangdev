@@ -20,10 +20,10 @@ Sentry.init({
     'ENOTFOUND',
   ],
 
-  beforeSend(event, hint) {
+  beforeSend(event, _hint) {
     // Filter out non-error events in development
     if (process.env.NODE_ENV === 'development') {
-      console.log('Sentry Server Event:', event);
+      console.warn('Sentry server event suppressed in development:', event.event_id);
       return null; // Don't send to Sentry in development
     }
     return event;

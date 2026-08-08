@@ -1,15 +1,14 @@
 import { ImageResponse } from 'next/og';
+import { readFile } from 'node:fs/promises';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const alt = 'Projects - trahoangdev';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const logoData = await fetch(new URL('../../../public/logo.png', import.meta.url)).then(
-    (res) => res.arrayBuffer()
-  );
-  const logoBase64 = Buffer.from(logoData).toString('base64');
+  const logoData = await readFile(new URL('../../../public/logo.png', import.meta.url));
+  const logoBase64 = logoData.toString('base64');
   const logoSrc = `data:image/png;base64,${logoBase64}`;
 
   return new ImageResponse(
@@ -68,12 +67,12 @@ export default async function Image() {
             border: '4px solid #a855f7', // purple-500
             boxShadow: '0 0 60px rgba(168, 85, 247, 0.4)',
             marginBottom: '40px',
-            zIndex: 10,
             padding: '10px',
           }}
         >
           <img
             src={logoSrc}
+            alt=""
             style={{
               width: '100%',
               height: '100%',
@@ -91,7 +90,6 @@ export default async function Image() {
             alignItems: 'center',
             justifyContent: 'center',
             textAlign: 'center',
-            zIndex: 10,
           }}
         >
           {/* Tagline / Subtitle */}

@@ -1,6 +1,7 @@
 'use client';
 
 import * as Sentry from '@sentry/nextjs';
+import Link from 'next/link';
 
 export default function SentryTestPage() {
   const testClientError = () => {
@@ -8,7 +9,6 @@ export default function SentryTestPage() {
       throw new Error('Test Client Error - Sentry is working!');
     } catch (error) {
       Sentry.captureException(error);
-      console.log('Error sent to Sentry:', error);
     }
   };
 
@@ -19,7 +19,6 @@ export default function SentryTestPage() {
 
   const testMessage = () => {
     Sentry.captureMessage('Test message from Sentry test page', 'info');
-    console.log('Message sent to Sentry');
   };
 
   return (
@@ -40,7 +39,7 @@ export default function SentryTestPage() {
             </p>
             <button
               onClick={testClientError}
-              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
+              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-interface duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
             >
               Test Caught Error
             </button>
@@ -53,7 +52,7 @@ export default function SentryTestPage() {
             </p>
             <button
               onClick={testUncaughtError}
-              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-red-500 hover:text-white"
+              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-interface duration-300 hover:-translate-y-1 hover:bg-red-500 hover:text-white"
             >
               Test Uncaught Error
             </button>
@@ -66,7 +65,7 @@ export default function SentryTestPage() {
             </p>
             <button
               onClick={testMessage}
-              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
+              className="border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-interface duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
             >
               Test Message
             </button>
@@ -85,12 +84,12 @@ export default function SentryTestPage() {
         </div>
 
         <div className="text-center">
-          <a
+          <Link
             href="/"
-            className="inline-block border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-all duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
+            className="inline-block border-dotted-thick border-border px-6 py-3 text-sm uppercase tracking-[0.3em] transition-interface duration-300 hover:-translate-y-1 hover:bg-foreground hover:text-background"
           >
             Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>

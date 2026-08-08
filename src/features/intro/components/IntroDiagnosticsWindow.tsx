@@ -12,6 +12,7 @@ interface IntroDiagnosticsWindowProps {
   targetLines: string[];
   typedLines: string[];
   activeLineIndex: number;
+  onClose: () => void;
 }
 
 export function IntroDiagnosticsWindow({
@@ -19,13 +20,14 @@ export function IntroDiagnosticsWindow({
   targetLines,
   typedLines,
   activeLineIndex,
+  onClose,
 }: IntroDiagnosticsWindowProps) {
   const visibility = phase === 'outro' ? 'opacity-0 scale-95' : 'opacity-100 scale-100';
 
   return (
     <div
       className={cn(
-        'pointer-events-none w-[min(90vw,420px)] min-h-[280px] rounded-xl border border-border/80 bg-background/95 shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'pointer-events-auto w-[min(90vw,420px)] min-h-[280px] rounded-xl border border-border/80 bg-background/95 shadow-2xl transition-interface duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
         'overflow-hidden backdrop-blur-sm relative',
         visibility,
       )}
@@ -36,9 +38,17 @@ export function IntroDiagnosticsWindow({
           Matrix Diagnostics
         </div>
         <div className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
-          <span className="flex h-6 w-6 items-center justify-center rounded-sm border border-border">—</span>
-          <span className="flex h-6 w-6 items-center justify-center rounded-sm border border-border">▢</span>
-          <span className="flex h-6 w-6 items-center justify-center rounded-sm border border-border">✕</span>
+          <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-sm border border-border">—</span>
+          <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-sm border border-border">▢</span>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Skip intro"
+            title="Skip intro"
+            className="flex h-6 w-6 items-center justify-center rounded-sm border border-border transition-colors hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <span aria-hidden="true">✕</span>
+          </button>
         </div>
       </header>
 

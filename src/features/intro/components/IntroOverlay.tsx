@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { X } from 'lucide-react';
 
 import {
   IntroDiagnosticsWindow,
@@ -9,7 +10,7 @@ import {
 import type { IntroOverlayController } from '@/hooks/useIntroOverlay';
 import { IntroDiagnosticsController } from '@/features/intro/module/controllers/IntroDiagnosticsController';
 import { BrowserUserDiagnosticsService } from '@/features/system/application/BrowserUserDiagnosticsService';
-import { IpifyIpAddressProvider } from '@/features/system/infrastructure/IpifyIpAddressProvider';
+import { SameOriginIpAddressProvider } from '@/features/system/infrastructure/IpifyIpAddressProvider';
 import { NavigatorBrowserInspector } from '@/features/system/infrastructure/NavigatorBrowserInspector';
 import { SystemClockAdapter } from '@/features/system/infrastructure/SystemClockAdapter';
 import { UserDiagnostics } from '@/features/system/domain/UserDiagnostics';
@@ -43,10 +44,11 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
   const [typedLines, setTypedLines] = useState<string[]>([]);
   const [activeLineIndex, setActiveLineIndex] = useState(-1);
   const [isOverlayOpaque, setOverlayOpaque] = useState(true);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const controllerInstance = useMemo(() => {
     const service = new BrowserUserDiagnosticsService(
-      new IpifyIpAddressProvider(),
+      new SameOriginIpAddressProvider(),
       new NavigatorBrowserInspector(),
       new SystemClockAdapter()
     );
@@ -212,6 +214,48 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
     return undefined;
   }, [phase, controller]);
 
+  useEffect(() => {
+    if (!controller.shouldRender) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const frame = window.requestAnimationFrame(() => {
+      const firstButton = overlayRef.current?.querySelector<HTMLElement>('button');
+      (firstButton ?? overlayRef.current)?.focus();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      previouslyFocused?.focus();
+    };
+  }, [controller.shouldRender]);
+
+  const handleOverlayKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      controller.dismiss();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const focusable = Array.from(
+      overlayRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href]') ?? []
+    );
+    const first = focusable[0];
+    const last = focusable.at(-1);
+
+    if (!first || !last) {
+      event.preventDefault();
+      overlayRef.current?.focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   const heroTitle = title.toUpperCase();
 
   if (!controller.shouldRender) {
@@ -227,8 +271,13 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
 
   return (
     <div
+      ref={overlayRef}
+      tabIndex={-1}
       className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xl text-white transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${overlayOpacityClass}`}
-      role="presentation"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Portfolio introduction"
+      onKeyDown={handleOverlayKeyDown}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03)_0%,_rgba(0,0,0,0.6)_100%)]" />
 
@@ -239,23 +288,33 @@ export function IntroOverlay({ title, controller }: IntroOverlayProps) {
             targetLines={displayLines}
             typedLines={typedLines}
             activeLineIndex={activeLineIndex}
+            onClose={controller.dismiss}
           />
         ) : null}
 
         {phase === 'hero' || phase === 'fadeOut' ? (
           <div className="flex flex-col items-center gap-2 sm:gap-4">
             <span
-              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.15em] sm:tracking-[0.4em] leading-none block"
+              className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-[0.08em] sm:tracking-[0.16em] leading-none block"
               style={{ animation: 'matrixFloat 2s ease-in-out infinite' }}
             >
               {heroTitle}
             </span>
-            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] sm:tracking-[0.5em] text-purple-400/90">
-              Entering the Matrix
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.3em] text-purple-400/90">
+              ENTERING THE MATRIX
             </span>
           </div>
         ) : null}
       </div>
+
+      <button
+          type="button"
+          onClick={controller.dismiss}
+          className="absolute right-4 top-4 z-20 grid size-11 place-items-center rounded-full border border-white/40 bg-black/30 text-white transition-colors duration-150 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:right-8 sm:top-8"
+          aria-label="Skip introduction"
+        >
+          <X className="size-5" aria-hidden="true" />
+      </button>
 
       <style jsx>{`
         @keyframes matrixFloat {

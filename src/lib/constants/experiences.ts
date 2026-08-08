@@ -8,7 +8,15 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    year: 'June. 2026 PRESENT',
+    year: 'Jun. 2026 — Present',
+    role: 'PROGRAM DEVELOPMENT INTERN',
+    company: 'sixonefour labs',
+    description: 'Contributing to the development and delivery of a 10-week AI-native product engineering residency in Ho Chi Minh City. Supporting program coordination and learning experiences across software engineering, product development, AI orchestration, and professional communication to help engineers build solutions for real business problems.',
+    tech: [],
+    //tech: ['AWS', 'Cloud Architecture', 'AI/ML', 'DevOps', 'Data Engineering'],
+  },
+  {
+    year: 'Jun. 2026 — Present',
     role: 'AMBASSADOR',
     company: 'GENAI FUND',
     description: 'Ambassador for Agentic AI Build Week, a global initiative by GenAI Fund to empower developers in building autonomous agents. Engaging with the community, sharing insights, and fostering innovation in the rapidly evolving landscape of AI agents.',
@@ -16,12 +24,12 @@ export const EXPERIENCES: Experience[] = [
     //tech: ['AWS', 'Cloud Architecture', 'AI/ML', 'DevOps', 'Data Engineering'],
   },
   {
-    year: `May. 2026 PRESENT`,
-    role: 'AMBASSADOR',
+    year: 'May 2026 — Jul. 2026',
+    role: 'FULL-STACK ENGINEER INTERN & AMBASSADOR',
     company: 'VALSEA',
     description: 'Participated in building and experimenting with speech AI and real-time communication applications. Explored use cases around speech recognition, accented speech, mixed-language transcription, and workflow automation.',
-    //tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
-    tech: [],
+    tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'Node.js', 'Express', 'Socket.io', 'WebRTC', 'AI/ML'],
+    //tech: [],
   },
   // {
   //   year: `PRESENT`,
@@ -32,18 +40,18 @@ export const EXPERIENCES: Experience[] = [
   //   tech: [],
   // },
   {
-    year: 'Apr. 2026 PRESENT',
+    year: 'Apr. 2026 — Present',
     role: 'CLOUD ENGINEER INTERN',
-    company: 'AWS VIETNAM',
+    company: 'AMAZON WEB SERVICES VIETNAM',
     description: 'Selected for the First Cloud AI Journey (FCAJ) Workforce Bootcamp supported by AWS. Gaining hands-on experience in AWS Cloud fundamentals, DevOps practices, Data Engineering, and building scalable AI/ML solutions through real-world labs and expert mentorship.',
     //tech: [],
     tech: ['AWS', 'Cloud Architecture', 'AI/ML', 'DevOps', 'Data Engineering'],
   },
   {
-    year: 'Oct.2025 Mar.2026',
-    role: 'FRONTEND DEVELOPER',
-    company: 'Co-Founder at TAIKHOANXIN.COM',
-    description: 'A premier marketplace for digital access. Connecting users with top-tier service accounts through a seamless, automated platform. Quality, reliability, and speed—delivered.',
+    year: 'Oct. 2025 — Mar. 2026',
+    role: 'CO-FOUNDER & FRONTEND DEVELOPER',
+    company: 'TAIKHOANXIN.COM',
+    description: 'Co-founded a digital access marketplace and developed its customer-facing and admin interfaces. Translated business requirements into responsive purchasing flows, reusable UI systems, and reliable product experiences using React, TypeScript, Next.js, and Tailwind CSS, while contributing to product decisions and day-to-day platform operations.',
     tech: ['React', 'TypeScript', 'Next.js', 'TailwindCSS'],
     //tech: [],
   },
@@ -56,7 +64,7 @@ export const EXPERIENCES: Experience[] = [
   //   tech: [],
   // },
   {
-    year: 'Oct.2025 Mar.2025',
+    year: 'Oct. 2025 — Mar. 2026',
     role: 'FRONTEND DEVELOPER',
     company: 'Co-Founder at LUXEWEAR AI',
     description:
@@ -66,7 +74,7 @@ export const EXPERIENCES: Experience[] = [
   },
 
   {
-    year: '2024 - 2025',
+    year: '2024 — 2025',
     role: 'LEARNING AI AGENT & AUTOMATION',
     company: 'AI AGENT & AUTOMATION',
     description: 'Spearheaded independent research and implementation in Artificial Intelligence with a strong focus on Agentic AI and Workflow Automation. Mastered the architecture of autonomous agents, advanced RAG systems, and leveraging LLMs to execute complex decision-making and automated pipelines.',
@@ -83,8 +91,8 @@ export const EXPERIENCES: Experience[] = [
     //tech: [],
   },
   {
-    year: '2022 - 2026',
-    role: 'SENIOR STUDENT',
+    year: '2022 — 2026',
+    role: 'BACHELOR OF SOFTWARE ENGINEERING',
     company: 'HUTECH - UNIVERSITY OF TECHNOLOGY',
     description: 'Majoring in Software Engineering. Consuming knowledge, compiling experience, and shipping code. Bridging the gap between theory and reality, one commit at a time.',
     tech: [],

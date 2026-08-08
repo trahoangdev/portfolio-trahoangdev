@@ -1,7 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import { useEffect, useRef } from 'react';
 import { ParticlesBackground } from './ParticlesBackground';
 
 export function Background() {
