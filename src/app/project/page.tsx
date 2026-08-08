@@ -1,22 +1,5 @@
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-
-const ProjectExplorer = dynamic(
-  () => import('@/features/projects/module/presentation/ProjectExplorer').then((mod) => ({ default: mod.ProjectExplorer })),
-  {
-    loading: () => (
-      <div className="space-y-8">
-        <div className="h-14 w-3/4 rounded-2xl bg-muted/40 animate-pulse" />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[...Array(6)].map((_, index) => (
-            <div key={index} className="h-64 rounded-2xl bg-muted/30 animate-pulse" />
-          ))}
-        </div>
-      </div>
-    ),
-    ssr: true,
-  }
-);
+import { ProjectExplorer } from '@/features/projects/module/presentation/ProjectExplorer';
 
 export const metadata: Metadata = {
   title: 'Project Hypergrid',

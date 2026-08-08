@@ -1,9 +1,8 @@
 'use client';
 
-import { ArrowLeft, Download, Mail, MapPin, Globe, Printer } from 'lucide-react';
+import { ArrowLeft, Mail, MapPin, Globe, Printer } from 'lucide-react';
 import Link from 'next/link';
 import { EXPERIENCES } from '@/lib/constants/experiences';
-import { SOCIAL_LINKS } from '@/lib/constants/social';
 
 export default function ResumePage() {
     const handlePrint = () => {
@@ -164,7 +163,7 @@ export default function ResumePage() {
                             <div className="text-muted-foreground print:text-black/70">HUTECH</div>
                         </div>
                         <div className="text-sm font-mono text-muted-foreground mt-1 sm:mt-0 bg-muted/50 px-2 py-0.5 rounded print:bg-transparent print:p-0 print:text-black/60">
-                            2022 — 2026 (Expected)
+                            2022 — 2026
                         </div>
                     </div>
                 </section>

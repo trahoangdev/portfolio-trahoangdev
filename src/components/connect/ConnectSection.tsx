@@ -8,7 +8,7 @@ interface ConnectSectionProps {
   sectionRef: (el: HTMLElement | null) => void;
 }
 
-export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProps) {
+export function ConnectSection({ activeSection: _activeSection, sectionRef }: ConnectSectionProps) {
   return (
     <section
       id="service"
@@ -17,7 +17,7 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
       className="py-20 sm:py-32 opacity-0 translate-y-8 transform-gpu transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0 scroll-mt-20"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
-        <div className="magnet-card rounded-3xl border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-all duration-500">
+        <div className="magnet-card rounded-3xl border-double-animated border-border p-6 hover-lift hover:scale-105 hover:shadow-2xl transition-interface duration-500">
           <div className="space-y-6 sm:space-y-8">
             <h2 id="connect-heading" className="text-3xl sm:text-4xl font-bold uppercase">
               Let's Connect
@@ -69,7 +69,7 @@ export function ConnectSection({ activeSection, sectionRef }: ConnectSectionProp
                 className={`group magnet-card rounded-3xl ${index % 2 === 0
                   ? 'border-pulse-animated'
                   : 'border-wave-animated'
-                  } border-border p-4 hover-lift hover:bg-muted transition-all duration-300`}
+                  } border-border p-4 hover-lift hover:bg-muted transition-interface duration-300`}
               >
                 <div className="space-y-2">
                   <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300 font-bold">

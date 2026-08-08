@@ -10,14 +10,14 @@
  * @param delay - The delay in milliseconds
  * @returns Throttled function
  */
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
+export function throttle<TArgs extends unknown[]>(
+  func: (...args: TArgs) => unknown,
   delay: number
-): (...args: Parameters<T>) => void {
+): (...args: TArgs) => void {
   let timeoutId: NodeJS.Timeout | null = null;
   let lastExecuted = 0;
 
-  return function throttled(...args: Parameters<T>) {
+  return function throttled(...args: TArgs) {
     const now = Date.now();
     const timeSinceLastExecution = now - lastExecuted;
 
@@ -45,13 +45,13 @@ export function throttle<T extends (...args: any[]) => any>(
  * @param delay - The delay in milliseconds
  * @returns Debounced function
  */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
+export function debounce<TArgs extends unknown[]>(
+  func: (...args: TArgs) => unknown,
   delay: number
-): (...args: Parameters<T>) => void {
+): (...args: TArgs) => void {
   let timeoutId: NodeJS.Timeout | null = null;
 
-  return function debounced(...args: Parameters<T>) {
+  return function debounced(...args: TArgs) {
     if (timeoutId) {
       clearTimeout(timeoutId);
     }

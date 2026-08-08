@@ -53,7 +53,7 @@ export function BlogList({ initialPosts, allTags }: BlogListProps) {
                     </div>
                     <input
                         type="text"
-                        className="flex h-12 w-full rounded-full border border-input bg-background/50 backdrop-blur-sm px-10 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-sm transition-all hover:bg-background hover:shadow-md"
+                        className="flex h-12 w-full rounded-full border border-input bg-background/50 backdrop-blur-sm px-10 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-sm transition-interface hover:bg-background hover:shadow-md"
                         placeholder="Search articles..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -65,7 +65,7 @@ export function BlogList({ initialPosts, allTags }: BlogListProps) {
                     <button
                         onClick={() => setSelectedTag(null)}
                         className={cn(
-                            "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                            "px-4 py-2 rounded-full text-sm font-medium transition-interface duration-300",
                             selectedTag === null
                                 ? "bg-primary text-primary-foreground shadow-sm scale-105"
                                 : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -78,7 +78,7 @@ export function BlogList({ initialPosts, allTags }: BlogListProps) {
                             key={tag}
                             onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
                             className={cn(
-                                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                                "px-4 py-2 rounded-full text-sm font-medium transition-interface duration-300",
                                 selectedTag === tag
                                     ? "bg-primary text-primary-foreground shadow-sm scale-105"
                                     : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"

@@ -16,8 +16,8 @@ export function Philosophy({ sectionRef }: PhilosophyProps) {
                     <div className="relative">
                         <span className="absolute -top-8 left-0 sm:-left-8 text-8xl font-serif text-muted/20 select-none">"</span>
                         <p className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
-                            Code is not just logic.<br />
-                            It's the art of <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">translating thought</span> into reality.
+                            Code is not just logic.{' '}<br />
+                            It&apos;s the art of <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">translating thought</span> into reality.
                         </p>
                         <span className="absolute -bottom-12 right-0 sm:-right-8 text-8xl font-serif text-muted/20 select-none">"</span>
                     </div>

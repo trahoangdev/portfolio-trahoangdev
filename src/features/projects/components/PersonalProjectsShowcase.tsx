@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt, FaUsers } from 'react-icons/fa';
@@ -136,7 +134,7 @@ export function PersonalProjectsShowcase() {
                 {PERSONAL_PROJECTS.map((project) => (
                     <div
                         key={project.id}
-                        className="group relative grid gap-6 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6 transition-all duration-500 hover:border-solid hover:border-border hover:bg-muted/30 hover:shadow-xl md:grid-cols-2 lg:gap-12"
+                        className="group relative grid gap-6 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6 transition-interface duration-500 hover:border-solid hover:border-border hover:bg-muted/30 hover:shadow-xl md:grid-cols-2 lg:gap-12"
                     >
                         <div className="space-y-6">
                             <div className="space-y-3">
@@ -163,7 +161,8 @@ export function PersonalProjectsShowcase() {
                                             key={repo.url}
                                             href={repo.url}
                                             target="_blank"
-                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-interface duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
                                         >
                                             <span>REPO {repo.label}</span>
                                             <FaGithub className="h-4 w-4" />
@@ -173,7 +172,8 @@ export function PersonalProjectsShowcase() {
                                         <Link
                                             href={project.repo}
                                             target="_blank"
-                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-interface duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
                                         >
                                             <span>REPO</span>
                                             <FaGithub className="h-4 w-4" />
@@ -183,7 +183,8 @@ export function PersonalProjectsShowcase() {
                                     <Link
                                         href={project.demo}
                                         target="_blank"
-                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-interface duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
                                     >
                                         <span>VISIT</span>
                                         <FaExternalLinkAlt className="h-3 w-3" />
@@ -210,7 +211,7 @@ export function PersonalProjectsShowcase() {
                         </div>
 
                         {/* Project Preview */}
-                        <div className={`relative aspect-video rounded-xl overflow-hidden border border-border/40 bg-gradient-to-br ${project.gradient} group-hover:border-border transition-all duration-500`}>
+                        <div className={`relative aspect-video rounded-xl overflow-hidden border border-border/40 bg-gradient-to-br ${project.gradient} group-hover:border-border transition-interface duration-500`}>
                             {project.image ? (
                                 <Image
                                     src={project.image}
@@ -244,7 +245,8 @@ export function PersonalProjectsShowcase() {
                 <Link
                     href="https://github.com/trahoangdev"
                     target="_blank"
-                    className="inline-flex items-center gap-2 rounded-xl border border-dashed border-border/80 bg-background/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] font-mono transition-all duration-300 hover:border-solid hover:border-foreground hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-dashed border-border/80 bg-background/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] font-mono transition-interface duration-300 hover:border-solid hover:border-foreground hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
                 >
                     <span>More Projects on GitHub</span>
                     <FaGithub className="h-5 w-5" />

@@ -1,27 +1,14 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import { CalendarDays, Clock, ArrowUpRight } from 'lucide-react';
-import { getLatestBlogPosts } from '@/app/actions/blog';
 import type { BlogPostMetadata } from '@/features/blog/module/types';
 
 interface LatestBlogProps {
     sectionRef: (el: HTMLElement | null) => void;
+    posts: BlogPostMetadata[];
 }
 
-export function LatestBlog({ sectionRef }: LatestBlogProps) {
-    const [posts, setPosts] = useState<BlogPostMetadata[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        getLatestBlogPosts(3)
-            .then(setPosts)
-            .catch(() => setPosts([]))
-            .finally(() => setIsLoading(false));
-    }, []);
-
+export function LatestBlog({ sectionRef, posts }: LatestBlogProps) {
     return (
         <section
             ref={sectionRef}
@@ -54,27 +41,7 @@ export function LatestBlog({ sectionRef }: LatestBlogProps) {
                 </div>
 
                 {/* Posts Grid */}
-                {isLoading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[...Array(3)].map((_, i) => (
-                            <div
-                                key={i}
-                                className="rounded-2xl border border-border/50 bg-background/50 p-6 space-y-4 animate-pulse"
-                            >
-                                <div className="h-3 bg-muted rounded w-1/3" />
-                                <div className="h-6 bg-muted rounded w-3/4" />
-                                <div className="space-y-2">
-                                    <div className="h-3 bg-muted rounded w-full" />
-                                    <div className="h-3 bg-muted rounded w-2/3" />
-                                </div>
-                                <div className="flex gap-2">
-                                    <div className="h-5 bg-muted rounded w-16" />
-                                    <div className="h-5 bg-muted rounded w-12" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : posts.length === 0 ? (
+                {posts.length === 0 ? (
                     <div className="text-center py-12 text-muted-foreground">
                         <p className="text-lg">No posts yet. Stay tuned!</p>
                     </div>
@@ -84,7 +51,7 @@ export function LatestBlog({ sectionRef }: LatestBlogProps) {
                             <Link
                                 key={post.slug}
                                 href={`/blog/${post.slug}`}
-                                className="group relative rounded-2xl border border-border/50 bg-background/50 backdrop-blur-sm p-6 transition-all duration-500 hover:shadow-2xl hover:border-border/80 hover:-translate-y-1"
+                                className="group relative rounded-2xl border border-border/50 bg-background/50 backdrop-blur-sm p-6 transition-interface duration-500 hover:shadow-2xl hover:border-border/80 hover:-translate-y-1"
                             >
                                 {/* Post number */}
                                 <div className="absolute top-4 right-4 text-xs font-mono text-muted-foreground/40 font-bold">

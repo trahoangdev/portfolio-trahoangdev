@@ -70,7 +70,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
           <button
             onClick={() => this.setState({ hasError: false, error: null })}
-            className="px-4 py-2 text-sm border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300"
+            className="px-4 py-2 text-sm border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-interface duration-300"
           >
             Try again
           </button>

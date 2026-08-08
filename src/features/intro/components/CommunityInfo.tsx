@@ -8,7 +8,7 @@ export function CommunityInfo() {
       className="relative overflow-hidden p-6 rounded-3xl
                     group/community
                     border borrder-dashed-animated border-border
-                    hover-lift hover:scale-110 hover:shadow-2xl transition-all duration-500 
+                    hover-lift hover:scale-110 hover:shadow-2xl transition-interface duration-500
                    
                     /* Light mode default */
                     bg-background text-foreground
@@ -43,7 +43,7 @@ export function CommunityInfo() {
           {/* Discord icon container */}
           <div
             className="flex items-center justify-center w-12 h-12 rounded-2xl 
-                       transition-all duration-500
+                       transition-interface duration-500
                        
                        /* Light mode default */
                        bg-foreground text-background
@@ -59,14 +59,14 @@ export function CommunityInfo() {
                        dark:group-hover/community:bg-black dark:group-hover/community:text-white
                        dark:group-hover/community:border dark:group-hover/community:border-white"
           >
-            <FaDiscord className="w-8 h-8 transition-all" />
+            <FaDiscord className="w-8 h-8 transition-interface" />
           </div>
 
           {/* Text content */}
           <div className="flex-1">
             {/* Main title */}
             <div
-              className="text-2xl font-bold tracking-wide transition-all duration-500
+              className="text-2xl font-bold tracking-wide transition-interface duration-500
                          /* Inherits color from parent card hover states */"
             >
               Join our community
@@ -74,7 +74,7 @@ export function CommunityInfo() {
 
             {/* Subtitle */}
             <div
-              className="text-sm transition-all duration-500
+              className="text-sm transition-interface duration-500
                          /* Light mode default */
                          text-muted-foreground
                          

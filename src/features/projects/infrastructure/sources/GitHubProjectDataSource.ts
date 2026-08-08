@@ -38,7 +38,7 @@ export class GitHubProjectDataSource implements ProjectDataSource {
     this.authToken = options.authToken;
   }
 
-  async fetchProjects(profile: ProjectProfile): Promise<ExternalProjectRecord[]> {
+  async fetchProjects(_profile: ProjectProfile): Promise<ExternalProjectRecord[]> {
     return []; // Tạm ẩn không lấy dự án từ GitHub nữa
     /*
     if (!profile.hasGitHubUser()) {

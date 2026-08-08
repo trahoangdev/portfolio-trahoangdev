@@ -5,33 +5,31 @@ import { Check, Copy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
 
+function extractText(node: React.ReactNode): string {
+    if (typeof node === 'string' || typeof node === 'number') {
+        return String(node);
+    }
+
+    if (Array.isArray(node)) {
+        return node.map(extractText).join('');
+    }
+
+    if (isValidElement<{ children?: React.ReactNode }>(node)) {
+        return extractText(node.props.children);
+    }
+
+    return '';
+}
+
 interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
     const [isCopied, setIsCopied] = useState(false);
 
     const copyToClipboard = async () => {
-        let textToCopy = '';
-
-        // Attempt to extract text content
-        if (typeof children === 'string') {
-            textToCopy = children;
-        } else if (isValidElement(children)) {
-            const grandChildren = (children.props as any).children;
-            if (typeof grandChildren === 'string') {
-                textToCopy = grandChildren;
-            } else if (Array.isArray(grandChildren)) {
-                textToCopy = grandChildren.map((child: any) =>
-                    typeof child === 'string' ? child : ''
-                ).join('');
-            }
-        } else if (Array.isArray(children)) {
-            textToCopy = children.map((child: any) =>
-                typeof child === 'string' ? child : ''
-            ).join('');
-        }
+        const textToCopy = extractText(children);
 
         if (!textToCopy) return;
 
@@ -64,7 +62,7 @@ export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
             <button
                 onClick={copyToClipboard}
                 className={cn(
-                    "absolute right-3 top-3 p-2 rounded-md transition-all",
+                    "absolute right-3 top-3 p-2 rounded-md transition-interface",
                     "bg-background/80 hover:bg-background border border-border/50 backdrop-blur-sm",
                     "opacity-0 group-hover:opacity-100 focus:opacity-100",
                     "text-muted-foreground hover:text-foreground",

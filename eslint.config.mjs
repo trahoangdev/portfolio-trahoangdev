@@ -1,9 +1,10 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
 
-export default [
-    js.configs.recommended,
-    ...tseslint.configs.recommended,
+export default defineConfig([
+    ...nextVitals,
+    ...nextTypescript,
     {
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         languageOptions: {
@@ -16,6 +17,8 @@ export default [
             },
         },
         rules: {
+            'react/no-unescaped-entities': 'off',
+            'react-hooks/set-state-in-effect': 'off',
             '@typescript-eslint/no-unused-vars': [
                 'warn',
                 {
@@ -29,21 +32,26 @@ export default [
         },
     },
     {
-        ignores: [
-            '.next/**',
-            'node_modules/**',
-            'out/**',
-            'build/**',
-            'dist/**',
-            'coverage/**',
-            '.cache/**',
-            'public/**',
-            '*.config.js',
-            '*.config.mjs',
-            'jest.config.js',
-            'next.config.ts',
-            'postcss.config.mjs',
-            'tailwind.config.ts',
-        ],
+        files: ['__tests__/**/*.{ts,tsx}'],
+        rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+        },
     },
-];
+    {
+        files: ['src/app/**/opengraph-image.tsx'],
+        rules: {
+            '@next/next/no-img-element': 'off',
+        },
+    },
+    globalIgnores([
+        '.next/**',
+        'node_modules/**',
+        'out/**',
+        'build/**',
+        'dist/**',
+        'coverage/**',
+        '.cache/**',
+        'public/**',
+        'jest.config.js',
+    ]),
+]);

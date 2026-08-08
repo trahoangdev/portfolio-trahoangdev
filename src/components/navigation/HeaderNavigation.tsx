@@ -45,9 +45,11 @@ const NAV_ITEMS: NavItem[] = [
 export function HeaderNavigation() {
   const pathname = usePathname();
   const isHome = pathname === '/';
-  const [isVisible, setIsVisible] = useState(!isHome);
+  const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const throttleRef = useRef<NodeJS.Timeout | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -60,6 +62,46 @@ export function HeaderNavigation() {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const firstLink = mobileMenuRef.current?.querySelector<HTMLElement>('a[href]');
+    firstLink?.focus();
+  }, [isMobileMenuOpen]);
+
+  const handleMobileMenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setIsMobileMenuOpen(false);
+      menuButtonRef.current?.focus();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    const menuLinks = Array.from(
+      mobileMenuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []
+    );
+    const focusable = menuButtonRef.current
+      ? [menuButtonRef.current, ...menuLinks]
+      : menuLinks;
+    const first = focusable[0];
+    const last = focusable.at(-1);
+
+    if (!first || !last) {
+      event.preventDefault();
+      return;
+    }
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   // Handle scroll visibility
   const handleScroll = useCallback(() => {
@@ -74,7 +116,6 @@ export function HeaderNavigation() {
 
   useEffect(() => {
     if (!isHome) {
-      setIsVisible(true);
       return;
     }
 
@@ -88,9 +129,11 @@ export function HeaderNavigation() {
     };
   }, [isHome, handleScroll]);
 
+  const isHeaderVisible = !isHome || isVisible;
+
   const visibilityClasses = cn(
-    'transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
-    isVisible || isMobileMenuOpen
+    'transition-interface duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+    isHeaderVisible || isMobileMenuOpen
       ? 'translate-y-0 opacity-100'
       : '-translate-y-8 opacity-0 pointer-events-none'
   );
@@ -99,12 +142,13 @@ export function HeaderNavigation() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center print:hidden">
       <div
         className={cn(
-          'relative z-50 mt-4 flex w-[95%] max-w-5xl items-center justify-between gap-6 rounded-full border border-border/60 bg-background/80 px-6 py-3 backdrop-blur shadow-lg transition-all duration-500',
+          'relative z-50 mt-4 flex w-[95%] max-w-5xl items-center justify-between gap-6 rounded-full border border-border/60 bg-background/80 px-6 py-3 backdrop-blur shadow-lg transition-interface duration-500',
           visibilityClasses
         )}
       >
         <Link
           href="/"
+          tabIndex={isHeaderVisible || isMobileMenuOpen ? undefined : -1}
           className="text-xs font-semibold uppercase tracking-[0.2em] md:tracking-[0.5em] text-muted-foreground transition-colors hover:text-foreground z-50"
           onClick={() => setIsMobileMenuOpen(false)}
         >
@@ -124,8 +168,9 @@ export function HeaderNavigation() {
                 aria-current={active ? 'page' : undefined}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
+                tabIndex={isHeaderVisible ? undefined : -1}
                 className={cn(
-                  'text-xs font-semibold uppercase tracking-[0.2em] lg:tracking-[0.4em] transition-all duration-300',
+                  'text-xs font-semibold uppercase tracking-[0.2em] lg:tracking-[0.4em] transition-interface duration-300',
                   'hover:text-foreground hover:scale-110',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                   active ? 'text-foreground' : 'text-muted-foreground'
@@ -139,11 +184,13 @@ export function HeaderNavigation() {
 
         {/* Mobile Menu Toggle */}
         <button
+          ref={menuButtonRef}
           className="flex lg:hidden relative z-50 p-2 -mr-2 text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
+          tabIndex={isHeaderVisible || isMobileMenuOpen ? undefined : -1}
         >
           {isMobileMenuOpen ? (
             <X className="h-6 w-6" aria-hidden="true" />
@@ -154,15 +201,15 @@ export function HeaderNavigation() {
       </div>
 
       {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen ? (
       <div
+        ref={mobileMenuRef}
         id="mobile-menu"
-        className={cn(
-          'fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md transition-all duration-500 lg:hidden',
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        )}
-        aria-hidden={!isMobileMenuOpen}
+        className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md lg:hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        onKeyDown={handleMobileMenuKeyDown}
       >
         <nav aria-label="Mobile navigation" className="flex flex-col items-center gap-8 p-4">
           {NAV_ITEMS.map((item, index) => {
@@ -176,8 +223,8 @@ export function HeaderNavigation() {
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
                 className={cn(
-                  'text-lg font-semibold uppercase tracking-[0.4em] transition-all duration-300 transform',
-                  isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0',
+                  'text-lg font-semibold uppercase tracking-[0.4em] transition-interface duration-300 transform',
+                  'translate-y-0 opacity-100',
                   'hover:text-primary hover:scale-110',
                   active ? 'text-foreground' : 'text-muted-foreground'
                 )}
@@ -189,6 +236,7 @@ export function HeaderNavigation() {
           })}
         </nav>
       </div>
+      ) : null}
     </header>
   );
 }

@@ -4,10 +4,18 @@ import { getRedisCache } from '@/lib/cache/RedisCache';
 const RATE_LIMIT_WINDOW_SECONDS = 60;
 const MAX_REQUESTS_PER_WINDOW = 10;
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 const VISITOR_COUNT_KEY = 'visitor:count';
 const RATE_LIMIT_PREFIX = 'visitor:rate-limit:';
+
+async function hashIdentifier(value: string): Promise<string> {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest), (byte) =>
+    byte.toString(16).padStart(2, '0')
+  ).join('');
+}
 
 /**
  * GET /api/visitor - Get current visitor count
@@ -44,18 +52,18 @@ export async function POST(request: NextRequest) {
       request.headers.get('x-real-ip') ||
       'unknown';
     const ip = rawIp.split(',')[0].trim() || 'unknown';
-    const rateLimitKey = `${RATE_LIMIT_PREFIX}${ip}`;
-    const requestCount = await cache.increment(rateLimitKey);
+    const hashedIp = await hashIdentifier(ip);
+    const rateLimitKey = `${RATE_LIMIT_PREFIX}${hashedIp}`;
+    const requestCount = await cache.incrementWithExpiry(
+      rateLimitKey,
+      RATE_LIMIT_WINDOW_SECONDS
+    );
 
     if (requestCount === null) {
       return NextResponse.json(
         { error: 'Visitor tracking unavailable', available: false },
         { status: 503 }
       );
-    }
-
-    if (requestCount === 1) {
-      await cache.expire(rateLimitKey, RATE_LIMIT_WINDOW_SECONDS);
     }
 
     if (requestCount > MAX_REQUESTS_PER_WINDOW) {

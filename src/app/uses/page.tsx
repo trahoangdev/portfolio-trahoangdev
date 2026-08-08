@@ -1,5 +1,4 @@
-import { Monitor, Cpu, Code2, Headphones, Terminal } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Monitor, Headphones, Terminal } from 'lucide-react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -122,7 +121,7 @@ export default function UsesPage() {
                             {category.items.map((item) => (
                                 <div
                                     key={item.title}
-                                    className="group relative rounded-xl border border-border/50 bg-card p-6 transition-all hover:bg-secondary/20 hover:border-border"
+                                    className="group relative rounded-xl border border-border/50 bg-card p-6 transition-interface hover:bg-secondary/20 hover:border-border"
                                 >
                                     <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
                                         {item.title}

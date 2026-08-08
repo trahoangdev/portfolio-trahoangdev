@@ -53,7 +53,7 @@ export function ProjectFilterBar({
           }
         }}
         className={cn(
-          'px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 border',
+          'px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-interface duration-300 border',
           selectedLanguage === null
             ? 'bg-foreground text-background border-foreground'
             : 'bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground'
@@ -79,7 +79,7 @@ export function ProjectFilterBar({
               }
             }}
             className={cn(
-              'group relative p-3 rounded-full border transition-all duration-300',
+              'group relative p-3 rounded-full border transition-interface duration-300',
               selectedLanguage === lang
                 ? 'bg-primary/10 border-primary text-primary'
                 : 'bg-transparent border-border text-muted-foreground hover:border-foreground hover:text-foreground'

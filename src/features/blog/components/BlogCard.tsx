@@ -12,7 +12,7 @@ interface BlogCardProps {
 export function BlogCard({ post, className }: BlogCardProps) {
     return (
         <Link href={`/blog/${post.slug}`} className={cn("group block h-full", className)}>
-            <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md hover:border-primary/50">
+            <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-interface hover:shadow-md hover:border-primary/50">
                 {post.coverImage && (
                     <div className="aspect-video w-full overflow-hidden relative">
                         <Image

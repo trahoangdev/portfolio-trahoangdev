@@ -45,14 +45,14 @@ export default function Error({
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={reset}
-              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-interface duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
               aria-label="Try loading the page again"
             >
               Try again
             </button>
             <Link
               href="/"
-              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-all duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded text-center"
+              className="px-6 py-3 border-dotted-thick border-border bg-background hover:bg-foreground hover:text-background transition-interface duration-300 hover-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded text-center"
               aria-label="Navigate to home page"
             >
               Go home

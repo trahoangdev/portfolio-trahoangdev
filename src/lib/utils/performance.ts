@@ -5,13 +5,13 @@
 /**
  * Debounce function to limit how often a function can be called
  */
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
+export function debounce<TArgs extends unknown[]>(
+  func: (...args: TArgs) => unknown,
   wait: number
-): (...args: Parameters<T>) => void {
+): (...args: TArgs) => void {
   let timeout: NodeJS.Timeout | null = null;
 
-  return function executedFunction(...args: Parameters<T>) {
+  return function executedFunction(...args: TArgs) {
     const later = () => {
       timeout = null;
       func(...args);
@@ -28,13 +28,13 @@ export function debounce<T extends (...args: any[]) => any>(
  * Request Animation Frame throttle
  * More performant than setTimeout for animations
  */
-export function rafThrottle<T extends (...args: any[]) => any>(
-  func: T
-): (...args: Parameters<T>) => void {
+export function rafThrottle<TArgs extends unknown[]>(
+  func: (...args: TArgs) => unknown
+): (...args: TArgs) => void {
   let rafId: number | null = null;
-  let lastArgs: Parameters<T> | null = null;
+  let lastArgs: TArgs | null = null;
 
-  return function executedFunction(...args: Parameters<T>) {
+  return function executedFunction(...args: TArgs) {
     lastArgs = args;
 
     if (rafId === null) {
@@ -128,6 +128,15 @@ export function measurePerformance(): {
   };
 
   try {
+    interface FirstInputEntry extends PerformanceEntry {
+      processingStart: number;
+    }
+
+    interface LayoutShiftEntry extends PerformanceEntry {
+      hadRecentInput: boolean;
+      value: number;
+    }
+
     // First Contentful Paint
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
@@ -148,8 +157,9 @@ export function measurePerformance(): {
     // First Input Delay
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry: any) => {
-        metrics.fid = entry.processingStart - entry.startTime;
+      entries.forEach((entry) => {
+        const inputEntry = entry as FirstInputEntry;
+        metrics.fid = inputEntry.processingStart - inputEntry.startTime;
       });
     }).observe({ entryTypes: ['first-input'] });
 
@@ -157,9 +167,10 @@ export function measurePerformance(): {
     let clsValue = 0;
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry: any) => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
+      entries.forEach((entry) => {
+        const layoutEntry = entry as LayoutShiftEntry;
+        if (!layoutEntry.hadRecentInput) {
+          clsValue += layoutEntry.value;
         }
       });
       metrics.cls = clsValue;

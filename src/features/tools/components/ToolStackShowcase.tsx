@@ -1,5 +1,3 @@
-'use client';
-
 import { TechIcon } from '@/components/ui/TechIcon';
 import type { ToolPaletteDto } from '@/features/tools/application/ToolPaletteService';
 
@@ -31,7 +29,7 @@ export function ToolStackShowcase({ groups }: ToolStackShowcaseProps) {
         {groups.map((group) => (
           <div
             key={group.category.slug}
-            className="group relative overflow-hidden rounded-2xl border border-dashed border-border/80 bg-muted/30 p-5 transition-all duration-500 hover:-translate-y-1 hover:border-solid hover:border-border hover:bg-muted/40 hover:shadow-2xl"
+            className="group relative overflow-hidden rounded-2xl border border-dashed border-border/80 bg-muted/30 p-5 transition-interface duration-500 hover:-translate-y-1 hover:border-solid hover:border-border hover:bg-muted/40 hover:shadow-2xl"
           >
             <div className="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               <div className="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-transparent blur-3xl" />
@@ -50,7 +48,7 @@ export function ToolStackShowcase({ groups }: ToolStackShowcaseProps) {
               {group.items.map((tool) => (
                 <div
                   key={tool.id}
-                  className="flex items-center gap-3 rounded-xl border border-border/40 bg-background/60 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-border hover:bg-background/80 hover:shadow-lg"
+                  className="flex items-center gap-3 rounded-xl border border-border/40 bg-background/60 p-3 transition-interface duration-500 hover:-translate-y-1 hover:border-border hover:bg-background/80 hover:shadow-lg"
                 >
                   <TechIcon
                     tech={tool.techId}

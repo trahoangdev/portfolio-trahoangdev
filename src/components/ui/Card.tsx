@@ -10,7 +10,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     
     const variantClasses = {
       default: baseClasses,
-      magnet: `${baseClasses} magnet-card cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`,
+      magnet: `${baseClasses} magnet-card cursor-pointer transition-interface duration-300 hover:-translate-y-1 hover:shadow-lg`,
     };
     
     const classes = `${variantClasses[variant]} ${className || ''}`;

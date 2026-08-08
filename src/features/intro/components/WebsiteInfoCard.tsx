@@ -54,7 +54,7 @@ export function WebsiteInfoCard() {
   }, []);
 
   return (
-    <div className="magnet-card rounded-3xl border-wave-animated border-border p-4  hover:shadow-xl transition-all duration-500 group relative overflow-hidden">
+    <div className="magnet-card rounded-3xl border-wave-animated border-border p-4  hover:shadow-xl transition-interface duration-500 group relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-muted/50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
 
       <div className="relative z-10 space-y-3">
@@ -71,7 +71,7 @@ export function WebsiteInfoCard() {
               <Eye className="w-3 h-3" />
             </div>
             <div className="flex-1">
-              <div className="text-xs text-muted-foreground">Visitors</div>
+              <div className="text-xs text-muted-foreground">Page views</div>
               <div className="text-lg font-bold">
                 {loading ? (
                   <div className="h-5 w-12 bg-muted rounded animate-pulse" />

@@ -14,8 +14,6 @@ export function ProjectPagination({
   totalPages,
   onPageChange,
 }: ProjectPaginationProps) {
-  if (totalPages <= 1) return null;
-
   const pages = useMemo(() => {
     const result: (number | 'ellipsis-start' | 'ellipsis-end')[] = [];
 
@@ -57,6 +55,8 @@ export function ProjectPagination({
     if (currentPage < totalPages) onPageChange(currentPage + 1);
   }, [currentPage, totalPages, onPageChange]);
 
+  if (totalPages <= 1) return null;
+
   return (
     <nav
       role="navigation"
@@ -70,7 +70,7 @@ export function ProjectPagination({
         disabled={currentPage === 1}
         aria-label="Previous page"
         className={cn(
-          'inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-sm transition-all duration-300',
+          'inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-sm transition-interface duration-300',
           currentPage === 1
             ? 'cursor-not-allowed text-muted-foreground/30'
             : 'text-muted-foreground hover:border-foreground/40 hover:bg-muted/40 hover:text-foreground'
@@ -104,7 +104,7 @@ export function ProjectPagination({
             aria-label={`Page ${page}`}
             aria-current={isActive ? 'page' : undefined}
             className={cn(
-              'inline-flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold uppercase tracking-[0.15em] transition-all duration-300',
+              'inline-flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold uppercase tracking-[0.15em] transition-interface duration-300',
               isActive
                 ? 'border border-foreground/80 bg-foreground text-background'
                 : 'border border-border/60 text-muted-foreground hover:border-foreground/40 hover:bg-muted/40 hover:text-foreground'
@@ -122,7 +122,7 @@ export function ProjectPagination({
         disabled={currentPage === totalPages}
         aria-label="Next page"
         className={cn(
-          'inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-sm transition-all duration-300',
+          'inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-sm transition-interface duration-300',
           currentPage === totalPages
             ? 'cursor-not-allowed text-muted-foreground/30'
             : 'text-muted-foreground hover:border-foreground/40 hover:bg-muted/40 hover:text-foreground'
