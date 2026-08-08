@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { HeaderNavigation } from '@/components/navigation/HeaderNavigation';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -18,6 +18,12 @@ const geist = Geist({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-geist',
+});
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-geist-mono',
 });
 
 const PRODUCTION_SITE_URL = 'https://www.trahoangdev.me';
@@ -93,7 +99,7 @@ export default function RootLayout({
   const isVercelRuntime = process.env.VERCEL === '1';
 
   return (
-    <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geist.className} ${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

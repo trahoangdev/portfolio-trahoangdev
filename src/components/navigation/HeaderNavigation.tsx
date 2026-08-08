@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 //import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
-import { SCROLL_THRESHOLD, THROTTLE_MS } from '@/lib/constants/ui';
+import { SCROLL_THRESHOLD } from '@/lib/constants/ui';
 interface NavItem {
   label: string;
   href: string;
@@ -47,7 +47,7 @@ export function HeaderNavigation() {
   const isHome = pathname === '/';
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const throttleRef = useRef<NodeJS.Timeout | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -105,13 +105,12 @@ export function HeaderNavigation() {
 
   // Handle scroll visibility
   const handleScroll = useCallback(() => {
-    if (throttleRef.current) return;
+    if (animationFrameRef.current !== null) return;
 
-    throttleRef.current = setTimeout(() => {
-      const scrollY = window.scrollY;
-      setIsVisible(scrollY > SCROLL_THRESHOLD);
-      throttleRef.current = null;
-    }, THROTTLE_MS);
+    animationFrameRef.current = window.requestAnimationFrame(() => {
+      animationFrameRef.current = null;
+      setIsVisible(window.scrollY > SCROLL_THRESHOLD);
+    });
   }, []);
 
   useEffect(() => {
@@ -123,8 +122,9 @@ export function HeaderNavigation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (throttleRef.current) {
-        clearTimeout(throttleRef.current);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
     };
   }, [isHome, handleScroll]);
@@ -132,7 +132,7 @@ export function HeaderNavigation() {
   const isHeaderVisible = !isHome || isVisible;
 
   const visibilityClasses = cn(
-    'transition-interface duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+    'will-change-[transform,opacity] transition-interface duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
     isHeaderVisible || isMobileMenuOpen
       ? 'translate-y-0 opacity-100'
       : '-translate-y-8 opacity-0 pointer-events-none'

@@ -1,0 +1,76 @@
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
+/* Hallmark · genre: editorial · tone: technical · anchor: violet-tinted monochrome · macrostructure: Ecosystem Index · theme: Almanac */
+/* Hallmark · enrichment: existing editorial covers · nav: inherited N5 site system · footer: Ft4 Dense colophon */
+/* Hallmark · contrast: pass (40–41) · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive/mobile: pass (30, 34, 49–57) */
+:root {
+  --color-blog-paper: var(--background);
+  --color-blog-paper-2: var(--muted);
+  --color-blog-ink: var(--foreground);
+  --color-blog-muted: var(--muted-foreground);
+  --color-blog-rule: var(--border);
+  --color-blog-focus: var(--ring);
+  --color-blog-accent: var(--primary);
+  --color-blog-accent-ink: var(--primary-foreground);
+
+  --font-blog-body: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-blog-display: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-blog-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --space-blog-1: 0.5rem;
+  --space-blog-2: 1rem;
+  --space-blog-3: 1.5rem;
+  --space-blog-4: 2rem;
+  --space-blog-5: 3rem;
+  --space-blog-6: 4.5rem;
+
+  --text-blog-label: 0.75rem;
+  --text-blog-body: 1rem;
+  --text-blog-lede: clamp(1.1rem, 0.8vw + 0.9rem, 1.35rem);
+  --text-blog-title: clamp(3.25rem, 9vw, 7.5rem);
+  --text-blog-article-title: clamp(2.75rem, 7vw, 6rem);
+
+  --ease-blog-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-blog-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-blog-toggle: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-blog-micro: 120ms;
+  --dur-blog-short: 180ms;
+  --dur-blog-long: 360ms;
+
+  --rule-blog-hairline: 1px;
+  --radius-blog-inline: calc(var(--radius) - 4px);
+  --radius-blog-control: var(--radius);
+  --radius-blog-surface: calc(var(--radius) + 4px);
+}
+
+.blog-journal {
+  font-family: var(--font-blog-body);
+  --background: oklch(0.985 0.006 285);
+  --foreground: oklch(0.145 0.006 285);
+  --card: oklch(0.985 0.006 285);
+  --card-foreground: oklch(0.145 0.006 285);
+  --primary: oklch(0.145 0.006 285);
+  --primary-foreground: oklch(0.985 0.006 285);
+  --secondary: oklch(0.95 0.006 285);
+  --secondary-foreground: oklch(0.145 0.006 285);
+  --muted: oklch(0.95 0.006 285);
+  --muted-foreground: oklch(0.4 0.006 285);
+  --border: oklch(0.269 0.006 285);
+  --input: oklch(0.82 0.006 285);
+  --ring: oklch(0.4 0.006 285);
+}
+
+.dark .blog-journal {
+  --background: oklch(0.145 0.006 285);
+  --foreground: oklch(0.985 0.006 285);
+  --card: oklch(0.145 0.006 285);
+  --card-foreground: oklch(0.985 0.006 285);
+  --primary: oklch(0.985 0.006 285);
+  --primary-foreground: oklch(0.145 0.006 285);
+  --secondary: oklch(0.1 0.006 285);
+  --secondary-foreground: oklch(0.985 0.006 285);
+  --muted: oklch(0.1 0.006 285);
+  --muted-foreground: oklch(0.7 0.006 285);
+  --border: oklch(0.708 0.006 285);
+  --input: oklch(0.35 0.006 285);
+  --ring: oklch(0.6 0.006 285);
+}

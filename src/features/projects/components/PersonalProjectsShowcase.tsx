@@ -6,8 +6,40 @@ import { BsPuzzleFill } from 'react-icons/bs';
 
 const PERSONAL_PROJECTS = [
     {
+        id: 'docuflow-ai',
+        title: 'DocuFlow AI - Serverless Intelligent Invoice & Receipt Processing Platform on AWS',
+        role: 'Project Leader / Integration Owner',
+        description:
+            'Serverless, event-driven platform that securely processes PDF, JPG, and PNG invoices and receipts. Amazon Textract extracts financial data, an AI proxy normalizes the result, and low-confidence documents are routed through a human review workflow.',
+        repo: 'https://github.com/AeroOps-AWS-FCAJ/aws-serverless-document-processing-workshop',
+        resources: [
+            {
+                label: 'Workshop',
+                url: 'https://trahoangdev.github.io/fcaj-workshop-intern/5-workshop/',
+            },
+        ],
+        tags: [
+            'React 18',
+            'TypeScript',
+            'AWS SAM',
+            'Amazon S3',
+            'AWS Lambda',
+            'Step Functions',
+            'Amazon Textract',
+            'DynamoDB',
+            'EventBridge',
+            'Amazon SQS',
+            'Amazon Cognito',
+        ],
+        isMaintenance: false,
+        members: 5,
+        image: 'https://trahoangdev.github.io/fcaj-workshop-intern/images/2-Proposal/docuflow_high_level_architecture.png',
+        gradient: 'from-orange-500/20 via-amber-500/20 to-yellow-500/20',
+    },
+    {
         id: 'valsea-classroom-copilot',
         title: 'VALSEA Classroom Copilot',
+        role: 'Solo Builder',
         description:
             'Speech-first classroom copilot for Vietnamese–English code-switching lectures. Realtime mic → VALSEA ASR → structured notes, key terms, English recap, quizzes, exports, and session history.',
         repo: 'https://github.com/trahoangdev/valsea-classroom-copilot',
@@ -29,8 +61,9 @@ const PERSONAL_PROJECTS = [
     {
         id: 'taikhoanxin',
         title: 'TAIKHOANXIN',
+        role: 'Co-founder & Frontend Developer',
         description:
-            'Affordable licensed accounts with a fast, streamlined marketplace experience focused on reliability and convenience.',
+            'A digital access marketplace offering affordable licensed accounts through fast purchasing flows, streamlined product discovery, and dedicated customer-facing and admin experiences.',
         repos: [
             {
                 label: 'Admin',
@@ -53,6 +86,7 @@ const PERSONAL_PROJECTS = [
     {
         id: 'luxe-wear-ai',
         title: 'LUXE WEAR AI',
+        role: 'Owner & Frontend Developer',
         description:
             'SaaS platforms enable businesses to build, deploy, and manage AI agents. The system supports real-time data integration, performs actions across third-party systems, and provides detailed analytical reporting.',
         repo: 'https://github.com/trahoangdev/client-luxe-wear-ai',
@@ -78,6 +112,7 @@ const PERSONAL_PROJECTS = [
     {
         id: 'dev-orbit-blog',
         title: 'DevOrbit - Blog Platform',
+        role: 'Owner',
         description:
             'An open-source blog platform designed for developers. Features MDX support, syntax highlighting, dark mode, and a highly optimized reading experience.',
         repo: 'https://github.com/trahoangdev/dev-orbit',
@@ -99,6 +134,7 @@ const PERSONAL_PROJECTS = [
     {
         id: 'trahoangdev-portfolio',
         title: 'Personal Portfolio',
+        role: 'Owner',
         description:
             'A modern, high-performance portfolio built with Next.js 16 and Tailwind CSS 4. Features a matrix-themed design, interactive particles background, and seamless animations.',
         repo: 'https://github.com/trahoangdev/portfolio-trahoangdev',
@@ -149,6 +185,14 @@ export function PersonalProjectsShowcase() {
                                         </div>
                                     )}
                                 </div>
+                                {project.role ? (
+                                    <div className="inline-flex w-fit flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-border/50 bg-muted/40 px-2.5 py-1 font-mono text-xs">
+                                        <span className="font-semibold uppercase tracking-wider text-muted-foreground">
+                                            Role
+                                        </span>
+                                        <span className="text-foreground">{project.role}</span>
+                                    </div>
+                                ) : null}
                                 <p className="text-muted-foreground leading-relaxed font-mono text-sm max-w-md">
                                     {project.description}
                                 </p>
@@ -190,6 +234,18 @@ export function PersonalProjectsShowcase() {
                                         <FaExternalLinkAlt className="h-3 w-3" />
                                     </Link>
                                 ) : null}
+                                {project.resources?.map((resource) => (
+                                    <Link
+                                        key={resource.url}
+                                        href={resource.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-bold uppercase tracking-wider transition-interface duration-300 hover:bg-foreground hover:text-background hover:scale-105 active:scale-95 shrink-0"
+                                    >
+                                        <span>{resource.label}</span>
+                                        <FaExternalLinkAlt className="h-3 w-3" />
+                                    </Link>
+                                ))}
 
                                 {project.isMaintenance && (
                                     <div className="flex items-center gap-2 text-yellow-500 text-xs font-mono px-2 py-1 bg-yellow-500/10 rounded border border-yellow-500/20">
