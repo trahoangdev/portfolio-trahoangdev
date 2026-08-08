@@ -1,134 +1,224 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 import { BlogPostMetadata } from '@/features/blog/module/types';
-import { BlogCard } from './BlogCard';
-import { Search } from 'lucide-react';
-import { ProjectPagination as Pagination } from '@/features/projects/components/ProjectPagination';
 import { cn } from '@/lib/utils';
+import { BlogCard } from './BlogCard';
+import { BlogPagination } from './BlogPagination';
 
 interface BlogListProps {
     initialPosts: BlogPostMetadata[];
     allTags: string[];
 }
 
+const POSTS_PER_PAGE = 5;
+const COLLAPSED_TOPIC_COUNT = 8;
+
 export function BlogList({ initialPosts, allTags }: BlogListProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [showAllTopics, setShowAllTopics] = useState(false);
 
-    const POSTS_PER_PAGE = 6;
+    useEffect(() => {
+        const tagFromUrl = new URLSearchParams(window.location.search).get('tag');
 
-    // Reset pagination to 1 when filters change
+        if (tagFromUrl && allTags.includes(tagFromUrl)) {
+            setSelectedTag(tagFromUrl);
+            setShowAllTopics(!allTags.slice(0, COLLAPSED_TOPIC_COUNT).includes(tagFromUrl));
+        }
+    }, [allTags]);
+
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, selectedTag]);
 
     const filteredPosts = useMemo(() => {
+        const normalizedQuery = searchQuery.trim().toLowerCase();
+
         return initialPosts.filter((post) => {
             const matchesSearch =
-                post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-
+                normalizedQuery.length === 0 ||
+                post.title.toLowerCase().includes(normalizedQuery) ||
+                post.excerpt.toLowerCase().includes(normalizedQuery);
             const matchesTag = selectedTag ? post.tags?.includes(selectedTag) : true;
 
             return matchesSearch && matchesTag;
         });
     }, [initialPosts, searchQuery, selectedTag]);
 
-    const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
-    const paginatedPosts = filteredPosts.slice(
+    const isDefaultView = searchQuery.trim().length === 0 && selectedTag === null;
+    const featuredPost = isDefaultView ? filteredPosts[0] : undefined;
+    const archivePosts = featuredPost ? filteredPosts.slice(1) : filteredPosts;
+    const totalPages = Math.ceil(archivePosts.length / POSTS_PER_PAGE);
+    const paginatedPosts = archivePosts.slice(
         (currentPage - 1) * POSTS_PER_PAGE,
         currentPage * POSTS_PER_PAGE
     );
+    const visibleTopics = showAllTopics ? allTags : allTags.slice(0, COLLAPSED_TOPIC_COUNT);
+    const hiddenTopicCount = Math.max(0, allTags.length - COLLAPSED_TOPIC_COUNT);
+
+    const clearFilters = () => {
+        setSearchQuery('');
+        setSelectedTag(null);
+        window.history.replaceState(null, '', window.location.pathname);
+    };
+
+    const selectTopic = (tag: string | null) => {
+        const nextTag = tag === selectedTag ? null : tag;
+        setSelectedTag(nextTag);
+
+        const url = new URL(window.location.href);
+        if (nextTag) {
+            url.searchParams.set('tag', nextTag);
+        } else {
+            url.searchParams.delete('tag');
+        }
+        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    };
 
     return (
-        <div className="space-y-10">
-            {/* Filters Section */}
-            <div className="space-y-6">
-                {/* Search Input */}
-                <div className="relative max-w-md mx-auto md:max-w-2xl">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-muted-foreground">
-                        <Search className="h-5 w-5" />
+        <section className="py-12 md:py-16" aria-labelledby="archive-heading">
+            <div className="grid min-w-0 gap-8 rounded-[var(--radius-blog-surface)] border border-border bg-background p-5 md:p-8 lg:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)] lg:gap-12">
+                <div>
+                    <h2 id="archive-heading" className="min-w-0 [overflow-wrap:anywhere] font-[family-name:var(--font-blog-display)] text-3xl font-medium tracking-tight md:text-4xl">
+                        Browse the archive
+                    </h2>
+                    <p className="mt-3 tabular-nums text-sm leading-relaxed text-muted-foreground" aria-live="polite">
+                        {filteredPosts.length} {filteredPosts.length === 1 ? 'note' : 'notes'} found
+                    </p>
+                </div>
+
+                <div className="min-w-0 space-y-6">
+                    <div>
+                        <label htmlFor="blog-search" className="mb-2 block text-sm font-medium">
+                            Search the archive
+                        </label>
+                        <div className="relative">
+                            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
+                            <input
+                                id="blog-search"
+                                type="search"
+                                className="h-12 w-full rounded-[var(--radius-blog-control)] border border-input bg-background py-3 pl-11 pr-4 text-sm outline-2 outline-transparent outline-offset-1 placeholder:text-muted-foreground hover:bg-muted/40 focus-visible:outline-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                placeholder="Title or subject…"
+                                value={searchQuery}
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                            />
+                        </div>
                     </div>
-                    <input
-                        type="text"
-                        className="flex h-12 w-full rounded-full border border-input bg-background/50 backdrop-blur-sm px-10 py-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 shadow-sm transition-interface hover:bg-background hover:shadow-md"
-                        placeholder="Search articles..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap justify-center gap-2">
-                    <button
-                        onClick={() => setSelectedTag(null)}
-                        className={cn(
-                            "px-4 py-2 rounded-full text-sm font-medium transition-interface duration-300",
-                            selectedTag === null
-                                ? "bg-primary text-primary-foreground shadow-sm scale-105"
-                                : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
-                        )}
-                    >
-                        All
-                    </button>
-                    {allTags.map((tag) => (
-                        <button
-                            key={tag}
-                            onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
-                            className={cn(
-                                "px-4 py-2 rounded-full text-sm font-medium transition-interface duration-300",
-                                selectedTag === tag
-                                    ? "bg-primary text-primary-foreground shadow-sm scale-105"
-                                    : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                    <div>
+                        <div className="mb-3 flex items-center justify-between gap-4">
+                            <span className="text-sm font-medium">Topics</span>
+                            {hiddenTopicCount > 0 && (
+                                <button
+                                    type="button"
+                                    onClick={() => setShowAllTopics((visible) => !visible)}
+                                    className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-sm text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground hover:decoration-foreground active:translate-y-px"
+                                    aria-expanded={showAllTopics}
+                                    aria-controls="blog-topic-filters"
+                                >
+                                    <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
+                                    {showAllTopics ? 'Fewer topics' : `${hiddenTopicCount} more`}
+                                </button>
                             )}
-                        >
-                            {tag}
-                        </button>
-                    ))}
+                        </div>
+                        <div id="blog-topic-filters" className="flex flex-wrap gap-2">
+                            <button
+                                type="button"
+                                onClick={() => selectTopic(null)}
+                                aria-pressed={selectedTag === null}
+                                className={cn(
+                                    'min-h-11 whitespace-nowrap rounded-[var(--radius-blog-control)] border px-4 py-2 text-sm font-medium transition-colors duration-[var(--dur-blog-short)] ease-[var(--ease-blog-out)] active:translate-y-px',
+                                    selectedTag === null
+                                        ? 'border-foreground bg-foreground text-background'
+                                        : 'border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground'
+                                )}
+                            >
+                                All topics
+                            </button>
+                            {visibleTopics.map((tag) => (
+                                <button
+                                    key={tag}
+                                    type="button"
+                                    onClick={() => selectTopic(tag)}
+                                    aria-pressed={selectedTag === tag}
+                                    className={cn(
+                                        'min-h-11 whitespace-nowrap rounded-[var(--radius-blog-control)] border px-4 py-2 text-sm font-medium transition-colors duration-[var(--dur-blog-short)] ease-[var(--ease-blog-out)] active:translate-y-px',
+                                        selectedTag === tag
+                                            ? 'border-foreground bg-foreground text-background'
+                                            : 'border-border bg-background text-muted-foreground hover:bg-muted hover:text-foreground'
+                                    )}
+                                >
+                                    {tag}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Results */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {paginatedPosts.map((post) => (
-                    <BlogCard key={post.slug} post={post} />
-                ))}
-            </div>
+            {featuredPost && (
+                <div className="py-12 md:py-16">
+                    <BlogCard post={featuredPost} variant="featured" />
+                </div>
+            )}
 
-            {/* Pagination */}
-            {filteredPosts.length > 0 && (
+            {paginatedPosts.length > 0 && (
+                <div className="pt-10 md:pt-12">
+                    <div className="mb-4 flex items-baseline justify-between gap-4">
+                        <h2 id="blog-note-list" className="scroll-mt-28 min-w-0 [overflow-wrap:anywhere] font-[family-name:var(--font-blog-display)] text-2xl font-medium tracking-tight md:text-3xl">
+                            {isDefaultView ? 'Latest notes' : 'Matching notes'}
+                        </h2>
+                        <span className="tabular-nums text-sm text-muted-foreground">
+                            {archivePosts.length} total
+                        </span>
+                    </div>
+                    <div className="overflow-hidden rounded-[var(--radius-blog-surface)] border border-border bg-background divide-y divide-border">
+                        {paginatedPosts.map((post) => (
+                            <BlogCard key={post.slug} post={post} variant="archive" />
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {archivePosts.length > 0 && totalPages > 1 && (
                 <div className="mt-8">
-                    <Pagination 
-                        currentPage={currentPage} 
-                        totalPages={totalPages} 
+                    <BlogPagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
                         onPageChange={(page) => {
                             setCurrentPage(page);
-                            window.scrollTo({ top: 300, behavior: 'smooth' });
-                        }} 
+                            window.requestAnimationFrame(() => {
+                                document.getElementById('blog-note-list')?.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start',
+                                });
+                            });
+                        }}
                     />
                 </div>
             )}
 
-            {/* Empty State */}
             {filteredPosts.length === 0 && (
-                <div className="text-center py-20 animate-in fade-in-50 zoom-in-95">
-                    <div className="inline-flex h-20 w-20 items-center justify-center rounded-full bg-muted mb-6">
-                        <Search className="h-10 w-10 text-muted-foreground" />
+                <div className="rounded-[var(--radius-blog-surface)] border border-border bg-background p-6 md:grid md:grid-cols-[minmax(12rem,0.45fr)_minmax(0,1fr)] md:gap-12 md:p-8">
+                    <Search className="mb-6 h-8 w-8 text-muted-foreground md:mb-0" aria-hidden="true" />
+                    <div>
+                        <h3 className="min-w-0 [overflow-wrap:anywhere] font-[family-name:var(--font-blog-display)] text-3xl font-medium">No matching notes</h3>
+                        <p className="mt-3 max-w-lg leading-relaxed text-muted-foreground">
+                            The current keyword and topic filter do not match a published note. Clear them to return to the full archive.
+                        </p>
+                        <button
+                            type="button"
+                            onClick={clearFilters}
+                            className="mt-6 min-h-11 whitespace-nowrap border-b border-foreground font-medium active:translate-y-px"
+                        >
+                            Clear filters
+                        </button>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">No posts found</h3>
-                    <p className="text-muted-foreground max-w-sm mx-auto">
-                        We couldn't find any posts matching your search criteria. Try different keywords or remove filters.
-                    </p>
-                    <button
-                        onClick={() => { setSearchQuery(''); setSelectedTag(null); }}
-                        className="mt-6 text-primary font-medium hover:underline"
-                    >
-                        Clear all filters
-                    </button>
                 </div>
             )}
-        </div>
+        </section>
     );
 }

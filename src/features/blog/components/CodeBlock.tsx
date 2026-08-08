@@ -1,23 +1,14 @@
 'use client';
 
-import { useState, isValidElement } from 'react';
+import { isValidElement, useEffect, useRef, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 function extractText(node: React.ReactNode): string {
-    if (typeof node === 'string' || typeof node === 'number') {
-        return String(node);
-    }
-
-    if (Array.isArray(node)) {
-        return node.map(extractText).join('');
-    }
-
-    if (isValidElement<{ children?: React.ReactNode }>(node)) {
-        return extractText(node.props.children);
-    }
-
+    if (typeof node === 'string' || typeof node === 'number') return String(node);
+    if (Array.isArray(node)) return node.map(extractText).join('');
+    if (isValidElement<{ children?: React.ReactNode }>(node)) return extractText(node.props.children);
     return '';
 }
 
@@ -27,55 +18,52 @@ interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
 
 export function CodeBlock({ children, className, ...props }: CodeBlockProps) {
     const [isCopied, setIsCopied] = useState(false);
+    const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => () => {
+        if (resetTimer.current) clearTimeout(resetTimer.current);
+    }, []);
 
     const copyToClipboard = async () => {
         const textToCopy = extractText(children);
-
         if (!textToCopy) return;
 
         try {
             await navigator.clipboard.writeText(textToCopy);
             setIsCopied(true);
-            toast.success('Copied to clipboard!', {
-                className: 'bg-green-500 text-white border-none',
-                duration: 2000,
-            });
-            setTimeout(() => setIsCopied(false), 2000);
-        } catch (err) {
-            toast.error('Failed to copy');
-            console.error('Failed to copy!', err);
+            if (resetTimer.current) clearTimeout(resetTimer.current);
+            resetTimer.current = setTimeout(() => setIsCopied(false), 2500);
+        } catch (error) {
+            toast.error('Could not copy the code. Select it and copy manually.');
+            console.error('Failed to copy code', error);
         }
     };
 
     return (
-        <div className="relative group my-6">
+        <figure className="relative my-8 min-w-0 overflow-hidden rounded-[var(--radius-blog-surface)] border border-border bg-muted/70">
+            <div className="flex min-h-12 items-center justify-between border-b border-border px-4">
+                <figcaption className="font-mono text-xs text-muted-foreground">Code</figcaption>
+                <button
+                    type="button"
+                    onClick={copyToClipboard}
+                    className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap px-2 text-xs font-medium text-muted-foreground transition-colors duration-[var(--dur-blog-short)] ease-[var(--ease-blog-out)] hover:text-foreground focus-visible:rounded-[var(--radius-blog-control)] active:translate-y-px"
+                    aria-label={isCopied ? 'Code copied' : 'Copy code'}
+                    aria-live="polite"
+                >
+                    {isCopied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
+                    {isCopied ? 'Copied' : 'Copy'}
+                </button>
+            </div>
             <pre
                 className={cn(
-                    "overflow-x-auto rounded-xl border border-border bg-zinc-100 dark:bg-zinc-900 p-4 shadow-sm",
-                    "[&_code]:bg-transparent [&_code]:p-0 [&_code]:border-none [&_code]:text-inherit",
+                    'overflow-x-auto p-4 font-mono text-sm leading-7',
+                    '[&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit',
                     className
                 )}
                 {...props}
             >
                 {children}
             </pre>
-            <button
-                onClick={copyToClipboard}
-                className={cn(
-                    "absolute right-3 top-3 p-2 rounded-md transition-interface",
-                    "bg-background/80 hover:bg-background border border-border/50 backdrop-blur-sm",
-                    "opacity-0 group-hover:opacity-100 focus:opacity-100",
-                    "text-muted-foreground hover:text-foreground",
-                    isCopied && "text-green-500"
-                )}
-                aria-label="Copy code"
-            >
-                {isCopied ? (
-                    <Check className="h-4 w-4" />
-                ) : (
-                    <Copy className="h-4 w-4" />
-                )}
-            </button>
-        </div>
+        </figure>
     );
 }

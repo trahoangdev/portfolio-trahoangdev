@@ -1,5 +1,6 @@
 import { getAllPosts } from '@/features/blog/module/service';
 import { BlogList } from '@/features/blog/components/BlogList';
+import { Rss } from 'lucide-react';
 
 export const metadata = {
     title: 'Blog',
@@ -13,39 +14,61 @@ export const metadata = {
 
 export default async function BlogPage() {
     const posts = getAllPosts();
-    // Extract unique tags
-    const allTags = Array.from(new Set(posts.flatMap(post => post.tags || []))).sort();
+    const tagCounts = posts.reduce((counts, post) => {
+        post.tags?.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
+        return counts;
+    }, new Map<string, number>());
+    const allTags = Array.from(tagCounts.keys()).sort((a, b) => {
+        const frequencyDifference = (tagCounts.get(b) ?? 0) - (tagCounts.get(a) ?? 0);
+        return frequencyDifference || a.localeCompare(b);
+    });
 
     return (
-        <div className="container pt-24 pb-12 md:py-24 space-y-12 max-w-6xl mx-auto px-4">
-            <div className="flex flex-col items-center text-center space-y-4 animate-in slide-in-from-bottom-5 fade-in duration-500">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                    <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl gradient-text">
+        <main className="blog-journal overflow-x-clip bg-background pb-12 pt-28 md:pb-16 md:pt-32">
+            <section className="mx-auto max-w-6xl px-4 md:px-8">
+                <div className="grid min-w-0 rounded-[var(--radius-blog-surface)] border border-border bg-background px-4 pb-14 pt-10 md:px-8 md:pb-16 md:pt-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,0.55fr)] lg:gap-12">
+                    <h1 className="min-w-0 [overflow-wrap:anywhere] font-[family-name:var(--font-blog-display)] text-[length:var(--text-blog-title)] font-medium leading-[0.82] tracking-[-0.055em]">
                         My Blog
                     </h1>
-                    <a
-                        href="/feed.xml"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                        aria-label="Subscribe to RSS feed"
-                        title="RSS Feed"
-                    >
-                        <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z" />
-                        </svg>
-                        <span className="hidden sm:inline">RSS Feed</span>
-                    </a>
+                    <div className="mt-8 flex min-w-0 flex-col justify-between gap-8 border-t border-border pt-6 lg:mt-0 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-1">
+                        <p className="max-w-md text-[length:var(--text-blog-lede)] leading-relaxed text-muted-foreground">
+                            Field notes on software engineering, cloud systems, AI, and the decisions behind the build.
+                        </p>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
+                            <span className="tabular-nums text-muted-foreground">{posts.length} published notes</span>
+                            <a
+                                href="/feed.xml"
+                                className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap font-medium underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-blog-short)] ease-[var(--ease-blog-out)] hover:decoration-foreground focus-visible:rounded-[var(--radius-blog-control)]"
+                                aria-label="Subscribe to the blog RSS feed"
+                            >
+                                RSS feed
+                                <Rss className="h-4 w-4" aria-hidden="true" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <p className="text-xl text-muted-foreground max-w-[600px] mx-auto">
-                    Insights, tutorials, and stories from my journey as a developer.
-                </p>
+            </section>
+
+            <div className="mx-auto max-w-6xl px-4 md:px-8">
+                <BlogList initialPosts={posts} allTags={allTags} />
             </div>
 
-            <BlogList initialPosts={posts} allTags={allTags} />
-        </div>
+            <footer className="mx-auto mt-16 max-w-6xl px-4 md:px-8">
+                <div className="grid gap-6 rounded-[var(--radius-blog-surface)] border border-border bg-background px-4 py-8 text-sm text-muted-foreground md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:px-8">
+                    <p className="max-w-xl leading-relaxed">
+                        Written and maintained by trahoangdev. Notes are published when a build leaves something worth documenting.
+                    </p>
+                    <a
+                        href="/feed.xml"
+                        className="min-h-11 whitespace-nowrap font-medium text-foreground underline decoration-border underline-offset-4 transition-colors duration-[var(--dur-blog-short)] ease-[var(--ease-blog-out)] hover:decoration-foreground"
+                    >
+                        <span className="inline-flex items-center gap-2">
+                            Follow via RSS
+                            <Rss className="h-4 w-4" aria-hidden="true" />
+                        </span>
+                    </a>
+                </div>
+            </footer>
+        </main>
     );
 }

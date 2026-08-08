@@ -5,7 +5,6 @@
 
 // Scroll thresholds
 export const SCROLL_THRESHOLD = 100; // px - when to show/hide header
-export const THROTTLE_MS = 100; // ms - throttle delay for scroll events
 
 // Animation durations
 export const INTRO_OVERLAY_DURATION = 4200; // ms - intro overlay auto-close delay
