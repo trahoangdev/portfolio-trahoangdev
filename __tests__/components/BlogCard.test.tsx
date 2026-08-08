@@ -37,9 +37,10 @@ describe('BlogCard', () => {
   });
 
   it('should render cover image when provided', () => {
-    render(<BlogCard post={mockPost} />);
-    const image = screen.getByAltText('Test Blog Post');
-    expect(image).toBeInTheDocument();
+    const { container } = render(<BlogCard post={mockPost} />);
+    const image = container.querySelector('img');
+    expect(image).not.toBeNull();
+    expect(image).toHaveAttribute('alt', '');
     // Next.js Image component transforms the src, so check if it contains the original path
     expect(image).toHaveAttribute('src', expect.stringContaining('test-image.jpg'));
   });
@@ -63,9 +64,8 @@ describe('BlogCard', () => {
 
   it('should not render cover image when not provided', () => {
     const postWithoutImage = { ...mockPost, coverImage: undefined };
-    render(<BlogCard post={postWithoutImage} />);
-    const images = screen.queryAllByRole('img');
-    expect(images.length).toBe(0);
+    const { container } = render(<BlogCard post={postWithoutImage} />);
+    expect(container.querySelector('img')).not.toBeInTheDocument();
   });
 
   it('should not render reading time when not provided', () => {
