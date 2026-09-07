@@ -1,16 +1,17 @@
-import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/metadata';
 import { CERTIFICATES } from '@/features/certificates/infrastructure/certificateData';
 import { CertificateCard } from '@/features/certificates/components/CertificateCard';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
     title: 'Certificates',
     description: 'Professional certifications and achievements.',
-};
+  path: '/certificates',
+});
 
 export default function CertificatesPage() {
     return (
         <div className="min-h-screen text-foreground">
-            <main className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28 pb-16 sm:pb-20 lg:pb-24 space-y-12">
+            <main id="main-content" tabIndex={-1} className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 pt-28 pb-16 sm:pb-20 lg:pb-24 space-y-12">
                 <header className="space-y-6">
                     <div className="flex items-center gap-4">
                         <span className="text-xs font-semibold uppercase tracking-[0.4em] text-muted-foreground">

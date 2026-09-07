@@ -1,7 +1,7 @@
 'use client';
 
-import * as Sentry from '@sentry/nextjs';
 import { useEffect } from 'react';
+import { logError } from '@/lib/utils/error-boundary';
 
 export default function GlobalError({
   error,
@@ -9,13 +9,13 @@ export default function GlobalError({
   error: Error & { digest?: string };
 }) {
   useEffect(() => {
-    Sentry.captureException(error);
+    logError(error, { digest: error.digest });
   }, [error]);
 
   return (
     <html lang="en">
       <body>
-        <div className="flex min-h-screen items-center justify-center p-6">
+        <main id="main-content" tabIndex={-1} className="flex min-h-screen items-center justify-center p-6">
           <div className="max-w-md space-y-6 text-center">
             <div className="space-y-2">
               <h1 className="text-4xl font-bold">500</h1>
@@ -24,8 +24,8 @@ export default function GlobalError({
               </p>
             </div>
             <p className="text-sm text-muted-foreground">
-              We've been notified and are working on a fix. Please try again
-              later.
+              Please try again. If the problem persists, contact us through
+              the portfolio.
             </p>
             <button
               onClick={() => window.location.reload()}
@@ -34,7 +34,7 @@ export default function GlobalError({
               Try Again
             </button>
           </div>
-        </div>
+        </main>
       </body>
     </html>
   );

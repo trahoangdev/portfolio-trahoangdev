@@ -12,6 +12,11 @@ export interface CacheOptions {
   ttl?: number;
 }
 
+export interface CacheReadOptions {
+  /** Propagate Redis failures so callers can distinguish errors from missing keys. */
+  throwOnError?: boolean;
+}
+
 export class RedisCache {
   private redis: Redis | null = null;
 
@@ -35,7 +40,7 @@ export class RedisCache {
   /**
    * Get value from cache
    */
-  async get<T>(key: string): Promise<T | null> {
+  async get<T>(key: string, options?: CacheReadOptions): Promise<T | null> {
     if (!this.redis) {
       return null;
     }
@@ -44,6 +49,9 @@ export class RedisCache {
       const value = await this.redis.get<T>(key);
       return value;
     } catch (error) {
+      if (options?.throwOnError) {
+        throw error;
+      }
       console.error('Redis get error:', error);
       return null;
     }

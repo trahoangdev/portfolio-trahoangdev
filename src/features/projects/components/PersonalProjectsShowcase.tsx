@@ -144,7 +144,6 @@ const PERSONAL_PROJECTS = [
             'Tailwind CSS 4',
             'TypeScript',
             'Shadcn UI',
-            'Sentry',
             'Redis',
         ],
         isMaintenance: false,

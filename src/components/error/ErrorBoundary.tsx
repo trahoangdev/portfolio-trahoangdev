@@ -1,7 +1,7 @@
 'use client';
 
-import * as Sentry from '@sentry/nextjs';
 import { Component, type ReactNode } from 'react';
+import { logError } from '@/lib/utils/error-boundary';
 
 interface Props {
   children: ReactNode;
@@ -24,16 +24,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Log error to Sentry
-    Sentry.captureException(error, {
-      contexts: {
-        react: {
-          componentStack: errorInfo.componentStack,
-        },
-      },
-    });
-
-    console.error('Error caught by boundary:', error, errorInfo);
+    logError(error, { componentStack: errorInfo.componentStack });
   }
 
   render() {
@@ -49,8 +40,8 @@ export class ErrorBoundary extends Component<Props, State> {
                 </p>
               </div>
               <p className="text-sm text-muted-foreground">
-                We've been notified and are working on a fix. Please try
-                refreshing the page.
+                Please try refreshing the page. If the problem persists,
+                contact us through the portfolio.
               </p>
               <button
                 onClick={() => window.location.reload()}

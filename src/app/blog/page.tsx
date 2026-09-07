@@ -1,18 +1,20 @@
 import { getAllPosts } from '@/features/blog/module/service';
 import { BlogList } from '@/features/blog/components/BlogList';
 import { Rss } from 'lucide-react';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata = {
+export const metadata = createPageMetadata({
     title: 'Blog',
     description: 'Sharing my thoughts on software development, design, and more.',
-    alternates: {
-        types: {
-            'application/rss+xml': '/feed.xml',
-        },
-    },
-};
+    path: '/blog',
+});
 
-export default async function BlogPage() {
+export default async function BlogPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ tag?: string | string[] }>;
+}) {
+    const { tag } = await searchParams;
     const posts = getAllPosts();
     const tagCounts = posts.reduce((counts, post) => {
         post.tags?.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
@@ -24,7 +26,7 @@ export default async function BlogPage() {
     });
 
     return (
-        <main className="blog-journal overflow-x-clip bg-background pb-12 pt-28 md:pb-16 md:pt-32">
+        <main id="main-content" tabIndex={-1} className="blog-journal overflow-x-clip bg-background pb-12 pt-28 md:pb-16 md:pt-32">
             <section className="mx-auto max-w-6xl px-4 md:px-8">
                 <div className="grid min-w-0 rounded-[var(--radius-blog-surface)] border border-border bg-background px-4 pb-14 pt-10 md:px-8 md:pb-16 md:pt-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(16rem,0.55fr)] lg:gap-12">
                     <h1 className="min-w-0 [overflow-wrap:anywhere] font-[family-name:var(--font-blog-display)] text-[length:var(--text-blog-title)] font-medium leading-[0.82] tracking-[-0.055em]">
@@ -50,7 +52,7 @@ export default async function BlogPage() {
             </section>
 
             <div className="mx-auto max-w-6xl px-4 md:px-8">
-                <BlogList initialPosts={posts} allTags={allTags} />
+                <BlogList initialPosts={posts} allTags={allTags} initialTag={Array.isArray(tag) ? tag[0] : tag} />
             </div>
 
             <footer className="mx-auto mt-16 max-w-6xl px-4 md:px-8">

@@ -1,9 +1,10 @@
 # 🧪 Testing Guide
 
-**Last Updated:** December 1, 2025  
-**Coverage:** 95.94%  
-**Test Suites:** 10 passed  
-**Total Tests:** 98 passed
+**Last Updated:** September 7, 2026
+
+**Runtime:** Node.js 24 LTS with npm
+
+**Results:** Use the latest Jest output and CI coverage artifact for current counts and coverage.
 
 ---
 
@@ -23,20 +24,14 @@
 
 This project uses **Jest** and **React Testing Library** for testing. We follow a **test-driven development (TDD)** approach with emphasis on:
 
-- **High coverage** (95.94% overall)
-- **Fast execution** (< 2 seconds)
+- **Meaningful coverage** of behavior and failure cases
+- **Fast execution** with mocked external services
 - **Reliable tests** (no flaky tests)
 - **Clear assertions** (descriptive test names)
 
 ### Test Distribution
 
-| Layer | Coverage | Tests | Status |
-|-------|----------|-------|--------|
-| Domain Entities | 100% | 52 | ✅ |
-| Application Services | 100% | 23 | ✅ |
-| Utilities | 100% | 21 | ✅ |
-| Infrastructure | 90% | 2 | ⚠️ |
-| Components | 0% | 0 | ⏳ |
+Tests live in `__tests__/domain`, `application`, `lib`, `infrastructure`, `components`, and `api`. The visitor API tests cover successful reads, missing counters, missing configuration, and Redis failures without accessing a live database.
 
 ---
 
@@ -82,29 +77,29 @@ This project uses **Jest** and **React Testing Library** for testing. We follow 
 
 ```bash
 # Run all tests
-pnpm test
+npm test
 
 # Run tests in watch mode
-pnpm test:watch
+npm run test:watch
 
 # Run tests with coverage
-pnpm test:coverage
+npm run test:coverage
 
 # Run specific test file
-pnpm test -- ProjectTest
+npm test -- Project.test.ts
 
 # Run tests matching pattern
-pnpm test -- --testPathPattern="domain"
+npm test -- --testPathPattern="domain"
 
 # Run tests in silent mode
-pnpm test -- --silent
+npm test -- --silent
 ```
 
 ### Coverage Report
 
 ```bash
 # Generate coverage report
-pnpm test:coverage
+npm run test:coverage
 
 # View HTML report
 open coverage/lcov-report/index.html
@@ -114,7 +109,7 @@ open coverage/lcov-report/index.html
 
 ```bash
 # Run in CI mode (no watch, with coverage)
-pnpm test:ci
+npm run test:ci
 ```
 
 ---
@@ -124,7 +119,7 @@ pnpm test:ci
 ### Test File Structure
 
 ```typescript
-import { Project } from '@/domain/projects/Project';
+import { Project } from '@/features/projects/domain/Project';
 
 describe('Project', () => {
   // Setup
@@ -353,28 +348,20 @@ describe('ProjectCatalogService', () => {
 
 ### Minimum Coverage Targets
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Statements | 80% | 95.94% | ✅ |
-| Branches | 70% | 92.64% | ✅ |
-| Functions | 80% | 97.70% | ✅ |
-| Lines | 80% | 98.24% | ✅ |
+| Metric | Target |
+|--------|--------|
+| Statements | 80% |
+| Branches | 70% |
+| Functions | 80% |
+| Lines | 80% |
 
-### Coverage by Layer
-
-```
-Domain Layer:        100% ✅
-Application Layer:   100% ✅
-Utilities:           100% ✅
-Infrastructure:       90% ⚠️
-Components:            0% ⏳
-```
+These are guidance targets; `jest.config.js` does not currently enforce coverage thresholds. Jest collects coverage from loaded files, so the summary is not a measurement of every source file in the repository.
 
 ### Viewing Coverage
 
 ```bash
 # Generate coverage report
-pnpm test:coverage
+npm run test:coverage
 
 # Coverage files
 coverage/
@@ -496,10 +483,10 @@ it('validates input', () => {});
 
 ```bash
 # Run specific test file
-pnpm test -- Project.test.ts
+npm test -- Project.test.ts
 
 # Run specific test case
-pnpm test -- -t "creates project with required properties"
+npm test -- -t "creates project with required properties"
 ```
 
 ### 2. Debug with Console

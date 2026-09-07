@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/site';
 /**
  * Person Schema (Schema.org)
  * Structured data for SEO and rich snippets
@@ -25,7 +26,7 @@ export interface PersonSchema {
 }
 
 export function getPersonSchema(): PersonSchema {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
+  const baseUrl = SITE_URL;
 
   return {
     '@context': 'https://schema.org',

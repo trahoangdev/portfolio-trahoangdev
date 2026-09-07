@@ -60,24 +60,6 @@ export function getUserFriendlyErrorMessage(error: Error): string {
 /**
  * Log error with context
  */
-interface BrowserSentry {
-  captureException: (error: Error, options?: { extra?: Record<string, unknown> }) => void;
-}
-
-type WindowWithSentry = Window & { Sentry?: BrowserSentry };
-
 export function logError(error: Error, context?: Record<string, unknown>): void {
-  if (process.env.NODE_ENV === 'development') {
-    console.error('Error:', error, context);
-  }
-
-  // Send to Sentry if available
-  const sentry = typeof window !== 'undefined'
-    ? (window as WindowWithSentry).Sentry
-    : undefined;
-  if (sentry) {
-    sentry.captureException(error, {
-      extra: context,
-    });
-  }
+  console.error('Application error:', error, context);
 }

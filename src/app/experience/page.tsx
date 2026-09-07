@@ -1,14 +1,16 @@
+import { createPageMetadata } from '@/lib/metadata';
 import { EXPERIENCES } from '@/lib/constants/experiences';
 import { ExperienceCard } from '@/components/work/ExperienceCard';
 
-export const metadata = {
+export const metadata = createPageMetadata({
     title: 'Experience',
     description: 'My professional journey and work experience.',
-};
+  path: '/experience',
+});
 
 export default function ExperiencePage() {
     return (
-        <main className="min-h-screen pt-24 pb-20 px-6 sm:px-8 lg:px-16 max-w-6xl mx-auto">
+        <main id="main-content" tabIndex={-1} className="min-h-screen pt-24 pb-20 px-6 sm:px-8 lg:px-16 max-w-6xl mx-auto">
             <div className="space-y-12 sm:space-y-16">
                 <div className="space-y-4">
                     <h1 className="text-4xl sm:text-5xl font-bold uppercase tracking-tight">

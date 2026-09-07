@@ -1,7 +1,8 @@
+import { SITE_URL } from '@/lib/site';
 import { getAllPosts } from '@/features/blog/module/service';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
+  const baseUrl = SITE_URL;
   const posts = getAllPosts();
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>

@@ -25,8 +25,8 @@ export async function GET() {
     const cache = getRedisCache();
 
     if (cache.isAvailable()) {
-      const count = await cache.get<number>(VISITOR_COUNT_KEY);
-      return NextResponse.json({ total: count || 0, available: true });
+      const count = await cache.get<number>(VISITOR_COUNT_KEY, { throwOnError: true });
+      return NextResponse.json({ total: count ?? 0, available: true });
     }
 
     return NextResponse.json({ total: null, available: false });

@@ -41,7 +41,7 @@ export function HomePageClient({ latestPosts }: HomePageClientProps) {
 
       <IntroOverlay title="WELCOME MY FELLOW" controller={introOverlay} />
 
-      <main id="main-content" className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
+      <main id="main-content" tabIndex={-1} className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 sm:pt-10">
         <IntroSection sectionRef={registerSection('intro')} />
         <FeaturedWork sectionRef={registerSection('featured')} />
         <Philosophy sectionRef={registerSection('philosophy')} />
