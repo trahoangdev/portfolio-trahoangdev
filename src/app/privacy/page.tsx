@@ -1,14 +1,15 @@
-import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/metadata';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Privacy',
   description: 'How this portfolio handles analytics, diagnostics, and visitor data.',
-};
+  path: '/privacy',
+});
 
 export default function PrivacyPage() {
   return (
-    <main id="main-content" className="mx-auto min-h-screen max-w-3xl px-6 pb-20 pt-28 sm:px-8">
+    <main id="main-content" tabIndex={-1} className="mx-auto min-h-screen max-w-3xl px-6 pb-20 pt-28 sm:px-8">
       <article className="space-y-10">
         <header className="space-y-4 border-b border-border pb-8">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">Privacy</p>
@@ -21,7 +22,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-xl font-semibold">Analytics and performance</h2>
           <p className="leading-7 text-muted-foreground">
-            Vercel Analytics and Speed Insights may process page, device, and performance information. Sentry may receive errors, performance traces, and sampled session replays; replay text and media are configured to be masked or blocked.
+            Vercel Analytics and Speed Insights may process page, device, and performance information. This site does not record session replays.
           </p>
         </section>
 

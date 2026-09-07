@@ -34,7 +34,7 @@ export default function ResumePage() {
             </div>
 
             {/* Resume Content */}
-            <main className="max-w-4xl mx-auto bg-card border border-border rounded-xl p-8 md:p-12 shadow-2xl print:shadow-none print:border-none print:p-0 print:rounded-none animate-fade-in-up"
+            <main id="main-content" tabIndex={-1} className="max-w-4xl mx-auto bg-card border border-border rounded-xl p-8 md:p-12 shadow-2xl print:shadow-none print:border-none print:p-0 print:rounded-none animate-fade-in-up"
                 style={{ animationDelay: '100ms' }}>
 
                 {/* Header */}

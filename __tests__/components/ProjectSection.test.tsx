@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { ProjectSection } from '@/features/projects/components/ProjectSection';
 
 // Mock child components
@@ -64,6 +64,12 @@ jest.mock('@/features/projects/module/ProjectModule', () => ({
   }),
 }));
 
+async function renderProjectSection(activeSection: string, sectionRef: jest.Mock) {
+  await act(async () => {
+    render(<ProjectSection activeSection={activeSection} sectionRef={sectionRef} />);
+  });
+}
+
 describe('ProjectSection', () => {
   const mockRef = jest.fn();
 
@@ -71,72 +77,72 @@ describe('ProjectSection', () => {
     jest.clearAllMocks();
   });
 
-  it('should render without crashing', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should render without crashing', async () => {
+    await renderProjectSection('project', mockRef);
     const section = document.querySelector('#project');
     expect(section).toBeInTheDocument();
   });
 
-  it('should have correct section id', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should have correct section id', async () => {
+    await renderProjectSection('project', mockRef);
     const section = document.querySelector('#project');
     expect(section).toHaveAttribute('id', 'project');
   });
 
-  it('should render section heading', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should render section heading', async () => {
+    await renderProjectSection('project', mockRef);
     expect(screen.getByText(/project hypergrid/i)).toBeInTheDocument();
   });
 
-  it('should render "View All" link', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should render "View All" link', async () => {
+    await renderProjectSection('project', mockRef);
     const link = screen.getByRole('link', { name: /view all/i });
     expect(link).toHaveAttribute('href', '/project');
   });
 
   it('should load and display projects', async () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+    await renderProjectSection('project', mockRef);
     
     await waitFor(() => {
-      expect(screen.getByTestId('project-showcase')).toBeInTheDocument();
+      expect(screen.getByTestId('project-showcase')).toHaveTextContent('Showcase: 1 projects');
     });
   });
 
   it('should render ProjectShowcase component', async () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+    await renderProjectSection('project', mockRef);
     
     await waitFor(() => {
-      expect(screen.getByTestId('project-showcase')).toBeInTheDocument();
+      expect(screen.getByTestId('project-showcase')).toHaveTextContent('Showcase: 1 projects');
     });
   });
 
   it('should render ProjectFilterBar component', async () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+    await renderProjectSection('project', mockRef);
     
     await waitFor(() => {
-      expect(screen.getByTestId('project-filter')).toBeInTheDocument();
+      expect(screen.getByTestId('project-filter')).toHaveTextContent('Filters: 1 languages');
     });
   });
 
-  it('should call sectionRef with section element', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should call sectionRef with section element', async () => {
+    await renderProjectSection('project', mockRef);
     expect(mockRef).toHaveBeenCalled();
   });
 
-  it('should apply active section styles when section is active', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should apply active section styles when section is active', async () => {
+    await renderProjectSection('project', mockRef);
     const section = document.querySelector('#project');
     expect(section).toHaveAttribute('data-inview', 'true');
   });
 
-  it('should not apply active styles when section is not active', () => {
-    render(<ProjectSection activeSection="intro" sectionRef={mockRef} />);
+  it('should not apply active styles when section is not active', async () => {
+    await renderProjectSection('intro', mockRef);
     const section = document.querySelector('#project');
     expect(section).not.toHaveAttribute('data-inview', 'true');
   });
 
-  it('should have proper accessibility attributes', () => {
-    render(<ProjectSection activeSection="project" sectionRef={mockRef} />);
+  it('should have proper accessibility attributes', async () => {
+    await renderProjectSection('project', mockRef);
     const section = document.querySelector('#project');
     expect(section).toHaveAttribute('id', 'project');
   });

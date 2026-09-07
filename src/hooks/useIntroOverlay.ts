@@ -52,17 +52,21 @@ export function useIntroOverlay(options: IntroOverlayOptions = {}): IntroOverlay
     if (!startVisible) return;
 
     if (typeof window !== 'undefined') {
-      const hasShown = sessionStorage.getItem('portfolio-intro-shown');
-      if (!hasShown) {
-        sessionStorage.setItem('portfolio-intro-shown', 'true');
-        const prefersReducedMotion =
-          respectReducedMotion &&
-          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        if (window.sessionStorage.getItem('portfolio-intro-shown')) return;
+        window.sessionStorage.setItem('portfolio-intro-shown', 'true');
+      } catch {
+        // The intro is optional; blocked storage must never hide the portfolio.
+        return;
+      }
 
-        if (!prefersReducedMotion) {
-          setShouldRender(true);
-          setIsVisible(true);
-        }
+      const prefersReducedMotion =
+        respectReducedMotion &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        setShouldRender(true);
+        setIsVisible(true);
       }
     }
   }, [respectReducedMotion, startVisible]);

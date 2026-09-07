@@ -1,3 +1,4 @@
+import { SITE_URL, absoluteSiteUrl } from '@/lib/site';
 /**
  * Article Schema (Schema.org)
  * Structured data for blog posts
@@ -49,7 +50,7 @@ export function getArticleSchema({
   slug,
   author = 'Tra Hoang Trong (Hoàng Trọng Trà)',
 }: ArticleSchemaProps): ArticleSchema {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
+  const baseUrl = SITE_URL;
   const url = `${baseUrl}/blog/${slug}`;
 
   return {
@@ -57,7 +58,7 @@ export function getArticleSchema({
     '@type': 'Article',
     headline: title,
     description: description || title,
-    image: image ? [`${baseUrl}${image}`] : [`${baseUrl}/og-image.png`],
+    image: [absoluteSiteUrl(image || '/opengraph-image')],
     datePublished,
     dateModified: dateModified || datePublished,
     author: {

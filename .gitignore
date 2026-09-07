@@ -43,6 +43,8 @@ next-env.d.ts
 *.lcov
 
 # Playwright
+/.playwright-cli/
+/output/
 /test-results/
 /playwright-report/
 /playwright/.cache/

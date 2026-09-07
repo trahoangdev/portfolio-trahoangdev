@@ -547,7 +547,7 @@ const ProjectExplorer = dynamic(
 GITHUB_TOKEN="ghp_xxx"
 
 # ✅ Client-safe (with NEXT_PUBLIC_ prefix)
-NEXT_PUBLIC_SITE_URL="https://example.com"
+# Canonical website URL: src/lib/site.ts
 ```
 
 ### 2. Security Headers

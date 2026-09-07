@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 import { BlogList } from '@/features/blog/components/BlogList';
 import { BlogPostMetadata } from '@/features/blog/module/types';
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => new URLSearchParams(window.location.search),
+}));
+
 describe('BlogList', () => {
   beforeEach(() => {
     window.history.replaceState(null, '', '/blog');
@@ -36,6 +40,26 @@ describe('BlogList', () => {
   ];
 
   const allTags = ['React', 'Next.js', 'TypeScript', 'CSS', 'Tailwind'];
+
+  it('clears the selected tag when client navigation removes it from the URL', () => {
+    window.history.replaceState(null, '', '/blog?tag=React');
+    const { rerender } = render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
+    expect(screen.queryByText('TypeScript Best Practices')).not.toBeInTheDocument();
+
+    window.history.replaceState(null, '', '/blog');
+    rerender(<BlogList initialPosts={mockPosts} allTags={allTags} />);
+    expect(screen.getByText('TypeScript Best Practices')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'All topics' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('resets to all posts when navigation supplies an unknown tag', () => {
+    window.history.replaceState(null, '', '/blog?tag=React');
+    const { rerender } = render(<BlogList initialPosts={mockPosts} allTags={allTags} />);
+    window.history.replaceState(null, '', '/blog?tag=Unknown');
+    rerender(<BlogList initialPosts={mockPosts} allTags={allTags} />);
+    expect(screen.getByText('Tailwind CSS Guide')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'All topics' })).toHaveAttribute('aria-pressed', 'true');
+  });
 
   it('should render without crashing', () => {
     render(<BlogList initialPosts={mockPosts} allTags={allTags} />);

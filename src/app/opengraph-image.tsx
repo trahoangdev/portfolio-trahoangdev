@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const runtime = 'nodejs';
-export const alt = 'Tra Hoang Trong (Hoàng Trọng Trà) (trahoangdev) - Software Engineer';
+export const alt = 'Tra Hoang Trong (Hoàng Trọng Trà) - Software Engineer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

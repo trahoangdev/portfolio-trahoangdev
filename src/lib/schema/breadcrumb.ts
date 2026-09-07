@@ -1,3 +1,4 @@
+import { SITE_URL } from '@/lib/site';
 /**
  * BreadcrumbList Schema (Schema.org)
  * Structured data for navigation breadcrumbs
@@ -24,7 +25,7 @@ export interface BreadcrumbItemProps {
 export function getBreadcrumbSchema(
   items: BreadcrumbItemProps[]
 ): BreadcrumbListSchema {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
+  const baseUrl = SITE_URL;
 
   return {
     '@context': 'https://schema.org',

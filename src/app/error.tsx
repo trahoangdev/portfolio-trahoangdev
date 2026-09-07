@@ -22,7 +22,7 @@ export default function Error({
   const friendlyMessage = getUserFriendlyErrorMessage(error);
 
   return (
-    <div className="min-h-screen text-foreground flex items-center justify-center px-6">
+    <main id="main-content" tabIndex={-1} className="min-h-screen text-foreground flex items-center justify-center px-6">
       <div className="max-w-2xl w-full space-y-8">
         <div className="border-dotted-thick border-border p-8 space-y-6">
           <div className="space-y-2">
@@ -69,6 +69,6 @@ export default function Error({
           </p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

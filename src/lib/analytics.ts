@@ -100,12 +100,6 @@ export function trackTimeOnPage(seconds: number) {
 /**
  * Track error occurred
  */
-interface BrowserSentry {
-  captureException: (error: Error, options?: { extra?: Record<string, unknown> }) => void;
-}
-
-type WindowWithSentry = Window & { Sentry?: BrowserSentry };
-
 export function trackError(error: string | Error, context?: string | Record<string, unknown>) {
   const errorMessage = typeof error === 'string' ? error : error.message;
   const errorStack = typeof error === 'object' && error.stack ? error.stack.substring(0, 500) : undefined;
@@ -115,18 +109,6 @@ export function trackError(error: string | Error, context?: string | Record<stri
     ...(errorStack && { stack: errorStack }),
     ...(context && (typeof context === 'string' ? { context } : context)),
   });
-
-  // Also send to Sentry if available
-  const sentry = typeof window !== 'undefined'
-    ? (window as WindowWithSentry).Sentry
-    : undefined;
-  if (sentry) {
-    const sentryContext = typeof context === 'string' ? { context } : context;
-    sentry.captureException(
-      typeof error === 'string' ? new Error(error) : error,
-      { extra: sentryContext }
-    );
-  }
 }
 
 /**

@@ -22,7 +22,8 @@ export function ParticlesBackground() {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        let animationFrameId: number;
+        let animationFrameId: number | null = null;
+        const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
         let points: Point[] = [];
         const connectionDistance = 180; // Increased from 150
 
@@ -122,18 +123,34 @@ export function ParticlesBackground() {
             animationFrameId = requestAnimationFrame(draw);
         };
 
-        draw();
+        const handleMotionChange = () => {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            canvas.hidden = motionPreference.matches;
+            if (motionPreference.matches) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            } else {
+                draw();
+            }
+        };
+
+        motionPreference.addEventListener('change', handleMotionChange);
+        handleMotionChange();
 
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
-            cancelAnimationFrame(animationFrameId);
+            motionPreference.removeEventListener('change', handleMotionChange);
+            if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
         };
     }, [resolvedTheme]);
 
     return (
         <canvas
             ref={canvasRef}
+            aria-hidden="true"
             className="absolute inset-0 z-0 pointer-events-none"
         />
     );

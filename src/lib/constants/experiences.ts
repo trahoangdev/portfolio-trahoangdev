@@ -9,11 +9,11 @@ export interface Experience {
 export const EXPERIENCES: Experience[] = [
   {
     year: 'Jun. 2026 — Present',
-    role: 'PROGRAM DEVELOPMENT INTERN',
+    role: 'GROWTH SPECIALIST INTERN',
     company: 'sixonefour labs',
-    description: 'Contributing to the development and delivery of a 10-week AI-native product engineering residency in Ho Chi Minh City. Supporting program coordination and learning experiences across software engineering, product development, AI orchestration, and professional communication to help engineers build solutions for real business problems.',
+    description: 'Assisting in the growth of the company by identifying growth opportunities, developing growth strategies, and implementing growth initiatives.',
     tech: [],
-    //tech: ['AWS', 'Cloud Architecture', 'AI/ML', 'DevOps', 'Data Engineering'],
+    //tech: ['Growth Strategy', 'Growth Marketing', 'Growth Hacking', 'Growth Operations', 'Growth Analytics'],
   },
   {
     year: 'Jun. 2026 — Present',

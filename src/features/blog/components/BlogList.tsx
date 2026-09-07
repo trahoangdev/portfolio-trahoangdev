@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { BlogPostMetadata } from '@/features/blog/module/types';
 import { cn } from '@/lib/utils';
@@ -10,25 +11,28 @@ import { BlogPagination } from './BlogPagination';
 interface BlogListProps {
     initialPosts: BlogPostMetadata[];
     allTags: string[];
+    initialTag?: string;
 }
 
 const POSTS_PER_PAGE = 5;
 const COLLAPSED_TOPIC_COUNT = 8;
 
-export function BlogList({ initialPosts, allTags }: BlogListProps) {
+export function BlogList({ initialPosts, allTags, initialTag }: BlogListProps) {
+    const tagFromUrl = useSearchParams().get('tag');
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const [selectedTag, setSelectedTag] = useState<string | null>(
+        initialTag && allTags.includes(initialTag) ? initialTag : null
+    );
     const [currentPage, setCurrentPage] = useState(1);
     const [showAllTopics, setShowAllTopics] = useState(false);
 
     useEffect(() => {
-        const tagFromUrl = new URLSearchParams(window.location.search).get('tag');
-
-        if (tagFromUrl && allTags.includes(tagFromUrl)) {
-            setSelectedTag(tagFromUrl);
-            setShowAllTopics(!allTags.slice(0, COLLAPSED_TOPIC_COUNT).includes(tagFromUrl));
+        const nextTag = tagFromUrl && allTags.includes(tagFromUrl) ? tagFromUrl : null;
+        setSelectedTag(nextTag);
+        if (nextTag) {
+            setShowAllTopics(!allTags.slice(0, COLLAPSED_TOPIC_COUNT).includes(nextTag));
         }
-    }, [allTags]);
+    }, [allTags, tagFromUrl]);
 
     useEffect(() => {
         setCurrentPage(1);

@@ -12,6 +12,7 @@ import { ArticleTableOfContents, type ArticleHeading } from '@/features/blog/com
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from '@/features/blog/module/service';
 import { getArticleSchema } from '@/lib/schema/article';
 import { getBreadcrumbSchema } from '@/lib/schema/breadcrumb';
+import { createPageMetadata } from '@/lib/metadata';
 
 function getTextContent(node: React.ReactNode): string {
     if (typeof node === 'string' || typeof node === 'number') return String(node);
@@ -96,12 +97,15 @@ export async function generateMetadata({ params }: PageProps) {
     const resolvedParams = await params;
     try {
         const post = getPostBySlug(resolvedParams.slug);
-        return {
-            title: `${post.title} - Tra Hoang`,
+        return createPageMetadata({
+            title: post.title,
             description: post.excerpt,
-        };
+            path: `/blog/${resolvedParams.slug}`,
+            image: post.coverImage,
+            article: { publishedTime: post.date, author: post.author, tags: post.tags },
+        });
     } catch {
-        return { title: 'Post Not Found' };
+        return { title: 'Post Not Found', robots: { index: false, follow: false } };
     }
 }
 
@@ -132,7 +136,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     ]);
 
     return (
-        <main className="blog-journal overflow-x-clip bg-background pb-16 pt-28 md:pt-32">
+        <main id="main-content" tabIndex={-1} className="blog-journal overflow-x-clip bg-background pb-16 pt-28 md:pt-32">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

@@ -1,8 +1,9 @@
+import { SITE_URL } from '@/lib/site';
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/features/blog/module/service';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.trahoangdev.me';
+  const baseUrl = SITE_URL;
   // Get all blog posts
   const posts = getAllPosts();
 
