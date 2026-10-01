@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-//import { HOME_NAV_EVENT } from '@/lib/constants/navigation';
 import { SCROLL_THRESHOLD } from '@/lib/constants/ui';
 interface NavItem {
   label: string;
