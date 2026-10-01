@@ -51,7 +51,7 @@ export function getArticleSchema({
   author = 'Tra Hoang Trong (Hoàng Trọng Trà)',
 }: ArticleSchemaProps): ArticleSchema {
   const baseUrl = SITE_URL;
-  const url = `${baseUrl}/blog/${slug}`;
+  const url = absoluteSiteUrl(`/blog/${slug}`);
 
   return {
     '@context': 'https://schema.org',
@@ -71,7 +71,7 @@ export function getArticleSchema({
       name: 'trahoangdev',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.ico`,
+        url: absoluteSiteUrl('/logo.ico'),
       },
     },
     mainEntityOfPage: {

@@ -2,6 +2,8 @@
  * Error boundary utilities
  */
 
+import { trackError } from '@/lib/analytics';
+
 /**
  * Check if error is recoverable
  */
@@ -62,4 +64,7 @@ export function getUserFriendlyErrorMessage(error: Error): string {
  */
 export function logError(error: Error, context?: Record<string, unknown>): void {
   console.error('Application error:', error, context);
+  // Surfaces the error as a Vercel Analytics event so it's discoverable
+  // in production after the Sentry integration was removed.
+  trackError(error, context);
 }

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/features/blog/module/service';
 import { BlogList } from '@/features/blog/components/BlogList';
 import { Rss } from 'lucide-react';
@@ -9,12 +10,7 @@ export const metadata = createPageMetadata({
     path: '/blog',
 });
 
-export default async function BlogPage({
-    searchParams,
-}: {
-    searchParams: Promise<{ tag?: string | string[] }>;
-}) {
-    const { tag } = await searchParams;
+export default function BlogPage() {
     const posts = getAllPosts();
     const tagCounts = posts.reduce((counts, post) => {
         post.tags?.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1));
@@ -52,7 +48,9 @@ export default async function BlogPage({
             </section>
 
             <div className="mx-auto max-w-6xl px-4 md:px-8">
-                <BlogList initialPosts={posts} allTags={allTags} initialTag={Array.isArray(tag) ? tag[0] : tag} />
+                <Suspense fallback={null}>
+                    <BlogList initialPosts={posts} allTags={allTags} />
+                </Suspense>
             </div>
 
             <footer className="mx-auto mt-16 max-w-6xl px-4 md:px-8">

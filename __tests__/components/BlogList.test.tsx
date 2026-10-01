@@ -5,6 +5,10 @@ import { BlogPostMetadata } from '@/features/blog/module/types';
 
 jest.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(window.location.search),
+  usePathname: () => window.location.pathname,
+  useRouter: () => ({
+    replace: (url: string) => window.history.replaceState(null, '', url),
+  }),
 }));
 
 describe('BlogList', () => {

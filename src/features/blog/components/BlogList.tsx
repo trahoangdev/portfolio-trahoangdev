@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { BlogPostMetadata } from '@/features/blog/module/types';
 import { cn } from '@/lib/utils';
@@ -11,17 +11,19 @@ import { BlogPagination } from './BlogPagination';
 interface BlogListProps {
     initialPosts: BlogPostMetadata[];
     allTags: string[];
-    initialTag?: string;
 }
 
 const POSTS_PER_PAGE = 5;
 const COLLAPSED_TOPIC_COUNT = 8;
 
-export function BlogList({ initialPosts, allTags, initialTag }: BlogListProps) {
-    const tagFromUrl = useSearchParams().get('tag');
+export function BlogList({ initialPosts, allTags }: BlogListProps) {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const tagFromUrl = searchParams.get('tag');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTag, setSelectedTag] = useState<string | null>(
-        initialTag && allTags.includes(initialTag) ? initialTag : null
+        tagFromUrl && allTags.includes(tagFromUrl) ? tagFromUrl : null
     );
     const [currentPage, setCurrentPage] = useState(1);
     const [showAllTopics, setShowAllTopics] = useState(false);
@@ -66,20 +68,22 @@ export function BlogList({ initialPosts, allTags, initialTag }: BlogListProps) {
     const clearFilters = () => {
         setSearchQuery('');
         setSelectedTag(null);
-        window.history.replaceState(null, '', window.location.pathname);
+        setShowAllTopics(false);
+        router.replace(pathname, { scroll: false });
     };
 
     const selectTopic = (tag: string | null) => {
         const nextTag = tag === selectedTag ? null : tag;
         setSelectedTag(nextTag);
 
-        const url = new URL(window.location.href);
+        const params = new URLSearchParams(searchParams.toString());
         if (nextTag) {
-            url.searchParams.set('tag', nextTag);
+            params.set('tag', nextTag);
         } else {
-            url.searchParams.delete('tag');
+            params.delete('tag');
         }
-        window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+        const query = params.toString();
+        router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
     };
 
     return (

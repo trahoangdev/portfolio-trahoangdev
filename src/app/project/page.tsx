@@ -6,6 +6,9 @@ export const metadata = createPageMetadata({
   description:
     'Dive into the full matrix of trahoangdev projects, filter by stack or mission, and explore the supporting tool arsenal.',
   path: '/project',
+  // This route has its own opengraph-image.tsx; skip the site-wide default
+  // so Next.js resolves that file instead of this overriding it.
+  image: null,
 });
 
 // Enable ISR with 1 hour revalidation

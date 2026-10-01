@@ -1,11 +1,11 @@
 import { HomePageClient } from '@/components/home/HomePageClient';
 import { getAllPosts } from '@/features/blog/module/service';
-import { SITE_URL } from '@/lib/site';
+import { SITE_URL, absoluteSiteUrl } from '@/lib/site';
 
 export const metadata = {
   alternates: {
     canonical: SITE_URL,
-    types: { 'application/rss+xml': '/feed.xml' },
+    types: { 'application/rss+xml': absoluteSiteUrl('/feed.xml') },
   },
 };
 
